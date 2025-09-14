@@ -1,25 +1,30 @@
 extends Control
 
-var doc = "res://Data/Tasks.csv"
+const doc: String = "res://Data/Tasks.csv"
 
 func _ready() -> void:
 	#$RichTextLabel.text = _read()
 	pass
 
 func _write() -> void:
-	var file = FileAccess.open(doc, FileAccess.WRITE)
+	var previous_data = _read()
+	var file = FileAccess.open(doc, FileAccess.READ_WRITE)
 	
-	var titles: Array[String] = ["Nombre", "Descripcion"]
-	file.store_csv_line(titles, ";")
+	print("Size: ", previous_data.size())
+	if previous_data.size() <= 0:
+		var titles: Array[String] = ["Nombre", "Descripcion"]
+		file.store_csv_line(titles, ";")
 	
-	var _name = $LineEdit.text
-	var _description = $LineEdit2.text
+	var _name: String = $LineEdit.text
+	var _description: String = $LineEdit2.text
 	
-	if _name != "" and _description != "":
-		var data: Array[String] = [_name, _description]
-		file.store_csv_line(data, ";")
+	if _description.is_empty(): _description = "No hay descripcion."
 	
-	#print(file.get_as_text().split("\n").size())
+	if _name != "":
+		for row in previous_data:
+			file.store_csv_line(row, ";")
+		var new_data: Array[String] = [_name, _description]
+		file.store_csv_line(new_data, ";")
 	
 	file.close()
 
@@ -30,18 +35,20 @@ func _read() -> Array:
 	
 	# Split content file and transform and erase empty slots.
 	content = content.split("\n")
-	var content_string = content as Array
+	var content_string: Array = content as Array
 	content_string.erase("")
-	
-	print(content_string.size())
 	
 	# Create and fill data Array.
 	var data: Array = []
 	for row in content_string:
 		var new_row: Array = []
+		row = str(row).strip_edges(true, true) # Delete all no printable characters.
 		row = row.split(";")
+		
 		for cell in row:
+			if cell == "": continue
 			new_row.append(cell)
+		if new_row.size() == 0: continue
 		data.append(new_row)
 	
 	file.close()
