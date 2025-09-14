@@ -7,24 +7,33 @@ func _ready() -> void:
 	pass
 
 func _write() -> void:
-	var previous_data = _read()
-	var file = FileAccess.open(doc, FileAccess.READ_WRITE)
+	# Read file and open it in write mode.
+	var previous_data: Array = _read()
+	var file = FileAccess.open(doc, FileAccess.WRITE)
 	
-	print("Size: ", previous_data.size())
+	# Add titles if don't exist.
 	if previous_data.size() <= 0:
-		var titles: Array[String] = ["Nombre", "Descripcion"]
+		var titles: Array[String] = ["ID", "Nombre", "Descripcion"]
 		file.store_csv_line(titles, ";")
 	
+	# Capture inputs.
+	var _id: String = str(ResourceUID.create_id())
 	var _name: String = $LineEdit.text
 	var _description: String = $LineEdit2.text
 	
+	# Fill cells.
 	if _description.is_empty(): _description = "No hay descripcion."
 	
-	if _name != "":
-		for row in previous_data:
-			file.store_csv_line(row, ";")
-		var new_data: Array[String] = [_name, _description]
-		file.store_csv_line(new_data, ";")
+	# Required fields condition and add task data.
+	if _name == "":
+		print("No task has been added.")
+		file.close()
+		return
+		
+	for row in previous_data:
+		file.store_csv_line(row, ";")
+	var new_data: Array[String] = [_id, _name, _description]
+	file.store_csv_line(new_data, ";")
 	
 	file.close()
 
@@ -52,11 +61,41 @@ func _read() -> Array:
 		data.append(new_row)
 	
 	file.close()
+	print("New task added.")
 	
 	return data
 
-func _on_button_pressed() -> void:
-	print("Tarea gaurdada.")
+func _delete_by_id(id_to_delete: String) -> void:
+	# Read data.
+	var previous_data: Array = _read()
+	var has_deleted: bool = false
+	
+	# Find task.
+	for task in previous_data:
+		if task.get(0) == id_to_delete:
+			previous_data.erase(task)
+			has_deleted = true
+			print("Task with id [", id_to_delete, "] has been deleted.")
+			
+	if not has_deleted:
+		print("No task has been deleted.")
+	
+	# Open file in write mode.
+	var file = FileAccess.open(doc, FileAccess.WRITE)
+	
+	# Rewrite new data.
+	for task in previous_data:
+		var new_data: Array[String] = [task[0], task[1], task[2]]
+		file.store_csv_line(new_data, ";")
+
+
+func _on_save_button_pressed() -> void:
 	_write()
-	#$RichTextLabel.text = _read()
+
+
+func _on_delete_button_pressed() -> void:
+	_delete_by_id("2643383200449524125")
+
+
+func _on_read_button_pressed() -> void:
 	print(_read())

@@ -25,7 +25,21 @@ offset_top = 239.0
 offset_right = 365.0
 offset_bottom = 339.0
 
-[node name="Button" type="Button" parent="."]
+[node name="ReadButton" type="Button" parent="."]
+offset_left = 622.0
+offset_top = 391.0
+offset_right = 822.0
+offset_bottom = 491.0
+text = "Leer"
+
+[node name="DeleteButton" type="Button" parent="."]
+offset_left = 397.0
+offset_top = 391.0
+offset_right = 597.0
+offset_bottom = 491.0
+text = "Borrar"
+
+[node name="SaveButton" type="Button" parent="."]
 layout_mode = 0
 offset_left = 167.0
 offset_top = 391.0
@@ -56,4 +70,6 @@ offset_top = 106.0
 offset_right = 934.0
 offset_bottom = 420.0
 
-[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="ReadButton" to="." method="_on_read_button_pressed"]
+[connection signal="pressed" from="DeleteButton" to="." method="_on_delete_button_pressed"]
+[connection signal="pressed" from="SaveButton" to="." method="_on_save_button_pressed"]
