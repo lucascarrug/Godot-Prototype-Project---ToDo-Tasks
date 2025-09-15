@@ -3,7 +3,6 @@ extends Control
 const doc: String = "res://Data/Tasks.csv"
 
 func _ready() -> void:
-	#$RichTextLabel.text = _read()
 	pass
 
 func _write() -> void:

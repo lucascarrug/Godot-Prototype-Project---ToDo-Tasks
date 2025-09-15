@@ -26,6 +26,7 @@ offset_right = 365.0
 offset_bottom = 339.0
 
 [node name="ReadButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 622.0
 offset_top = 391.0
 offset_right = 822.0
@@ -33,6 +34,7 @@ offset_bottom = 491.0
 text = "Leer"
 
 [node name="DeleteButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 397.0
 offset_top = 391.0
 offset_right = 597.0
