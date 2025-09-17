@@ -1,0 +1,98 @@
+[gd_scene load_steps=2 format=3 uid="uid://babk1c6voc82i"]
+
+[ext_resource type="Script" uid="uid://v6xyomnid282" path="res://Scripts/AddTask.gd" id="1_vwt5c"]
+
+[node name="AddTaskUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vwt5c")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 78.0
+offset_right = 295.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 30
+text = "Nombre"
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 160.0
+offset_right = 347.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 30
+text = "Descripción"
+
+[node name="EndDateLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 259.0
+offset_right = 424.0
+offset_bottom = 301.0
+theme_override_font_sizes/font_size = 30
+text = "Fecha de entrega"
+
+[node name="Pathlabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 181.0
+offset_top = 342.0
+offset_right = 248.0
+offset_bottom = 384.0
+theme_override_font_sizes/font_size = 30
+text = "Ruta"
+
+[node name="NameText" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 78.0
+offset_right = 646.0
+offset_bottom = 118.0
+
+[node name="DescriptionText" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 165.0
+offset_right = 643.0
+offset_bottom = 205.0
+
+[node name="EndDateText" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 263.0
+offset_right = 642.0
+offset_bottom = 303.0
+placeholder_text = "YYYY-MM-DD"
+
+[node name="InsertDataButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 67.0
+offset_right = 1030.0
+offset_bottom = 167.0
+text = "Añadir Tarea"
+
+[node name="SelectDataButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 833.0
+offset_top = 203.0
+offset_right = 1033.0
+offset_bottom = 303.0
+text = "Select Data"
+
+[node name="MostrarDataButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 830.0
+offset_top = 330.0
+offset_right = 1030.0
+offset_bottom = 430.0
+text = "Mostrar Data"
+
+[connection signal="pressed" from="InsertDataButton" to="." method="_on_insert_data_button_pressed"]
+[connection signal="pressed" from="SelectDataButton" to="." method="_on_select_data_button_pressed"]
+[connection signal="pressed" from="MostrarDataButton" to="." method="_on_mostrar_data_button_pressed"]

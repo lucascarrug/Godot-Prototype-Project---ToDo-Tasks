@@ -12,6 +12,7 @@ grow_vertical = 2
 script = ExtResource("1_tmoa8")
 
 [node name="CreateTableButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 46.0
 offset_top = 20.0
 offset_right = 246.0
@@ -29,6 +30,7 @@ theme_override_font_sizes/font_size = 23
 text = "Insert"
 
 [node name="SelectDataButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 46.0
 offset_top = 218.0
 offset_right = 246.0
@@ -37,6 +39,7 @@ theme_override_font_sizes/font_size = 23
 text = "Select"
 
 [node name="UpdateDataButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 45.0
 offset_top = 325.0
 offset_right = 245.0
@@ -45,6 +48,7 @@ theme_override_font_sizes/font_size = 23
 text = "Update"
 
 [node name="DeleteDataButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 46.0
 offset_top = 444.0
 offset_right = 246.0
@@ -53,6 +57,7 @@ theme_override_font_sizes/font_size = 23
 text = "Delete"
 
 [node name="CustomSelectButton" type="Button" parent="."]
+layout_mode = 0
 offset_left = 43.0
 offset_top = 556.0
 offset_right = 243.0
@@ -69,6 +74,7 @@ offset_bottom = 142.0
 text = "Name"
 
 [node name="ScoreLabel" type="Label" parent="."]
+layout_mode = 0
 offset_left = 381.0
 offset_top = 192.0
 offset_right = 428.0
@@ -76,6 +82,7 @@ offset_bottom = 215.0
 text = "Score"
 
 [node name="ScoreTextEdit" type="TextEdit" parent="."]
+layout_mode = 0
 offset_left = 446.0
 offset_top = 175.0
 offset_right = 602.0
