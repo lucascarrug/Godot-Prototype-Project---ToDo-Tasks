@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://h3orryxwm645"]
 
-[ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scenes/TaskWidget.gd" id="1_m6845"]
+[ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/TaskWidget.gd" id="1_m6845"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6845"]
 bg_color = Color(0.1416, 0.18096, 0.24, 1)
