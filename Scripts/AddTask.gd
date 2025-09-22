@@ -1,6 +1,7 @@
 extends Control
 
-@onready var task_widget := $TaskWidget
+@onready var task_widget := $VBoxContainer/TaskWidget
+@onready var task_widget2 := $VBoxContainer/TaskWidget2
 
 var C = Constants.new()
 var database: SQLite
@@ -46,8 +47,9 @@ func _on_insert_data_button_pressed() -> void:
 	_insert_task()
 
 func _on_update_widget_button_pressed() -> void:
-	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
-	task_widget.set_data(table[i])
+	#var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
+	#task_widget.set_data(table[i])
+	pass
 
 func _on_mostrar_data_button_pressed() -> void:
 	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
@@ -62,10 +64,13 @@ func _on_mostrar_data_button_pressed() -> void:
 
 func _on_next_task_button_pressed() -> void:
 	i = (i + 1) % database.select_rows(C.TABLE_NAME, "", ["*"]).size()
+	var i2 = (i + 1) % database.select_rows(C.TABLE_NAME, "", ["*"]).size()
 	print("Task ", i)
+	print("Task2 ", i2)
 	
 	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
 	task_widget.set_data(table[i])
+	task_widget2.set_data(table[i2])
 
 func _create_tables() -> void:
 	database.query("

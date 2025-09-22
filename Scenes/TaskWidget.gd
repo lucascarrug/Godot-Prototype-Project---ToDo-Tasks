@@ -1,12 +1,11 @@
 class_name TaskWidget 
-extends Control
+extends MarginContainer
 
-@onready var more_info_b: Button = $MarginContainer/VBoxContainer/HBoxContainer/MoreInfoButton
-@onready var name_l: Label = $MarginContainer/VBoxContainer/HBoxContainer/TaskNameLabel
-@onready var start_date_l: RichTextLabel = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/StartDateLabel
-@onready var end_date_l: RichTextLabel = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/EndDateLabel
-@onready var description_l: RichTextLabel = $MarginContainer/VBoxContainer/DescriptionLabel
-@onready var container: MarginContainer = $MarginContainer
+@onready var more_info_b: Button = $VBoxContainer/HBoxContainer/MoreInfoButton
+@onready var name_l: Label = $VBoxContainer/HBoxContainer/TaskNameLabel
+@onready var start_date_l: RichTextLabel = $VBoxContainer/HBoxContainer/DateGrid/StartDateLabel
+@onready var end_date_l: RichTextLabel = $VBoxContainer/HBoxContainer/DateGrid/EndDateLabel
+@onready var description_l: RichTextLabel = $VBoxContainer/DescriptionLabel
 
 var C = Constants.new()
 
@@ -17,7 +16,7 @@ func _ready() -> void:
 	start_date_l.visible = false
 
 func _fix_container_size() -> void:
-	container.force_update_transform()
+	self.force_update_transform()
 
 func _on_more_info_button_pressed() -> void:
 	_toggle_info_display()
@@ -33,6 +32,7 @@ func _toggle_info_display() -> void:
 		start_date_l.visible = true
 		is_more_info_displayed = true
 		print("Show more.")
+
 
 func set_data(task: Dictionary) -> void:
 	name_l.text = task[C.NAME]
