@@ -17,8 +17,9 @@ func _ready() -> void:
 	start_date_l.visible = false
 	
 	if data:
+		print("data id: ", data[C.ID])
 		name_l.text = data[C.NAME]
-		description_l.text = data[C.DESCRIPTION]
+		if data[C.DESCRIPTION]: description_l.text = data[C.DESCRIPTION]
 		start_date_l.text = "[i][color=#111111]desde [/color][/i] " + data[C.START_DATE]
 		
 		if data[C.END_DATE] != null:
@@ -27,6 +28,7 @@ func _ready() -> void:
 
 func _fix_container_size() -> void:
 	self.force_update_transform()
+
 
 func _on_more_info_button_pressed() -> void:
 	_toggle_info_display()

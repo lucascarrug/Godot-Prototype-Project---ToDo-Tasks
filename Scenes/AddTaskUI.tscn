@@ -118,7 +118,12 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="TaskWidgetContainer" parent="." instance=ExtResource("3_hfj2a")]
+custom_minimum_size = Vector2(100, 10)
 layout_mode = 0
+offset_left = 16.0
+offset_top = 435.0
+offset_right = 116.0
+offset_bottom = 445.0
 
 [connection signal="pressed" from="InsertDataButton" to="." method="_on_insert_data_button_pressed"]
 [connection signal="pressed" from="UpdateWidgetButton" to="." method="_on_update_widget_button_pressed"]

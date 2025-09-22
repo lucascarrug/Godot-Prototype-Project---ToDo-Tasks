@@ -50,7 +50,7 @@ layout_mode = 2
 
 [node name="TaskNameLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
 layout_mode = 2
-text = "Tarea1"
+text = "Sin nombre"
 
 [node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
@@ -65,7 +65,7 @@ alignment = 1
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "desde 11/11/11"
+text = "[i][color=#111111]no fecha [/color][/i]"
 fit_content = true
 horizontal_alignment = 2
 
@@ -73,13 +73,14 @@ horizontal_alignment = 2
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 bbcode_enabled = true
-text = "hasta 22/22/22"
+text = "[i][color=#111111]no fecha [/color][/i]"
 fit_content = true
 horizontal_alignment = 2
 
 [node name="DescriptionLabel" type="RichTextLabel" parent="VBoxContainer"]
 layout_mode = 2
-text = "Descripción de la tarea aifabfiafoiah"
+bbcode_enabled = true
+text = "[i][color=#111111]Sin descripción [/color][/i]"
 fit_content = true
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_pressed"]
