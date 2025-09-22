@@ -5,7 +5,7 @@ extends Control
 @onready var name_l: Label = $MarginContainer/VBoxContainer/HBoxContainer/TaskNameLabel
 @onready var start_date_l: RichTextLabel = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/StartDateLabel
 @onready var end_date_l: RichTextLabel = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/EndDateLabel
-@onready var description_l: Label = $MarginContainer/VBoxContainer/DescriptionLabel
+@onready var description_l: RichTextLabel = $MarginContainer/VBoxContainer/DescriptionLabel
 @onready var container: MarginContainer = $MarginContainer
 
 var C = Constants.new()
@@ -38,4 +38,6 @@ func set_data(task: Dictionary) -> void:
 	name_l.text = task[C.NAME]
 	description_l.text = task[C.DESCRIPTION]
 	start_date_l.text = "[i][color=#111111]desde [/color][/i] " + task[C.START_DATE]
-	end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + task[C.END_DATE]
+	
+	if task[C.END_DATE] != null:
+		end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + task[C.END_DATE]

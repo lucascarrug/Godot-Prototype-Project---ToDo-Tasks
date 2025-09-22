@@ -5,6 +5,7 @@ extends Control
 var C = Constants.new()
 var database: SQLite
 
+var i: int = 0
 
 func _ready():
 	database = SQLite.new()
@@ -46,8 +47,7 @@ func _on_insert_data_button_pressed() -> void:
 
 func _on_update_widget_button_pressed() -> void:
 	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
-	
-	task_widget.set_data(table[0])
+	task_widget.set_data(table[i])
 
 func _on_mostrar_data_button_pressed() -> void:
 	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
@@ -59,6 +59,13 @@ func _on_mostrar_data_button_pressed() -> void:
 	for row in table:
 		print("task: ", row[C.NAME], " -> ", row[C.DESCRIPTION], " :: ", row[C.END_DATE], " :: done ", row[C.DONE]) 
 
+
+func _on_next_task_button_pressed() -> void:
+	i = (i + 1) % database.select_rows(C.TABLE_NAME, "", ["*"]).size()
+	print("Task ", i)
+	
+	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
+	task_widget.set_data(table[i])
 
 func _create_tables() -> void:
 	database.query("
