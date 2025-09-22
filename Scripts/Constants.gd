@@ -11,6 +11,7 @@ const DESCRIPTION: String = "description"
 const START_DATE: String = "start_date"
 const END_DATE: String = "end_date"
 const TAGS: String = "tags"
+const DONE: String = "done"
 
 ## Database table.
 var TABLE = {
