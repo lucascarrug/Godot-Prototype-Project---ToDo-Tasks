@@ -3,12 +3,14 @@ extends Control
 
 @onready var more_info_b: Button = $MarginContainer/VBoxContainer/HBoxContainer/MoreInfoButton
 @onready var name_l: Label = $MarginContainer/VBoxContainer/HBoxContainer/TaskNameLabel
-@onready var start_date_l: Label = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/StartDateLabel
-@onready var end_date_l: Label = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/EndDateLabel
+@onready var start_date_l: RichTextLabel = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/StartDateLabel
+@onready var end_date_l: RichTextLabel = $MarginContainer/VBoxContainer/HBoxContainer/DateGrid/EndDateLabel
 @onready var description_l: Label = $MarginContainer/VBoxContainer/DescriptionLabel
 @onready var container: MarginContainer = $MarginContainer
 
-var is_more_info_displayed : bool = false
+var C = Constants.new()
+
+var is_more_info_displayed: bool = false
 
 func _ready() -> void:
 	description_l.visible = false
@@ -31,3 +33,9 @@ func _toggle_info_display() -> void:
 		start_date_l.visible = true
 		is_more_info_displayed = true
 		print("Show more.")
+
+func set_data(task: Dictionary) -> void:
+	name_l.text = task[C.NAME]
+	description_l.text = task[C.DESCRIPTION]
+	start_date_l.text = "[i][color=#111111]desde [/color][/i] " + task[C.START_DATE]
+	end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + task[C.END_DATE]

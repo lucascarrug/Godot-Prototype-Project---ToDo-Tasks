@@ -64,13 +64,21 @@ layout_mode = 2
 layout_mode = 2
 alignment = 1
 
-[node name="StartDateLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/DateGrid"]
+[node name="StartDateLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/DateGrid"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+bbcode_enabled = true
 text = "desde 11/11/11"
+fit_content = true
+horizontal_alignment = 2
 
-[node name="EndDateLabel" type="Label" parent="MarginContainer/VBoxContainer/HBoxContainer/DateGrid"]
+[node name="EndDateLabel" type="RichTextLabel" parent="MarginContainer/VBoxContainer/HBoxContainer/DateGrid"]
+custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
+bbcode_enabled = true
 text = "hasta 22/22/22"
+fit_content = true
+horizontal_alignment = 2
 
 [node name="DescriptionLabel" type="Label" parent="MarginContainer/VBoxContainer"]
 layout_mode = 2

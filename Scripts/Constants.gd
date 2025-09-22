@@ -13,16 +13,6 @@ const END_DATE: String = "end_date"
 const TAGS: String = "tags"
 const DONE: String = "done"
 
-## Database table.
-var TABLE = {
-		ID: {"data_type": "int", "primary_key": true, "not_null": true, "auto_increment": true},
-		NAME: {"data_type": "text"},
-		DESCRIPTION: {"data_type": "text"},
-		START_DATE: {"data_type": "date"},
-		END_DATE: {"data_type": "date"},
-		TAGS: {"data_type": "text"}
-	}
-
 
 ## Extras
 const DEFAULT_DIR: String = "Default"

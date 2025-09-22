@@ -1,5 +1,7 @@
 extends Control
 
+@onready var task_widget := $TaskWidget
+
 var C = Constants.new()
 var database: SQLite
 
@@ -42,10 +44,10 @@ func _insert_task():
 func _on_insert_data_button_pressed() -> void:
 	_insert_task()
 
-
-func _on_select_data_button_pressed() -> void:
-	print(database.select_rows(C.TABLE_NAME, "", ["*"]))
-
+func _on_update_widget_button_pressed() -> void:
+	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
+	
+	task_widget.set_data(table[0])
 
 func _on_mostrar_data_button_pressed() -> void:
 	var table: Array = database.select_rows(C.TABLE_NAME, "", ["*"])
@@ -56,6 +58,7 @@ func _on_mostrar_data_button_pressed() -> void:
 		
 	for row in table:
 		print("task: ", row[C.NAME], " -> ", row[C.DESCRIPTION], " :: ", row[C.END_DATE], " :: done ", row[C.DONE]) 
+
 
 func _create_tables() -> void:
 	database.query("
