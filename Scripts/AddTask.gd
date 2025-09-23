@@ -1,7 +1,5 @@
 extends Control
 
-@onready var task_widget := $VBoxContainer/TaskWidget
-@onready var task_widget2 := $VBoxContainer/TaskWidget2
 @onready var task_container := $TaskWidgetContainer
 
 var C = Constants.new()

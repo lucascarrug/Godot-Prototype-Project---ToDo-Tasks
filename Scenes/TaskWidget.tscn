@@ -21,6 +21,7 @@ offset_right = -542.0
 offset_bottom = -524.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
 focus_mode = 1
 theme_override_constants/margin_left = 10
 theme_override_constants/margin_top = 20
@@ -43,6 +44,7 @@ layout_mode = 2
 [node name="MoreInfoButton" type="Button" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+mouse_filter = 1
 
 [node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
