@@ -8,8 +8,6 @@ extends MarginContainer
 @onready var description_l: RichTextLabel = $VBoxContainer/DescriptionLabel
 @onready var tag_continer: VBoxContainer = $VBoxContainer/TagContiner
 
-var C = Constants.new()
-
 var is_more_info_displayed: bool
 var data: Dictionary
 
@@ -17,13 +15,13 @@ func _ready() -> void:
 	hide_info()
 	
 	if data:
-		print("data id: ", data[C.ID])
-		name_l.text = data[C.NAME]
-		if data[C.DESCRIPTION]: description_l.text = data[C.DESCRIPTION]
-		start_date_l.text = "[i][color=#111111]desde [/color][/i] " + data[C.START_DATE]
+		print("data id: ", data[Constants.ID])
+		name_l.text = data[Constants.NAME]
+		if data[Constants.DESCRIPTION]: description_l.text = data[Constants.DESCRIPTION]
+		start_date_l.text = "[i][color=#111111]desde [/color][/i] " + data[Constants.START_DATE]
 		
-		if data[C.END_DATE] != null:
-			end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + data[C.END_DATE]
+		if data[Constants.END_DATE] != null:
+			end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + data[Constants.END_DATE]
 
 
 func _fix_container_size() -> void:

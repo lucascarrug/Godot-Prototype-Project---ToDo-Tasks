@@ -1,4 +1,5 @@
-class_name Constants extends Resource
+class_name Constants 
+extends Resource
 
 ## Database name
 const TABLE_NAME: String = "Tasks"

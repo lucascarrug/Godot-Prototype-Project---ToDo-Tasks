@@ -3,15 +3,12 @@ extends ScrollContainer
 
 @onready var vbox: VBoxContainer = $VBoxContainer
 
-var C = Constants.new()
-
-
 func _ready() -> void:
 	pass
 
 
 func set_container(database: SQLite) -> void:
-	var table = database.select_rows(C.TABLE_NAME, "", ["*"])
+	var table = database.select_rows(Constants.TABLE_NAME, "", ["*"])
 	var task_scene: PackedScene = preload("res://Scenes/TaskWidget.tscn")
 	
 	for child in vbox.get_children():
