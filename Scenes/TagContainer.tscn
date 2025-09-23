@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://b6owlvtla0cfj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_pmi2l"]
+bg_color = Color(0.939941, 0.232653, 0.550608, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rmskc"]
+bg_color = Color(0.658, 0.235, 0.94, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[node name="TagContainer" type="VBoxContainer"]
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Panel" type="PanelContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_pmi2l")
+
+[node name="TagExample" type="Label" parent="Panel"]
+layout_mode = 2
+text = "AAU"
+
+[node name="Panel2" type="PanelContainer" parent="."]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_rmskc")
+
+[node name="TagExample" type="Label" parent="Panel2"]
+layout_mode = 2
+text = "Tarea para casa"

@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlkwof005uaoy"]
+
+[ext_resource type="Script" uid="uid://dyl2vx0x85o22" path="res://Scripts/Tag.gd" id="1_c7eam"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8l7ge"]
+bg_color = Color(0.939941, 0.232653, 0.550608, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[node name="Tag" type="PanelContainer"]
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_8l7ge")
+script = ExtResource("1_c7eam")
+color = Color(0.274775, 0.505793, 0.230137, 1)
+tag = "PENE"
+
+[node name="Text" type="Label" parent="."]
+layout_mode = 2
+text = "AAU"

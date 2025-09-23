@@ -1,6 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://h3orryxwm645"]
+[gd_scene load_steps=4 format=3 uid="uid://h3orryxwm645"]
 
 [ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/TaskWidget.gd" id="1_m6845"]
+[ext_resource type="Texture2D" uid="uid://jwqcfsjh6ht0" path="res://Assets/AddIcon.png" id="2_sgv2h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6845"]
 bg_color = Color(0.1416, 0.18096, 0.24, 1)
@@ -12,36 +13,6 @@ expand_margin_left = 20.0
 expand_margin_top = 10.0
 expand_margin_right = 20.0
 expand_margin_bottom = 20.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgv2h"]
-bg_color = Color(0.939941, 0.232653, 0.550608, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t08so"]
-bg_color = Color(0.658, 0.235, 0.94, 1)
-border_width_left = 1
-border_width_top = 1
-border_width_right = 1
-border_width_bottom = 1
-corner_radius_top_left = 3
-corner_radius_top_right = 3
-corner_radius_bottom_right = 3
-corner_radius_bottom_left = 3
-expand_margin_left = 3.0
-expand_margin_top = 3.0
-expand_margin_right = 3.0
-expand_margin_bottom = 3.0
 
 [node name="TaskWidget" type="MarginContainer"]
 offset_right = 610.0
@@ -58,36 +29,36 @@ z_index = -2
 layout_mode = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_m6845")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TaskContainer" type="VBoxContainer" parent="."]
 layout_mode = 2
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="TaskContainer"]
 layout_mode = 2
 
-[node name="MoreInfoButton" type="Button" parent="VBoxContainer/HBoxContainer"]
+[node name="MoreInfoButton" type="Button" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 mouse_filter = 1
 
-[node name="VSeparator" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+[node name="VSeparator" type="VSeparator" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="TaskNameLabel" type="Label" parent="VBoxContainer/HBoxContainer"]
+[node name="TaskNameLabel" type="Label" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
 text = "Sin nombre"
 
-[node name="VSeparator2" type="VSeparator" parent="VBoxContainer/HBoxContainer"]
+[node name="VSeparator2" type="VSeparator" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
 
-[node name="DateGrid" type="VBoxContainer" parent="VBoxContainer/HBoxContainer"]
+[node name="DateGrid" type="VBoxContainer" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
 alignment = 1
 
-[node name="StartDateLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/DateGrid"]
+[node name="StartDateLabel" type="RichTextLabel" parent="TaskContainer/HBoxContainer/DateGrid"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -95,7 +66,7 @@ text = "[i][color=#111111]no fecha [/color][/i]"
 fit_content = true
 horizontal_alignment = 2
 
-[node name="EndDateLabel" type="RichTextLabel" parent="VBoxContainer/HBoxContainer/DateGrid"]
+[node name="EndDateLabel" type="RichTextLabel" parent="TaskContainer/HBoxContainer/DateGrid"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 bbcode_enabled = true
@@ -103,32 +74,24 @@ text = "[i][color=#111111]no fecha [/color][/i]"
 fit_content = true
 horizontal_alignment = 2
 
-[node name="DescriptionLabel" type="RichTextLabel" parent="VBoxContainer"]
+[node name="DescriptionLabel" type="RichTextLabel" parent="TaskContainer"]
 layout_mode = 2
 bbcode_enabled = true
 text = "[i][color=#111111]Sin descripción [/color][/i]"
 fit_content = true
 
-[node name="TagContiner" type="VBoxContainer" parent="VBoxContainer"]
+[node name="TagContainer" type="VBoxContainer" parent="TaskContainer"]
 layout_mode = 2
 size_flags_horizontal = 0
 theme_override_constants/separation = 10
 
-[node name="Panel" type="PanelContainer" parent="VBoxContainer/TagContiner"]
+[node name="AddTagButton" type="Button" parent="TaskContainer/TagContainer"]
+custom_minimum_size = Vector2(20, 20)
 layout_mode = 2
 size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_sgv2h")
+size_flags_vertical = 4
+icon = ExtResource("2_sgv2h")
+expand_icon = true
 
-[node name="TagExample" type="Label" parent="VBoxContainer/TagContiner/Panel"]
-layout_mode = 2
-text = "AAU"
-
-[node name="Panel2" type="PanelContainer" parent="VBoxContainer/TagContiner"]
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_t08so")
-
-[node name="TagExample" type="Label" parent="VBoxContainer/TagContiner/Panel2"]
-layout_mode = 2
-text = "Tarea para casa"
-
-[connection signal="pressed" from="VBoxContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_pressed"]
+[connection signal="pressed" from="TaskContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_pressed"]
+[connection signal="pressed" from="TaskContainer/TagContainer/AddTagButton" to="." method="_on_add_tag_button_pressed"]

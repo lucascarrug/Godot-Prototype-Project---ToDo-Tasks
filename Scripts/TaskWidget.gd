@@ -1,12 +1,13 @@
 class_name TaskWidget 
 extends MarginContainer
 
-@onready var more_info_b: Button = $VBoxContainer/HBoxContainer/MoreInfoButton
-@onready var name_l: Label = $VBoxContainer/HBoxContainer/TaskNameLabel
-@onready var start_date_l: RichTextLabel = $VBoxContainer/HBoxContainer/DateGrid/StartDateLabel
-@onready var end_date_l: RichTextLabel = $VBoxContainer/HBoxContainer/DateGrid/EndDateLabel
-@onready var description_l: RichTextLabel = $VBoxContainer/DescriptionLabel
-@onready var tag_continer: VBoxContainer = $VBoxContainer/TagContiner
+@onready var more_info_b: Button = $TaskContainer/HBoxContainer/MoreInfoButton
+@onready var name_l: Label = $TaskContainer/HBoxContainer/TaskNameLabel
+@onready var start_date_l: RichTextLabel = $TaskContainer/HBoxContainer/DateGrid/StartDateLabel
+@onready var end_date_l: RichTextLabel = $TaskContainer/HBoxContainer/DateGrid/EndDateLabel
+@onready var description_l: RichTextLabel = $TaskContainer/DescriptionLabel
+@onready var tag_container: VBoxContainer = $TaskContainer/TagContainer
+@onready var add_tag_b: Button = $TaskContainer/TagContainer/AddTagButton
 
 var is_more_info_displayed: bool
 var data: Dictionary
@@ -24,8 +25,12 @@ func _ready() -> void:
 			end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + data[Constants.END_DATE]
 
 
-func _fix_container_size() -> void:
-	self.force_update_transform()
+
+func _on_add_tag_button_pressed() -> void:
+	var tag_scene = preload("res://Scenes/Tag.tscn")
+	var new_tag: Tag = tag_scene.instantiate()
+	tag_container.add_child(new_tag)
+	new_tag.set_tag()
 
 
 func _on_more_info_button_pressed() -> void:
@@ -41,7 +46,7 @@ func _toggle_info_display() -> void:
 func show_info() -> void:
 	description_l.visible = true
 	start_date_l.visible = true
-	tag_continer.visible = true
+	tag_container.visible = true
 	
 	is_more_info_displayed = true
 	print("Show more.")
@@ -49,7 +54,7 @@ func show_info() -> void:
 func hide_info() -> void:
 	description_l.visible = false
 	start_date_l.visible = false
-	tag_continer.visible = false
+	tag_container.visible = false
 	
 	is_more_info_displayed = false
 	print("Show less.")
