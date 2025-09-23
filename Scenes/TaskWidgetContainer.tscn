@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://dgm5nfln4nryb" path="res://Scripts/TaskWidgetContainer.gd" id="1_dfdmu"]
 
 [node name="TaskWidgetContainer" type="ScrollContainer"]
-custom_minimum_size = Vector2(0, 500)
+custom_minimum_size = Vector2(100, 500)
 follow_focus = true
 horizontal_scroll_mode = 0
 script = ExtResource("1_dfdmu")

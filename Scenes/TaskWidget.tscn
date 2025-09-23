@@ -1,4 +1,4 @@
-[gd_scene load_steps=3 format=3 uid="uid://h3orryxwm645"]
+[gd_scene load_steps=5 format=3 uid="uid://h3orryxwm645"]
 
 [ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/TaskWidget.gd" id="1_m6845"]
 
@@ -13,17 +13,41 @@ expand_margin_top = 10.0
 expand_margin_right = 20.0
 expand_margin_bottom = 20.0
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_sgv2h"]
+bg_color = Color(0.939941, 0.232653, 0.550608, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_t08so"]
+bg_color = Color(0.658, 0.235, 0.94, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+expand_margin_left = 3.0
+expand_margin_top = 3.0
+expand_margin_right = 3.0
+expand_margin_bottom = 3.0
+
 [node name="TaskWidget" type="MarginContainer"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = -542.0
-offset_bottom = -524.0
-grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
+offset_right = 610.0
+offset_bottom = 124.0
 focus_mode = 1
-theme_override_constants/margin_left = 10
+theme_override_constants/margin_left = 20
 theme_override_constants/margin_top = 20
 theme_override_constants/margin_right = 20
 theme_override_constants/margin_bottom = 20
@@ -84,5 +108,27 @@ layout_mode = 2
 bbcode_enabled = true
 text = "[i][color=#111111]Sin descripción [/color][/i]"
 fit_content = true
+
+[node name="TagContiner" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_constants/separation = 10
+
+[node name="Panel" type="PanelContainer" parent="VBoxContainer/TagContiner"]
+layout_mode = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_sgv2h")
+
+[node name="TagExample" type="Label" parent="VBoxContainer/TagContiner/Panel"]
+layout_mode = 2
+text = "AAU"
+
+[node name="Panel2" type="PanelContainer" parent="VBoxContainer/TagContiner"]
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_t08so")
+
+[node name="TagExample" type="Label" parent="VBoxContainer/TagContiner/Panel2"]
+layout_mode = 2
+text = "Tarea para casa"
 
 [connection signal="pressed" from="VBoxContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_pressed"]

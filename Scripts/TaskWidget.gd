@@ -6,15 +6,15 @@ extends MarginContainer
 @onready var start_date_l: RichTextLabel = $VBoxContainer/HBoxContainer/DateGrid/StartDateLabel
 @onready var end_date_l: RichTextLabel = $VBoxContainer/HBoxContainer/DateGrid/EndDateLabel
 @onready var description_l: RichTextLabel = $VBoxContainer/DescriptionLabel
+@onready var tag_continer: VBoxContainer = $VBoxContainer/TagContiner
 
 var C = Constants.new()
 
-var is_more_info_displayed: bool = false
+var is_more_info_displayed: bool
 var data: Dictionary
 
 func _ready() -> void:
-	description_l.visible = false
-	start_date_l.visible = false
+	hide_info()
 	
 	if data:
 		print("data id: ", data[C.ID])
@@ -36,16 +36,25 @@ func _on_more_info_button_pressed() -> void:
 
 func _toggle_info_display() -> void:
 	if is_more_info_displayed:
-		description_l.visible = false
-		start_date_l.visible = false
-		is_more_info_displayed = false
-		print("Show less.")
+		hide_info()
 	else:
-		description_l.visible = true
-		start_date_l.visible = true
-		is_more_info_displayed = true
-		print("Show more.")
+		show_info()
 
+func show_info() -> void:
+	description_l.visible = true
+	start_date_l.visible = true
+	tag_continer.visible = true
+	
+	is_more_info_displayed = true
+	print("Show more.")
+
+func hide_info() -> void:
+	description_l.visible = false
+	start_date_l.visible = false
+	tag_continer.visible = false
+	
+	is_more_info_displayed = false
+	print("Show less.")
 
 func set_data(task: Dictionary) -> void:
 	data = task

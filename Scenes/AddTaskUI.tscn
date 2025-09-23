@@ -104,6 +104,10 @@ text = "SIguiente Tarea"
 
 [node name="TaskWidgetContainer" parent="." instance=ExtResource("3_hfj2a")]
 layout_mode = 0
+offset_left = 183.0
+offset_top = 410.0
+offset_right = 283.0
+offset_bottom = 910.0
 
 [connection signal="pressed" from="InsertDataButton" to="." method="_on_insert_data_button_pressed"]
 [connection signal="pressed" from="UpdateWidgetButton" to="." method="_on_update_widget_button_pressed"]
