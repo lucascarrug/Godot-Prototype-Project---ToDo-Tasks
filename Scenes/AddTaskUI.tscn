@@ -39,15 +39,6 @@ offset_bottom = 301.0
 theme_override_font_sizes/font_size = 30
 text = "Fecha de entrega"
 
-[node name="Pathlabel" type="Label" parent="."]
-layout_mode = 0
-offset_left = 181.0
-offset_top = 342.0
-offset_right = 248.0
-offset_bottom = 384.0
-theme_override_font_sizes/font_size = 30
-text = "Ruta"
-
 [node name="NameText" type="TextEdit" parent="."]
 layout_mode = 0
 offset_left = 446.0

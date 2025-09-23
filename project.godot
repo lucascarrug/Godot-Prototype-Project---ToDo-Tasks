@@ -15,6 +15,10 @@ run/main_scene="uid://babk1c6voc82i"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
+[autoload]
+
+Database="*res://Scripts/DatabaseManager.gd"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
