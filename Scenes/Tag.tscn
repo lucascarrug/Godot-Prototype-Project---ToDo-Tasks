@@ -26,4 +26,5 @@ tag = "PENE"
 
 [node name="Text" type="Label" parent="."]
 layout_mode = 2
-text = "AAU"
+text = "Example Tag"
+uppercase = true
