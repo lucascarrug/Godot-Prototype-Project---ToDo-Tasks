@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://h3orryxwm645"]
 
-[ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/TaskWidget.gd" id="1_m6845"]
+[ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI/TaskWidget.gd" id="1_m6845"]
 [ext_resource type="Texture2D" uid="uid://jwqcfsjh6ht0" path="res://Assets/AddIcon.png" id="2_sgv2h"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6845"]

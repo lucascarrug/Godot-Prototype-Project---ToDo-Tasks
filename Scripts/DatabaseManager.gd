@@ -24,7 +24,8 @@ func _create_tables() -> void:
 	database.query("
 	CREATE TABLE IF NOT EXISTS Tags (
 		id INTEGER PRIMARY KEY AUTOINCREMENT,
-		name TEXT NOT NULL
+		name TEXT NOT NULL UNIQUE,
+		color JSON NOT NULL
 	)
 	")
 	

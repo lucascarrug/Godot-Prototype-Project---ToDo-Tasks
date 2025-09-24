@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://babk1c6voc82i"]
 
-[ext_resource type="Script" uid="uid://v6xyomnid282" path="res://Scripts/AddTask.gd" id="1_vwt5c"]
+[ext_resource type="Script" uid="uid://v6xyomnid282" path="res://Scripts/UI/AddTask.gd" id="1_vwt5c"]
 [ext_resource type="PackedScene" uid="uid://dp6nn2e18xg2k" path="res://Scenes/TaskWidgetContainer.tscn" id="3_hfj2a"]
 
 [node name="AddTaskUI" type="Control"]

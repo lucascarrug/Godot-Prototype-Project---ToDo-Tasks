@@ -9,6 +9,7 @@ extends MarginContainer
 @onready var tag_container: VBoxContainer = $TaskContainer/TagContainer
 @onready var select_tag_container: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
 
+const POPUP_SCENE = preload("res://Scenes/TagPopup.tscn")
 
 var is_more_info_displayed: bool
 var is_popup_displayed: bool
@@ -30,11 +31,12 @@ func _ready() -> void:
 
 
 func _on_add_tag_button_pressed() -> void:
-	if not is_popup_displayed:
-		var popup_scene = preload("res://Scenes/TagPopup.tscn")
-		var tag_popup = popup_scene.instantiate()
+	var tag_popup = find_child("TagPopup", true, false)
+	if tag_popup:
 		tag_popup.visible = true
-		tag_container.add_child(tag_popup)
+	else:
+		var new_tag_popup = POPUP_SCENE.instantiate()
+		add_child(new_tag_popup)
 
 
 func _on_more_info_button_pressed() -> void:
