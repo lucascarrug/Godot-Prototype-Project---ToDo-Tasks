@@ -31,12 +31,12 @@ func _ready() -> void:
 
 
 func _on_add_tag_button_pressed() -> void:
-	var tag_popup = find_child("TagPopup", true, false)
+	var tag_popup = get_tree().root.find_child("TagPopup", true, false)
 	if tag_popup:
 		tag_popup.visible = true
 	else:
 		var new_tag_popup = POPUP_SCENE.instantiate()
-		add_child(new_tag_popup)
+		get_tree().root.add_child(new_tag_popup)
 
 
 func _on_more_info_button_pressed() -> void:
