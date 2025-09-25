@@ -9,6 +9,7 @@ extends MarginContainer
 @onready var tag_container: VBoxContainer = $TaskContainer/TagContainer
 @onready var select_tag_container: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
 
+const TAG_SCENE = preload("res://Scenes/Tag.tscn")
 const POPUP_SCENE = preload("res://Scenes/TagPopup.tscn")
 
 var is_more_info_displayed: bool
@@ -36,7 +37,12 @@ func _on_add_tag_button_pressed() -> void:
 		tag_popup.visible = true
 	else:
 		var new_tag_popup = POPUP_SCENE.instantiate()
+		new_tag_popup.new_tag_added_to_sql.connect(_on_tag_popup_accept)
 		get_tree().root.add_child(new_tag_popup)
+
+
+func _on_tag_popup_accept(tag_name: String, tag_color) -> void:
+	print(tag_name, " -> ", tag_color)
 
 
 func _on_more_info_button_pressed() -> void:
@@ -45,8 +51,7 @@ func _on_more_info_button_pressed() -> void:
 
 func _on_select_tag_button_item_selected(index: int) -> void:
 	var tag_text: String = select_tag_container.get_item_text(index)
-	var tag_scene = preload("res://Scenes/Tag.tscn")
-	var new_tag: Tag = tag_scene.instantiate()
+	var new_tag: Tag = TAG_SCENE.instantiate()
 	tag_container.add_child(new_tag)
 	new_tag.set_tag(Color.RED, tag_text)
 	
