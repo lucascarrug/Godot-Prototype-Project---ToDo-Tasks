@@ -46,14 +46,23 @@ func _on_add_tag_button_pressed() -> void:
 	
 
 func _on_tag_popup_accept(last_emitter: TaskWidget, tag_name: String, tag_color: Color) -> void:
+	# Flag name.
 	if not tag_name:
 		print("You must add a name.")
 		return
 	
+	# Insert in SQL.
 	var query = 'INSERT OR IGNORE INTO Tags (name, color) VALUES (?, ?)'
 	Database.database.query_with_bindings(query, [tag_name.to_upper(), tag_color.to_html(false)])
 	_add_tag(last_emitter, tag_name, tag_color)
-
+	
+	# Link with Task.
+	var success = Database.database.query_with_bindings('SELECT id FROM Tags WHERE name = ?',[tag_name.to_upper()])
+	if success and Database.database.query_result.size() > 0:
+		var tag_id: int = Database.database.query_result[0]["id"]
+		print("El id del tag es: ", tag_id)
+	else:
+		print("No se encontró el tag con name: ", tag_name)
 
 func _on_more_info_button_pressed() -> void:
 	_toggle_info_display()
@@ -75,6 +84,7 @@ func _add_tag(task_widget_to_add: TaskWidget, tag_text: String, tag_color: Color
 	var new_tag: Tag = TAG_SCENE.instantiate()
 	task_widget_to_add.tag_container.add_child(new_tag)
 	new_tag.set_tag(tag_text, tag_color)
+	print("Tag added to task with id: ", data[Constants.ID])
 
 
 func show_info() -> void:

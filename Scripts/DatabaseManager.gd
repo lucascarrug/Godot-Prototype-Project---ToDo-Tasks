@@ -9,6 +9,7 @@ func _ready():
 	database.open_db()
 	_create_tables()
 
+
 func _create_tables() -> void:
 	database.query("
 	CREATE TABLE IF NOT EXISTS Tasks (
