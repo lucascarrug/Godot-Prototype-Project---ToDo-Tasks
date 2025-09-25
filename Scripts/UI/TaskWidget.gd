@@ -16,6 +16,7 @@ var is_more_info_displayed: bool
 var is_popup_displayed: bool
 var data: Dictionary
 
+
 func _ready() -> void:
 	hide_info()
 	
@@ -41,8 +42,13 @@ func _on_add_tag_button_pressed() -> void:
 		get_tree().root.add_child(new_tag_popup)
 
 
-func _on_tag_popup_accept(tag_name: String, tag_color) -> void:
-	print(tag_name, " -> ", tag_color)
+func _on_tag_popup_accept(tag_name: String, tag_color: Color) -> void:
+	if not tag_name:
+		print("You must add a name.")
+		return
+	
+	var query = 'INSERT OR IGNORE INTO Tags (name, color) VALUES (?, ?)'
+	Database.database.query_with_bindings(query, [tag_name.to_upper(), tag_color.to_html(false)])
 
 
 func _on_more_info_button_pressed() -> void:
