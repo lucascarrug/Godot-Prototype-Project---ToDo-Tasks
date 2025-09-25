@@ -11,7 +11,7 @@ func _ready() -> void:
 	pass
 
 
-func set_tag(_color: Color = Color.LIGHT_BLUE, _tag: String = "None") -> void:
+func set_tag(_tag: String = "None", _color: Color = Color.LIGHT_BLUE) -> void:
 	var current_style = get_theme_stylebox("panel")
 	current_style.bg_color = _color
 	text_l.text = _tag

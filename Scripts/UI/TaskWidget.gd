@@ -45,13 +45,14 @@ func _on_add_tag_button_pressed() -> void:
 		new_tag_popup.set_last_emitter(self)
 	
 
-func _on_tag_popup_accept(tag_name: String, tag_color: Color) -> void:
+func _on_tag_popup_accept(last_emitter: TaskWidget, tag_name: String, tag_color: Color) -> void:
 	if not tag_name:
 		print("You must add a name.")
 		return
 	
 	var query = 'INSERT OR IGNORE INTO Tags (name, color) VALUES (?, ?)'
 	Database.database.query_with_bindings(query, [tag_name.to_upper(), tag_color.to_html(false)])
+	_add_tag(last_emitter, tag_name, tag_color)
 
 
 func _on_more_info_button_pressed() -> void:
@@ -60,9 +61,7 @@ func _on_more_info_button_pressed() -> void:
 
 func _on_select_tag_button_item_selected(index: int) -> void:
 	var tag_text: String = select_tag_container.get_item_text(index)
-	var new_tag: Tag = TAG_SCENE.instantiate()
-	tag_container.add_child(new_tag)
-	new_tag.set_tag(Color.RED, tag_text)
+	_add_tag(self, tag_text, Color.RED)
 	
 
 func _toggle_info_display() -> void:
@@ -70,6 +69,12 @@ func _toggle_info_display() -> void:
 		hide_info()
 	else:
 		show_info()
+
+
+func _add_tag(task_widget_to_add: TaskWidget, tag_text: String, tag_color: Color) -> void:
+	var new_tag: Tag = TAG_SCENE.instantiate()
+	task_widget_to_add.tag_container.add_child(new_tag)
+	new_tag.set_tag(tag_text, tag_color)
 
 
 func show_info() -> void:
