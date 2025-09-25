@@ -33,14 +33,17 @@ func _ready() -> void:
 
 
 func _on_add_tag_button_pressed() -> void:
-	var tag_popup = get_tree().root.find_child("TagPopup", true, false)
+	var tag_popup: TagPopup = get_tree().root.find_child("TagPopup", true, false)
+	
 	if tag_popup:
 		tag_popup.visible = true
+		tag_popup.set_last_emitter(self)
 	else:
-		var new_tag_popup = POPUP_SCENE.instantiate()
+		var new_tag_popup: TagPopup = POPUP_SCENE.instantiate()
 		new_tag_popup.new_tag_added_to_sql.connect(_on_tag_popup_accept)
 		get_tree().root.add_child(new_tag_popup)
-
+		new_tag_popup.set_last_emitter(self)
+	
 
 func _on_tag_popup_accept(tag_name: String, tag_color: Color) -> void:
 	if not tag_name:
