@@ -57,12 +57,13 @@ func _on_tag_popup_accept(last_emitter: TaskWidget, tag_name: String, tag_color:
 	_add_tag(last_emitter, tag_name, tag_color)
 	
 	# Link with Task.
-	var success = Database.database.query_with_bindings('SELECT id FROM Tags WHERE name = ?',[tag_name.to_upper()])
-	if success and Database.database.query_result.size() > 0:
-		var tag_id: int = Database.database.query_result[0]["id"]
-		print("El id del tag es: ", tag_id)
-	else:
-		print("No se encontró el tag con name: ", tag_name)
+	Database.database.query_with_bindings('SELECT id FROM Tags WHERE name = ?',[tag_name.to_upper()])
+	var tag_id: int = Database.database.query_result[0]["id"]
+	var task_id: int = data[Constants.ID]
+	Database.database.query_with_bindings('INSERT INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?)', [task_id, tag_id])
+	print("Tag ", tag_name, " con id ", tag_id, " agregada a la task con id ", data[Constants.ID])
+	
+
 
 func _on_more_info_button_pressed() -> void:
 	_toggle_info_display()
@@ -84,7 +85,6 @@ func _add_tag(task_widget_to_add: TaskWidget, tag_text: String, tag_color: Color
 	var new_tag: Tag = TAG_SCENE.instantiate()
 	task_widget_to_add.tag_container.add_child(new_tag)
 	new_tag.set_tag(tag_text, tag_color)
-	print("Tag added to task with id: ", data[Constants.ID])
 
 
 func show_info() -> void:
