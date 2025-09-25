@@ -10,11 +10,10 @@ var last_emmiter: TaskWidget
 
 
 func _on_accept_button_pressed() -> void:
-	print(last_emmiter)
 	emit_signal("new_tag_added_to_sql",
-	last_emmiter,
-	tag_name_text.text, 
-	tag_color_picker.color)
+		last_emmiter,
+		tag_name_text.text, 
+		tag_color_picker.color)
 
 
 func set_last_emitter(emitter: TaskWidget) -> void:
