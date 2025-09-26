@@ -11,7 +11,7 @@ func _ready() -> void:
 	pass
 
 
-func set_tag(_tag: String = "None", _color: Color = Color.LIGHT_BLUE) -> void:
+func set_tag(_tag: String, _color: Color) -> void:
 	var new_style = get_theme_stylebox("panel").duplicate()
 	new_style.bg_color = _color
 	add_theme_stylebox_override("panel", new_style)

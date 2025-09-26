@@ -73,7 +73,9 @@ func _on_more_info_button_pressed() -> void:
 
 func _on_select_tag_button_item_selected(index: int) -> void:
 	var tag_text: String = select_tag_button.get_item_text(index)
-	_add_tag(self, tag_text)
+	Database.database.query_with_bindings('SELECT color FROM Tags WHERE name = ?', [tag_text])
+	var tag_color = Database.database.query_result.front()["color"]
+	_add_tag(self, tag_text, tag_color)
 	
 
 func _toggle_info_display() -> void:
@@ -83,14 +85,9 @@ func _toggle_info_display() -> void:
 		show_info()
 
 
-func _add_tag(task_widget_to_add: TaskWidget, tag_text: String, tag_color: Color = Color.TRANSPARENT) -> void:
+func _add_tag(task_widget_to_add: TaskWidget, tag_text: String, tag_color: Color) -> void:
 	var new_tag: Tag = TAG_SCENE.instantiate()
 	task_widget_to_add.tag_container.add_child(new_tag)
-	
-	# NOTE: Transparent is not accessible because alpha cannot be modified.
-	if tag_color == Color.TRANSPARENT:
-		Database.database.query_with_bindings('SELECT color FROM Tags WHERE name = ?', [tag_text])
-		tag_color = Database.database.query_result.front()["color"]
 	new_tag.set_tag(tag_text, tag_color)
 	
 	Database.database.query_with_bindings('SELECT id FROM Tags WHERE name = ?',[tag_text.to_upper()])
@@ -127,7 +124,9 @@ func _set_tags() -> void:
 	for pair in id_pairs:
 		Database.database.query_with_bindings('SELECT name FROM Tags WHERE id = ?', [pair["tag_id"]])
 		var tag_name: String = Database.database.query_result.front()["name"]
-		_add_tag(self, tag_name)
+		Database.database.query_with_bindings('SELECT color FROM Tags WHERE id = ?', [pair["tag_id"]])
+		var tag_color: Color = Database.database.query_result.front()["color"]
+		_add_tag(self, tag_name, tag_color)
 
 
 func _add_tags_to_select_tag_button() -> void:
