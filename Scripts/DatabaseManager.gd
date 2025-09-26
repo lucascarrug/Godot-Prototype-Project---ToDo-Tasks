@@ -32,8 +32,8 @@ func _create_tables() -> void:
 	
 	database.query("
 	CREATE TABLE IF NOT EXISTS Tasks_Tags (
-		task_id INTEGER,
-		tag_id INTEGER,
+		task_id INTEGER NOT NULL,
+		tag_id INTEGER NOT NULL,
 		PRIMARY KEY (task_id, tag_id)
-	)
+	);
 	")
