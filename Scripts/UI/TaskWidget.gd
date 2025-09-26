@@ -7,7 +7,7 @@ extends MarginContainer
 @onready var end_date_l: RichTextLabel = $TaskContainer/HBoxContainer/DateGrid/EndDateLabel
 @onready var description_l: RichTextLabel = $TaskContainer/DescriptionLabel
 @onready var tag_container: VBoxContainer = $TaskContainer/TagContainer
-@onready var select_tag_container: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
+@onready var select_tag_button: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
 
 const TAG_SCENE = preload("res://Scenes/Tag.tscn")
 const POPUP_SCENE = preload("res://Scenes/TagPopup.tscn")
@@ -31,6 +31,8 @@ func _ready() -> void:
 		if data[Constants.END_DATE] != null:
 			end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + data[Constants.END_DATE]
 
+		_set_tags()
+		_add_tags_to_select_tag_button()
 
 func _on_add_tag_button_pressed() -> void:
 	var tag_popup: TagPopup = get_tree().root.find_child("TagPopup", true, false)
@@ -54,14 +56,14 @@ func _on_tag_popup_accept(last_emitter: TaskWidget, tag_name: String, tag_color:
 	# Insert in SQL.
 	var query = 'INSERT OR IGNORE INTO Tags (name, color) VALUES (?, ?)'
 	Database.database.query_with_bindings(query, [tag_name.to_upper(), tag_color.to_html(false)])
-	_add_tag(last_emitter, tag_name, tag_color)
+	_add_tag(last_emitter, tag_name)
 	
 	# Link with Task.
 	Database.database.query_with_bindings('SELECT id FROM Tags WHERE name = ?',[tag_name.to_upper()])
 	var tag_id: int = Database.database.query_result[0]["id"]
 	var task_id: int = data[Constants.ID]
 	Database.database.query_with_bindings('INSERT INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?)', [task_id, tag_id])
-	print("Tag ", tag_name, " con id ", tag_id, " agregada a la task con id ", data[Constants.ID])
+	#print("Tag ", tag_name, " con id ", tag_id, " agregada a la task con id ", data[Constants.ID])
 	
 
 
@@ -70,8 +72,8 @@ func _on_more_info_button_pressed() -> void:
 
 
 func _on_select_tag_button_item_selected(index: int) -> void:
-	var tag_text: String = select_tag_container.get_item_text(index)
-	_add_tag(self, tag_text, Color.RED)
+	var tag_text: String = select_tag_button.get_item_text(index)
+	_add_tag(self, tag_text)
 	
 
 func _toggle_info_display() -> void:
@@ -81,9 +83,11 @@ func _toggle_info_display() -> void:
 		show_info()
 
 
-func _add_tag(task_widget_to_add: TaskWidget, tag_text: String, tag_color: Color) -> void:
+func _add_tag(task_widget_to_add: TaskWidget, tag_text: String) -> void:
 	var new_tag: Tag = TAG_SCENE.instantiate()
 	task_widget_to_add.tag_container.add_child(new_tag)
+	Database.database.query_with_bindings('SELECT color FROM Tags WHERE name = ?', [tag_text])
+	var tag_color: Color = Database.database.query_result.front()["color"]
 	new_tag.set_tag(tag_text, tag_color)
 
 
@@ -93,7 +97,7 @@ func show_info() -> void:
 	tag_container.visible = true
 	
 	is_more_info_displayed = true
-	print("Show more.")
+	#print("Show more.")
 
 
 func hide_info() -> void:
@@ -102,8 +106,23 @@ func hide_info() -> void:
 	tag_container.visible = false
 	
 	is_more_info_displayed = false
-	print("Show less.")
+	#print("Show less.")
 
 
-func set_data(task: Dictionary) -> void:
-	data = task
+func set_data(new_data: Dictionary) -> void:
+	data = new_data
+
+
+func _set_tags() -> void:
+	Database.database.query_with_bindings('SELECT tag_id FROM Tasks_Tags WHERE task_id = ?', [data[Constants.ID]])
+	var id_pairs = Database.database.query_result
+	for pair in id_pairs:
+		Database.database.query_with_bindings('SELECT name FROM Tags WHERE id = ?', [pair["tag_id"]])
+		var tag_name: String = Database.database.query_result.front()["name"]
+		_add_tag(self, tag_name)
+
+
+func _add_tags_to_select_tag_button() -> void:
+	Database.database.query('SELECT name FROM Tags')
+	for tag in Database.database.query_result:
+		select_tag_button.add_item(tag["name"])

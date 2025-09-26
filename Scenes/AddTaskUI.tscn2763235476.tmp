@@ -1,0 +1,106 @@
+[gd_scene load_steps=3 format=3 uid="uid://babk1c6voc82i"]
+
+[ext_resource type="Script" uid="uid://v6xyomnid282" path="res://Scripts/UI/AddTask.gd" id="1_vwt5c"]
+[ext_resource type="PackedScene" uid="uid://dp6nn2e18xg2k" path="res://Scenes/TaskWidgetContainer.tscn" id="3_hfj2a"]
+
+[node name="AddTaskUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_vwt5c")
+
+[node name="NameLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 176.0
+offset_top = 78.0
+offset_right = 295.0
+offset_bottom = 120.0
+theme_override_font_sizes/font_size = 30
+text = "Nombre"
+
+[node name="DescriptionLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 178.0
+offset_top = 160.0
+offset_right = 347.0
+offset_bottom = 202.0
+theme_override_font_sizes/font_size = 30
+text = "Descripción"
+
+[node name="EndDateLabel" type="Label" parent="."]
+layout_mode = 0
+offset_left = 175.0
+offset_top = 259.0
+offset_right = 424.0
+offset_bottom = 301.0
+theme_override_font_sizes/font_size = 30
+text = "Fecha de entrega"
+
+[node name="NameText" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 446.0
+offset_top = 78.0
+offset_right = 646.0
+offset_bottom = 118.0
+
+[node name="DescriptionText" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 443.0
+offset_top = 165.0
+offset_right = 643.0
+offset_bottom = 205.0
+
+[node name="EndDateText" type="TextEdit" parent="."]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 263.0
+offset_right = 642.0
+offset_bottom = 303.0
+placeholder_text = "YYYY-MM-DD"
+
+[node name="InsertDataButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 690.0
+offset_top = 25.0
+offset_right = 890.0
+offset_bottom = 125.0
+text = "Añadir Tarea"
+
+[node name="UpdateWidgetButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 909.0
+offset_top = 27.0
+offset_right = 1109.0
+offset_bottom = 127.0
+text = "Update Widget"
+
+[node name="MostrarDataButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 695.0
+offset_top = 143.0
+offset_right = 895.0
+offset_bottom = 243.0
+text = "Mostrar Data"
+
+[node name="NextTaskButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 911.0
+offset_top = 139.0
+offset_right = 1111.0
+offset_bottom = 239.0
+text = "SIguiente Tarea"
+
+[node name="TaskWidgetContainer" parent="." instance=ExtResource("3_hfj2a")]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 410.0
+offset_right = 283.0
+offset_bottom = 910.0
+
+[connection signal="pressed" from="InsertDataButton" to="." method="_on_insert_data_button_pressed"]
+[connection signal="pressed" from="UpdateWidgetButton" to="." method="_on_update_widget_button_pressed"]
+[connection signal="pressed" from="MostrarDataButton" to="." method="_on_mostrar_data_button_pressed"]
+[connection signal="pressed" from="NextTaskButton" to="." method="_on_next_task_button_pressed"]
