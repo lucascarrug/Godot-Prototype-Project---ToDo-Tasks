@@ -1,4 +1,10 @@
 ## ICONS
 
+add.png:
 <a href="https://www.flaticon.com/free-icons/add" title="add icons">Add icons created by Pixel perfect - Flaticon</a>
+
+setting.png:
 <a href="https://www.flaticon.com/free-icons/more" title="more icons">More icons created by chehuna - Flaticon</a>
+
+arrow_down:
+<a href="https://www.flaticon.com/free-icons/arrow" title="arrow icons">Arrow icons created by Freepik - Flaticon</a>
