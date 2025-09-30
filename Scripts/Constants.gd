@@ -18,3 +18,7 @@ const DONE: String = "done"
 ## Extras
 const DEFAULT_DIR: String = "Default"
 const DATABASE_PATH: String = "res://Data/Tasks.db"
+
+## Preload scenes
+const TAG_SCENE = preload("res://Scenes/Tag.tscn")
+const POPUP_SCENE = preload("res://Scenes/TagPopup.tscn")

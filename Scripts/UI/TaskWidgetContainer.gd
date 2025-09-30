@@ -2,9 +2,7 @@ class_name TaskWidgetContainer
 extends ScrollContainer
 
 @onready var vbox: VBoxContainer = $VBoxContainer
-
 var TASK_WIDGET_SCENE: PackedScene = preload("res://Scenes/TaskWidget.tscn")
-
 var task_widget_counter: int
 
 
