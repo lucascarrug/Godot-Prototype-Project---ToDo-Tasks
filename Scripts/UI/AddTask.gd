@@ -38,7 +38,7 @@ func _on_insert_data_button_pressed() -> void:
 
 
 func _on_update_widget_button_pressed() -> void:
-	task_container.set_container(Database.database)
+	task_container.set_container()
 	
 
 func _on_mostrar_data_button_pressed() -> void:
