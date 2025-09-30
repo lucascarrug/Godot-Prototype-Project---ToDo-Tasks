@@ -51,13 +51,13 @@ func _on_add_tag_button_pressed() -> void:
 	
 
 func _on_tag_popup_accept(last_emitter: TaskWidget, tag_name: String, tag_color: Color) -> void:
-	if not tag_name:
+	if not tag_name or _tag_exists(tag_name):
 		return
 	
-	var query = 'INSERT OR IGNORE INTO Tags (name, color) VALUES (?, ?)'
-	Database.database.query_with_bindings(query, [tag_name.to_upper(), tag_color.to_html(false)])
+	Database.insert_tag(tag_name, tag_color)
 	_add_tag_in_tag_container(last_emitter, tag_name, tag_color)
-	
+
+
 func _on_more_info_button_pressed() -> void:
 	if is_more_info_displayed:
 		hide_info()
@@ -67,7 +67,7 @@ func _on_more_info_button_pressed() -> void:
 
 func _on_select_tag_button_item_selected(index: int) -> void:
 	var tag_name: String = select_tag_button.get_item_text(index)
-	if _has_exists(tag_name):
+	if _tag_exists(tag_name):
 		return
 
 	var tag_color = Database.get_tag_color_by_name(tag_name)
@@ -100,10 +100,10 @@ func _add_tag_in_tag_container(task_widget_to_add: TaskWidget, tag_name: String,
 	var new_tag: Tag = Constants.TAG_SCENE.instantiate()
 	task_widget_to_add.tag_container.add_child(new_tag)
 	new_tag.set_tag(tag_name, tag_color)
-
-	var tag_id: int = Database.get_tag_id_by_name(tag_name)
+	
 	var task_id: int = task_widget_to_add.data[Constants.ID]
-	Database.database.query_with_bindings('INSERT OR IGNORE INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?);', [task_id, tag_id])
+	var tag_id: int = Database.get_tag_id_by_name(tag_name)
+	Database.insert_task_tag(task_id, tag_id)
 
 
 func _load_tags_from_db() -> void:
@@ -121,7 +121,7 @@ func _populate_select_tag_button() -> void:
 		select_tag_button.add_item(tag["name"])
 
 
-func _has_exists(new_tag_name: String) -> bool:
+func _tag_exists(new_tag_name: String) -> bool:
 	for tag in tag_container.get_children():
 		if not is_instance_of(tag, Tag):
 			continue

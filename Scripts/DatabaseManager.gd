@@ -47,7 +47,7 @@ func get_tag_id_by_name(tag_name: String) -> int:
 	return database.query_result.front()["id"]
 
 	
-func get_tag_color_by_name(tag_name: String) -> String:
+func get_tag_color_by_name(tag_name: String) -> Color:
 	database.query_with_bindings('SELECT color FROM Tags WHERE name = ?', [tag_name])
 	return database.query_result.front()["color"]
 
@@ -70,3 +70,13 @@ func get_tag_color_by_id(tag_id: int) -> Color:
 func get_all_tags() -> Array:
 	database.query('SELECT name FROM Tags')
 	return database.query_result
+
+##### INSERT FUNCTIONS
+
+func insert_tag(tag_name: String, tag_color: Color) -> void:
+	var query = 'INSERT OR IGNORE INTO Tags (name, color) VALUES (?, ?)'
+	database.query_with_bindings(query, [tag_name.to_upper(), tag_color.to_html(false)])
+
+
+func insert_task_tag(task_id: int, tag_id: int) -> void:
+	database.query_with_bindings('INSERT OR IGNORE INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?);', [task_id, tag_id])
