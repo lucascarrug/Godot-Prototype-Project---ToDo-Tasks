@@ -66,12 +66,12 @@ func _on_more_info_button_pressed() -> void:
 
 
 func _on_select_tag_button_item_selected(index: int) -> void:
-	var tag_text: String = select_tag_button.get_item_text(index)
-	if _has_exists(tag_text):
+	var tag_name: String = select_tag_button.get_item_text(index)
+	if _has_exists(tag_name):
 		return
-	Database.database.query_with_bindings('SELECT color FROM Tags WHERE name = ?', [tag_text])
-	var tag_color = Database.database.query_result.front()["color"]
-	_add_tag_in_tag_container(self, tag_text, tag_color)
+
+	var tag_color = Database.get_tag_color_by_name(tag_name)
+	_add_tag_in_tag_container(self, tag_name, tag_color)
 
 ##### PUBLIC
 
@@ -101,30 +101,23 @@ func _add_tag_in_tag_container(task_widget_to_add: TaskWidget, tag_name: String,
 	task_widget_to_add.tag_container.add_child(new_tag)
 	new_tag.set_tag(tag_name, tag_color)
 
-	Database.database.query_with_bindings('SELECT id FROM Tags WHERE name = ?',[tag_name.to_upper()])
-	var tag_id: int = Database.database.query_result[0]["id"]
+	var tag_id: int = Database.get_tag_id_by_name(tag_name)
 	var task_id: int = task_widget_to_add.data[Constants.ID]
 	Database.database.query_with_bindings('INSERT OR IGNORE INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?);', [task_id, tag_id])
 
 
 func _load_tags_from_db() -> void:
-	Database.database.query_with_bindings('SELECT tag_id FROM Tasks_Tags WHERE task_id = ?', [data[Constants.ID]])
-	var id_pairs = Database.database.query_result
+	var tag_ids = Database.get_tags_by_task(data[Constants.ID])
 	
-	for pair in id_pairs:
-		Database.database.query_with_bindings('SELECT name FROM Tags WHERE id = ?', [pair["tag_id"]])
-		var tag_name: String = Database.database.query_result.front()["name"]
-		
-		Database.database.query_with_bindings('SELECT color FROM Tags WHERE id = ?', [pair["tag_id"]])
-		var tag_color: Color = Database.database.query_result.front()["color"]
-		
+	for tag in tag_ids:
+		var tag_id = tag["tag_id"]
+		var tag_name: String = Database.get_tag_name_by_id(tag_id)
+		var tag_color: Color = Database.get_tag_color_by_id(tag_id)
 		_add_tag_in_tag_container(self, tag_name, tag_color)
 
 
 func _populate_select_tag_button() -> void:
-	Database.database.query('SELECT name FROM Tags')
-	
-	for tag in Database.database.query_result:
+	for tag in Database.get_all_tags():
 		select_tag_button.add_item(tag["name"])
 
 
