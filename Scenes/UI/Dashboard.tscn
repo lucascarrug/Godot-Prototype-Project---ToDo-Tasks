@@ -4,12 +4,11 @@
 [ext_resource type="Script" uid="uid://5m7uf30sntnt" path="res://Scripts/UI/Dashboard.gd" id="1_hfwhy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1w88"]
-bg_color = Color(0.729412, 0.737255, 0.74902, 1)
-border_width_right = 5
-border_color = Color(1, 1, 1, 1)
+bg_color = Color(0.129412, 0.141176, 0.14902, 1)
+border_color = Color(0, 0, 0, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfwhy"]
-bg_color = Color(0.941176, 0.941176, 0.94902, 1)
+bg_color = Color(0.223529, 0.239216, 0.25098, 1)
 
 [node name="Dashboard" type="Control"]
 layout_mode = 3
@@ -59,6 +58,15 @@ theme_override_colors/font_hover_color = Color(0.329158, 0.329158, 0.329158, 1)
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 30
 text = "Para hoy"
+flat = true
+
+[node name="DoneTasksButton" type="Button" parent="Sidebar/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+theme_override_colors/font_hover_color = Color(0.329158, 0.329158, 0.329158, 1)
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Hechas"
 flat = true
 
 [node name="Menu" type="Panel" parent="."]

@@ -1,6 +1,8 @@
 class_name TaskWidget 
 extends MarginContainer
 
+signal new_tag_created
+
 const TAGPOPUP_NAME: String = "TagPopup"
 
 var is_more_info_displayed: bool
@@ -56,6 +58,7 @@ func _on_tag_popup_accept(last_emitter: TaskWidget, tag_name: String, tag_color:
 	
 	Database.insert_tag(tag_name, tag_color)
 	_add_tag_in_tag_container(last_emitter, tag_name, tag_color)
+	new_tag_created.emit()
 
 
 func _on_more_info_button_pressed() -> void:
@@ -101,6 +104,7 @@ func _load_tags_from_db() -> void:
 
 
 func _populate_select_tag_button() -> void:
+	select_tag_button.clear()
 	for tag in Database.get_all_tags():
 		select_tag_button.add_item(tag["name"])
 
