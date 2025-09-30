@@ -4,10 +4,12 @@
 [ext_resource type="Script" uid="uid://5m7uf30sntnt" path="res://Scripts/UI/Dashboard.gd" id="1_hfwhy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1w88"]
-bg_color = Color(1, 1, 1, 1)
+bg_color = Color(0.729412, 0.737255, 0.74902, 1)
+border_width_right = 5
+border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfwhy"]
-bg_color = Color(0.89059, 0.89059, 0.89059, 1)
+bg_color = Color(0.941176, 0.941176, 0.94902, 1)
 
 [node name="Dashboard" type="Control"]
 layout_mode = 3
@@ -89,4 +91,5 @@ theme_override_font_sizes/font_size = 20
 text = "Mis tareas"
 
 [node name="TaskWidgetContainer" parent="Menu/VBoxContainer" instance=ExtResource("1_b3vg7")]
+custom_minimum_size = Vector2(100, 850)
 layout_mode = 2
