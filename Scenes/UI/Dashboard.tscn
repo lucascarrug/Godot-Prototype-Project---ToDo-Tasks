@@ -1,20 +1,25 @@
-[gd_scene load_steps=3 format=3 uid="uid://doj2uju87ksd0"]
+[gd_scene load_steps=5 format=3 uid="uid://doj2uju87ksd0"]
+
+[ext_resource type="PackedScene" uid="uid://dp6nn2e18xg2k" path="res://Scenes/UI_Items/TaskWidgetContainer.tscn" id="1_b3vg7"]
+[ext_resource type="Script" uid="uid://5m7uf30sntnt" path="res://Scripts/UI/Dashboard.gd" id="1_hfwhy"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1w88"]
 bg_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_r150o"]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfwhy"]
 bg_color = Color(0.89059, 0.89059, 0.89059, 1)
 
-[node name="Main" type="Control"]
+[node name="Dashboard" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hfwhy")
 
 [node name="Sidebar" type="Panel" parent="."]
+z_index = -5
 custom_minimum_size = Vector2(480, 1080)
 layout_mode = 1
 anchors_preset = -1
@@ -33,7 +38,7 @@ custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_font_sizes/font_size = 50
-text = "---"
+text = "///"
 flat = true
 
 [node name="MyTasksButton" type="Button" parent="Sidebar/VBoxContainer"]
@@ -55,6 +60,7 @@ text = "Para hoy"
 flat = true
 
 [node name="Menu" type="Panel" parent="."]
+z_index = -10
 custom_minimum_size = Vector2(1440, 1080)
 layout_mode = 1
 anchors_preset = -1
@@ -63,19 +69,15 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_r150o")
+theme_override_styles/panel = SubResource("StyleBoxFlat_hfwhy")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 100.0
-offset_right = 1540.0
-offset_bottom = 1180.0
-
-[node name="HSeparator" type="HSeparator" parent="Menu/VBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
+offset_right = 1340.0
+offset_bottom = 980.0
+theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer"]
 layout_mode = 2
@@ -83,4 +85,8 @@ layout_mode = 2
 [node name="Label" type="Label" parent="Menu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
 text = "Mis tareas"
+
+[node name="TaskWidgetContainer" parent="Menu/VBoxContainer" instance=ExtResource("1_b3vg7")]
+layout_mode = 2

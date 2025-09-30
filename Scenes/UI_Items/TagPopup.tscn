@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://bwd6qgea5hvdc"]
 
-[ext_resource type="Script" uid="uid://bwq7p0t6y41xn" path="res://Scripts/UI/TagPopup.gd" id="1_6bk4k"]
+[ext_resource type="Script" uid="uid://bwq7p0t6y41xn" path="res://Scripts/UI_Items/TagPopup.gd" id="1_6bk4k"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_vnags"]
 content_margin_left = 4.0

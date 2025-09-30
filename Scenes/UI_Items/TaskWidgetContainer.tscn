@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dp6nn2e18xg2k"]
 
-[ext_resource type="Script" uid="uid://dgm5nfln4nryb" path="res://Scripts/UI/TaskWidgetContainer.gd" id="1_dfdmu"]
+[ext_resource type="Script" uid="uid://dgm5nfln4nryb" path="res://Scripts/UI_Items/TaskWidgetContainer.gd" id="1_dfdmu"]
 
 [node name="TaskWidgetContainer" type="ScrollContainer"]
 custom_minimum_size = Vector2(100, 500)

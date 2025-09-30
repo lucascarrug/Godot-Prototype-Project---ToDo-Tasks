@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://h3orryxwm645"]
 
-[ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI/TaskWidget.gd" id="1_m6845"]
+[ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI_Items/TaskWidget.gd" id="1_m6845"]
 [ext_resource type="Texture2D" uid="uid://lmowhbqjqcfj" path="res://Assets/arrow-down-sign-to-navigate.png" id="2_t08so"]
 [ext_resource type="Texture2D" uid="uid://nlnen54j08bl" path="res://Assets/add.png" id="3_vdqdf"]
 

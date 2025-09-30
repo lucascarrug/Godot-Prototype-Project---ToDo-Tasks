@@ -2,9 +2,6 @@ extends Control
 
 @onready var task_container := $TaskWidgetContainer
 
-var i: int = 0
-
-
 func _insert_task():
 	var table = {
 		Constants.START_DATE: Utils.get_current_day(),
