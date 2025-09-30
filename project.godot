@@ -11,13 +11,19 @@ config_version=5
 [application]
 
 config/name="Prototype Project - ToDo Tasks"
-run/main_scene="uid://babk1c6voc82i"
+run/main_scene="uid://doj2uju87ksd0"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
 
 [autoload]
 
 Database="*res://Scripts/DatabaseManager.gd"
+
+[display]
+
+window/size/viewport_width=1920
+window/size/viewport_height=1080
+window/stretch/mode="canvas_items"
 
 [rendering]
 

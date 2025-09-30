@@ -20,6 +20,6 @@ const DEFAULT_DIR: String = "Default"
 const DATABASE_PATH: String = "res://Data/Tasks.db"
 
 ## Preload scenes
-const TAG_SCENE = preload("res://Scenes/Tag.tscn")
-const POPUP_SCENE = preload("res://Scenes/TagPopup.tscn")
+const TAG_SCENE: PackedScene = preload("res://Scenes/Tag.tscn")
+const POPUP_SCENE: PackedScene = preload("res://Scenes/TagPopup.tscn")
 const TASK_WIDGET_SCENE: PackedScene = preload("res://Scenes/TaskWidget.tscn")

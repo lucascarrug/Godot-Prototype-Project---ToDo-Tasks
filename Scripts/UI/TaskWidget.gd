@@ -18,7 +18,7 @@ var data: Dictionary
 ##### OVERRIDE
 
 func _ready() -> void:
-	hide_info()
+	_hide_info()
 	is_popup_displayed = false
 	
 	if not data:
@@ -60,9 +60,9 @@ func _on_tag_popup_accept(last_emitter: TaskWidget, tag_name: String, tag_color:
 
 func _on_more_info_button_pressed() -> void:
 	if is_more_info_displayed:
-		hide_info()
+		_hide_info()
 	else:
-		show_info()
+		_show_info()
 
 
 func _on_select_tag_button_item_selected(index: int) -> void:
@@ -74,22 +74,6 @@ func _on_select_tag_button_item_selected(index: int) -> void:
 	_add_tag_in_tag_container(self, tag_name, tag_color)
 
 ##### PUBLIC
-
-func show_info() -> void:
-	description_l.visible = true
-	start_date_l.visible = true
-	tag_container.visible = true
-	
-	is_more_info_displayed = true
-
-
-func hide_info() -> void:
-	description_l.visible = false
-	start_date_l.visible = false
-	tag_container.visible = false
-	
-	is_more_info_displayed = false
-
 
 func set_data(new_data: Dictionary) -> void:
 	data = new_data
@@ -129,3 +113,19 @@ func _tag_exists(new_tag_name: String) -> bool:
 			return true
 	
 	return false
+
+
+func _show_info() -> void:
+	description_l.visible = true
+	start_date_l.visible = true
+	tag_container.visible = true
+	
+	is_more_info_displayed = true
+
+
+func _hide_info() -> void:
+	description_l.visible = false
+	start_date_l.visible = false
+	tag_container.visible = false
+	
+	is_more_info_displayed = false
