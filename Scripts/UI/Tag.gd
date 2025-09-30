@@ -1,19 +1,18 @@
 class_name Tag
 extends PanelContainer
 
+const STYLEBOX_KEY: String = "panel"
+
 @export var color: Color
 @export var tag: String
 
-@onready var text_l: Label = $Text
+@onready var text_label: Label = $Text
 
 
-func _ready() -> void:
-	pass
-
-
-func set_tag(_tag: String, _color: Color) -> void:
-	var new_style = get_theme_stylebox("panel").duplicate()
-	new_style.bg_color = _color
-	add_theme_stylebox_override("panel", new_style)
-	text_l.text = _tag
-	name = _tag
+func set_tag(tag_name: String, tag_color: Color) -> void:
+	var new_style: StyleBox = get_theme_stylebox(STYLEBOX_KEY).duplicate()
+	new_style.bg_color = tag_color
+	add_theme_stylebox_override(STYLEBOX_KEY, new_style)
+	
+	text_label.text = tag_name
+	name = tag_name
