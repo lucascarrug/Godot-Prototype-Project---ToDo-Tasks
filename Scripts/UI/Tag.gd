@@ -16,3 +16,4 @@ func set_tag(_tag: String, _color: Color) -> void:
 	new_style.bg_color = _color
 	add_theme_stylebox_override("panel", new_style)
 	text_l.text = _tag
+	name = _tag

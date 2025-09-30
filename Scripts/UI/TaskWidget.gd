@@ -73,6 +73,8 @@ func _on_more_info_button_pressed() -> void:
 
 func _on_select_tag_button_item_selected(index: int) -> void:
 	var tag_text: String = select_tag_button.get_item_text(index)
+	if _is_tag_set(tag_text):
+		return
 	Database.database.query_with_bindings('SELECT color FROM Tags WHERE name = ?', [tag_text])
 	var tag_color = Database.database.query_result.front()["color"]
 	_add_tag(self, tag_text, tag_color)
@@ -133,3 +135,13 @@ func _add_tags_to_select_tag_button() -> void:
 	Database.database.query('SELECT name FROM Tags')
 	for tag in Database.database.query_result:
 		select_tag_button.add_item(tag["name"])
+
+
+func _is_tag_set(new_tag_name: String) -> bool:
+	for tag in tag_container.get_children():
+		if not is_instance_of(tag, Tag):
+			continue
+		if tag.name == new_tag_name:
+			return true
+	
+	return false
