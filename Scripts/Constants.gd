@@ -15,6 +15,9 @@ const TAGS: String = "tags"
 const DONE: String = "done"
 
 
+## IDK.
+const TAGPOPUP_NAME: String = "TagPopup"
+
 ## Extras
 const DEFAULT_DIR: String = "Default"
 const DATABASE_PATH: String = "res://Data/Tasks.db"

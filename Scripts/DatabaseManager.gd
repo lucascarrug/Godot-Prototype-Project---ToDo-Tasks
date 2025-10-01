@@ -71,6 +71,11 @@ func get_all_tags() -> Array:
 	database.query('SELECT name FROM Tags')
 	return database.query_result
 
+func get_task_done(task_id: int) -> bool:
+	database.query_with_bindings('SELECT done FROM Tasks WHERE id = ?', [task_id])
+	return database.query_result.front()["done"]
+
+
 ##### INSERT FUNCTIONS
 
 func insert_tag(tag_name: String, tag_color: Color) -> void:
@@ -80,3 +85,11 @@ func insert_tag(tag_name: String, tag_color: Color) -> void:
 
 func insert_task_tag(task_id: int, tag_id: int) -> void:
 	database.query_with_bindings('INSERT OR IGNORE INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?);', [task_id, tag_id])
+
+
+func set_task_done(task_id: int) -> void:
+	database.query_with_bindings('UPDATE Tasks SET done = TRUE WHERE id = ?', [task_id])
+
+
+func set_task_not_done(task_id: int) -> void:
+	database.query_with_bindings('UPDATE Tasks SET done = FALSE WHERE id = ?', [task_id])

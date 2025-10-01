@@ -128,6 +128,7 @@ expand_icon = true
 fit_to_longest_item = false
 allow_reselect = true
 
+[connection signal="toggled" from="TaskContainer/HBoxContainer/DoneButton" to="." method="_on_done_button_toggled"]
 [connection signal="pressed" from="TaskContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_pressed"]
 [connection signal="pressed" from="TaskContainer/TagContainer/HBoxContainer/AddTagButton" to="." method="_on_add_tag_button_pressed"]
 [connection signal="item_selected" from="TaskContainer/TagContainer/HBoxContainer/SelectTagButton" to="." method="_on_select_tag_button_item_selected"]

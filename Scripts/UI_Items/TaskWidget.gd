@@ -3,8 +3,6 @@ extends MarginContainer
 
 signal new_tag_created
 
-const TAGPOPUP_NAME: String = "TagPopup"
-
 var is_more_info_displayed: bool
 var is_popup_displayed: bool
 var data: Dictionary
@@ -39,14 +37,14 @@ func _ready() -> void:
 ##### SIGNALS
 
 func _on_add_tag_button_pressed() -> void:
-	var tag_popup: TagPopup = get_tree().root.find_child(TAGPOPUP_NAME, true, false)
+	var tag_popup: TagPopup = get_tree().root.find_child(Constants.TAGPOPUP_NAME, true, false)
 	
 	if tag_popup:
 		tag_popup.visible = true
 		tag_popup.set_last_emitter(self)
 	else:
 		var new_tag_popup: TagPopup = Constants.POPUP_SCENE.instantiate()
-		new_tag_popup.name = TAGPOPUP_NAME
+		new_tag_popup.name = Constants.TAGPOPUP_NAME
 		new_tag_popup.new_tag_added_to_sql.connect(_on_tag_popup_accept)
 		new_tag_popup.set_last_emitter(self)
 		get_tree().root.add_child(new_tag_popup)
@@ -76,6 +74,13 @@ func _on_select_tag_button_item_selected(index: int) -> void:
 	var tag_color = Database.get_tag_color_by_name(tag_name)
 	_add_tag_in_tag_container(self, tag_name, tag_color)
 
+@warning_ignore("unused_parameter")
+func _on_done_button_toggled(toggled_on: bool) -> void:
+	if Database.get_task_done(_get_task_id()):
+		Database.set_task_not_done(_get_task_id())
+	else:
+		Database.set_task_done(_get_task_id())
+
 ##### PUBLIC
 
 func set_data(new_data: Dictionary) -> void:
@@ -88,13 +93,13 @@ func _add_tag_in_tag_container(task_widget_to_add: TaskWidget, tag_name: String,
 	task_widget_to_add.tag_container.add_child(new_tag)
 	new_tag.set_tag(tag_name, tag_color)
 	
-	var task_id: int = task_widget_to_add.data[Constants.ID]
+	var task_id: int = task_widget_to_add._get_task_id()
 	var tag_id: int = Database.get_tag_id_by_name(tag_name)
 	Database.insert_task_tag(task_id, tag_id)
 
 
 func _load_tags_from_db() -> void:
-	var tag_ids = Database.get_tags_by_task(data[Constants.ID])
+	var tag_ids = Database.get_tags_by_task(_get_task_id())
 	
 	for tag in tag_ids:
 		var tag_id = tag["tag_id"]
@@ -133,3 +138,7 @@ func _hide_info() -> void:
 	tag_container.visible = false
 	
 	is_more_info_displayed = false
+ 
+
+func _get_task_id() -> int:
+	return data[Constants.ID]
