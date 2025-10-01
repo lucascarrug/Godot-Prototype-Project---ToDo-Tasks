@@ -1,7 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://h3orryxwm645"]
+[gd_scene load_steps=8 format=3 uid="uid://h3orryxwm645"]
 
 [ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI_Items/TaskWidget.gd" id="1_m6845"]
-[ext_resource type="Texture2D" uid="uid://lmowhbqjqcfj" path="res://Assets/arrow-down-sign-to-navigate.png" id="2_t08so"]
+[ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/informacion.png" id="2_48eyq"]
+[ext_resource type="StyleBox" uid="uid://cllj10f4yfeo1" path="res://Assets/StyleBoxFlat/ButtonNotDoneNormal.tres" id="2_i2me2"]
+[ext_resource type="StyleBox" uid="uid://mvhiinkwfsgd" path="res://Assets/StyleBoxFlat/ButtonNotDoneHover.tres" id="3_6nofy"]
+[ext_resource type="StyleBox" uid="uid://11011eqnul4c" path="res://Assets/StyleBoxFlat/ButtonNotDonePressed.tres" id="3_7v3k0"]
 [ext_resource type="Texture2D" uid="uid://nlnen54j08bl" path="res://Assets/add.png" id="3_vdqdf"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6845"]
@@ -38,14 +41,19 @@ theme_override_constants/separation = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="TaskContainer"]
 layout_mode = 2
 
-[node name="MoreInfoButton" type="Button" parent="TaskContainer/HBoxContainer"]
-custom_minimum_size = Vector2(50, 50)
+[node name="DoneButton" type="Button" parent="TaskContainer/HBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
-mouse_filter = 1
-icon = ExtResource("2_t08so")
-flat = true
-icon_alignment = 1
-expand_icon = true
+size_flags_vertical = 4
+focus_mode = 0
+theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(1, 1, 1, 0)
+theme_override_colors/font_pressed_color = Color(0.129412, 0.141176, 0.14902, 1)
+theme_override_styles/hover = ExtResource("3_6nofy")
+theme_override_styles/pressed = ExtResource("3_7v3k0")
+theme_override_styles/normal = ExtResource("2_i2me2")
+toggle_mode = true
+text = "✓"
 
 [node name="VSeparator" type="VSeparator" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
@@ -58,6 +66,15 @@ text = "Sin nombre"
 [node name="VSeparator2" type="VSeparator" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(20, 0)
 layout_mode = 2
+
+[node name="MoreInfoButton" type="Button" parent="TaskContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+mouse_filter = 1
+icon = ExtResource("2_48eyq")
+flat = true
+icon_alignment = 1
+expand_icon = true
 
 [node name="DateGrid" type="VBoxContainer" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
