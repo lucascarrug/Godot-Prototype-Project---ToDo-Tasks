@@ -2,6 +2,7 @@ class_name TaskWidget
 extends MarginContainer
 
 signal new_tag_created
+signal tag_done_status_changed
 
 var is_more_info_displayed: bool
 var is_popup_displayed: bool
@@ -76,15 +77,17 @@ func _on_select_tag_button_item_selected(index: int) -> void:
 	var tag_color = Database.get_tag_color_by_name(tag_name)
 	_add_tag_in_tag_container(self, tag_name, tag_color)
 
+
 @warning_ignore("unused_parameter")
 func _on_done_button_toggled(toggled_on: bool) -> void:
-	print("Toggle mode entered.")
 	if Database.is_task_done(_get_task_id()):
 		Database.set_task_not_done(_get_task_id())
 		_set_style_task_not_done()
 	else:
 		Database.set_task_done(_get_task_id())
 		_set_style_task_done()
+		
+	tag_done_status_changed.emit()
 	
 ##### PUBLIC
 
