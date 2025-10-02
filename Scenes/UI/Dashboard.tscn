@@ -96,10 +96,10 @@ theme_override_constants/separation = 10
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/VBoxContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="Menu/VBoxContainer/HBoxContainer"]
+[node name="MyTasksLabel" type="Label" parent="Menu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 20
+theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_font_sizes/font_size = 50
 text = "Mis tareas"
 
 [node name="TaskWidgetContainer" parent="Menu/VBoxContainer" instance=ExtResource("1_b3vg7")]
