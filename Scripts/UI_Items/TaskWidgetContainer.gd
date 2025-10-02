@@ -36,9 +36,12 @@ func _update_tasks_stylebox() -> void:
 			return
 		
 		var task_done = Database.is_task_done(task._get_task_id())
+		print("task ", task._get_task_id(), " id done ", task_done)
 		if task_done:
 			task._set_style_task_done()
-			task.done_button.button_pressed = true
+			task.safe_button_pressed(true)
 		else:
 			task._set_style_task_not_done()
-			task.done_button.button_pressed = false
+			task.safe_button_pressed(false)
+			
+	

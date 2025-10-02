@@ -78,6 +78,7 @@ func _on_select_tag_button_item_selected(index: int) -> void:
 
 @warning_ignore("unused_parameter")
 func _on_done_button_toggled(toggled_on: bool) -> void:
+	print("Toggle mode entered.")
 	if Database.is_task_done(_get_task_id()):
 		Database.set_task_not_done(_get_task_id())
 		_set_style_task_not_done()
@@ -89,6 +90,10 @@ func _on_done_button_toggled(toggled_on: bool) -> void:
 
 func set_data(new_data: Dictionary) -> void:
 	data = new_data
+
+
+func safe_button_pressed(button_pressed: bool) -> void:
+	done_button.set_pressed_no_signal(button_pressed)
 
 ##### PRIVATE / HELPERS
 
