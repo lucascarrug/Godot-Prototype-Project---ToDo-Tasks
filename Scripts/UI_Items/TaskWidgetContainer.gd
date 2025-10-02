@@ -27,3 +27,15 @@ func _update_tasks_select_tag_button() -> void:
 		if not is_instance_of(task, TaskWidget):
 			return
 		task._populate_select_tag_button()
+
+
+func _update_tasks_stylebox() -> void:
+	for task in vbox.get_children():
+		if not is_instance_of(task, TaskWidget):
+			return
+		
+		var task_done = Database.is_task_done(task._get_task_id())
+		if task_done:
+			task._set_style_task_inactive()
+		else:
+			task._set_style_task_active()

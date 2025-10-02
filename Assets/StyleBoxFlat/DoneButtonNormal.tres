@@ -1,8 +1,8 @@
-[gd_resource type="StyleBoxFlat" format=3 uid="uid://11011eqnul4c"]
+[gd_resource type="StyleBoxFlat" format=3 uid="uid://cllj10f4yfeo1"]
 
 [resource]
-resource_name = "ButtonNotDonePressed"
-bg_color = Color(1, 1, 1, 1)
+resource_name = "DoneButtonNormal"
+bg_color = Color(0.129412, 0.141176, 0.14902, 1)
 border_width_left = 3
 border_width_top = 3
 border_width_right = 3

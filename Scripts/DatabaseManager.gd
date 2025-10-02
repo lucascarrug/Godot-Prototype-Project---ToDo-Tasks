@@ -71,10 +71,10 @@ func get_all_tags() -> Array:
 	database.query('SELECT name FROM Tags')
 	return database.query_result
 
-func get_task_done(task_id: int) -> bool:
+
+func is_task_done(task_id: int) -> bool:
 	database.query_with_bindings('SELECT done FROM Tasks WHERE id = ?', [task_id])
 	return database.query_result.front()["done"]
-
 
 ##### INSERT FUNCTIONS
 

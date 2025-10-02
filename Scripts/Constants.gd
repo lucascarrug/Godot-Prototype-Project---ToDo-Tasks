@@ -26,3 +26,8 @@ const DATABASE_PATH: String = "res://Data/Tasks.db"
 const TAG_SCENE: PackedScene = preload("res://Scenes/UI_Items/Tag.tscn")
 const POPUP_SCENE: PackedScene = preload("res://Scenes/UI_Items/TagPopup.tscn")
 const TASK_WIDGET_SCENE: PackedScene = preload("res://Scenes/UI_Items/TaskWidget.tscn")
+
+
+## Resources
+const TASK_WIDGET_NOT_DONE_STYLEBOX: StyleBoxFlat = preload("res://Assets/StyleBoxFlat/TaskWidgetNotDone.tres")
+const TASK_WIDGET_DONE_STYLEBOX: StyleBoxFlat = preload("res://Assets/StyleBoxFlat/TaskWidgetDone.tres")

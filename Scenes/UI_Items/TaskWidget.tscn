@@ -2,21 +2,11 @@
 
 [ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI_Items/TaskWidget.gd" id="1_m6845"]
 [ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/informacion.png" id="2_48eyq"]
-[ext_resource type="StyleBox" uid="uid://cllj10f4yfeo1" path="res://Assets/StyleBoxFlat/ButtonNotDoneNormal.tres" id="2_i2me2"]
-[ext_resource type="StyleBox" uid="uid://mvhiinkwfsgd" path="res://Assets/StyleBoxFlat/ButtonNotDoneHover.tres" id="3_6nofy"]
-[ext_resource type="StyleBox" uid="uid://11011eqnul4c" path="res://Assets/StyleBoxFlat/ButtonNotDonePressed.tres" id="3_7v3k0"]
+[ext_resource type="StyleBox" uid="uid://cllj10f4yfeo1" path="res://Assets/StyleBoxFlat/DoneButtonNormal.tres" id="2_i2me2"]
+[ext_resource type="StyleBox" uid="uid://dkqvjqpxv6qlh" path="res://Assets/StyleBoxFlat/TaskWidgetNotDone.tres" id="2_o8up4"]
+[ext_resource type="StyleBox" uid="uid://mvhiinkwfsgd" path="res://Assets/StyleBoxFlat/DoneButtonHover.tres" id="3_6nofy"]
+[ext_resource type="StyleBox" uid="uid://11011eqnul4c" path="res://Assets/StyleBoxFlat/DoneButtonPressed.tres" id="3_7v3k0"]
 [ext_resource type="Texture2D" uid="uid://nlnen54j08bl" path="res://Assets/add.png" id="3_vdqdf"]
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_m6845"]
-bg_color = Color(0.129412, 0.141176, 0.14902, 1)
-corner_radius_top_left = 10
-corner_radius_top_right = 10
-corner_radius_bottom_right = 10
-corner_radius_bottom_left = 10
-expand_margin_left = 20.0
-expand_margin_top = 10.0
-expand_margin_right = 20.0
-expand_margin_bottom = 20.0
 
 [node name="TaskWidget" type="MarginContainer"]
 offset_right = 610.0
@@ -32,7 +22,7 @@ script = ExtResource("1_m6845")
 [node name="Background" type="Panel" parent="."]
 y_sort_enabled = true
 layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_m6845")
+theme_override_styles/panel = ExtResource("2_o8up4")
 
 [node name="TaskContainer" type="VBoxContainer" parent="."]
 layout_mode = 2

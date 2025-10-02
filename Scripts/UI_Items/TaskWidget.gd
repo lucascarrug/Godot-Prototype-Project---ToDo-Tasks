@@ -7,6 +7,7 @@ var is_more_info_displayed: bool
 var is_popup_displayed: bool
 var data: Dictionary
 
+@onready var background: Panel = $Background
 @onready var more_info_b: Button = $TaskContainer/HBoxContainer/MoreInfoButton
 @onready var name_l: Label = $TaskContainer/HBoxContainer/TaskNameLabel
 @onready var start_date_l: RichTextLabel = $TaskContainer/HBoxContainer/DateGrid/StartDateLabel
@@ -14,6 +15,7 @@ var data: Dictionary
 @onready var description_l: RichTextLabel = $TaskContainer/DescriptionLabel
 @onready var tag_container: VBoxContainer = $TaskContainer/TagContainer
 @onready var select_tag_button: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
+@onready var done_button: Button = $TaskContainer/HBoxContainer/DoneButton
 
 ##### OVERRIDE
 
@@ -76,11 +78,13 @@ func _on_select_tag_button_item_selected(index: int) -> void:
 
 @warning_ignore("unused_parameter")
 func _on_done_button_toggled(toggled_on: bool) -> void:
-	if Database.get_task_done(_get_task_id()):
+	if Database.is_task_done(_get_task_id()):
 		Database.set_task_not_done(_get_task_id())
+		_set_style_task_not_done()
 	else:
 		Database.set_task_done(_get_task_id())
-
+		_set_style_task_done()
+	
 ##### PUBLIC
 
 func set_data(new_data: Dictionary) -> void:
@@ -142,3 +146,11 @@ func _hide_info() -> void:
 
 func _get_task_id() -> int:
 	return data[Constants.ID]
+	
+
+func _set_style_task_done() -> void:
+	background.add_theme_stylebox_override("panel", Constants.TASK_WIDGET_DONE_STYLEBOX)
+
+
+func _set_style_task_not_done() -> void:
+	background.add_theme_stylebox_override("panel", Constants.TASK_WIDGET_NOT_DONE_STYLEBOX)
