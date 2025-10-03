@@ -3,6 +3,7 @@ extends MarginContainer
 
 signal new_tag_created
 signal tag_done_status_changed
+signal can_drop_data_emited
 
 var is_more_info_displayed: bool
 var is_popup_displayed: bool
@@ -162,3 +163,15 @@ func _set_style_task_done() -> void:
 
 func _set_style_task_not_done() -> void:
 	background.add_theme_stylebox_override("panel", Constants.TASK_WIDGET_NOT_DONE_STYLEBOX)
+
+
+func _get_drag_data(at_position: Vector2) -> Variant:
+	var task = self
+	var preview = Label.new()
+	preview.text = task.data[Constants.NAME]
+	preview.modulate = Color(1,1,1,0.5)
+	set_drag_preview(preview)
+	
+	can_drop_data_emited.emit()
+	
+	return task

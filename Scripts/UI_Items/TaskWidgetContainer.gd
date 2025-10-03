@@ -3,11 +3,20 @@ extends ScrollContainer
 
 var task_widget_counter: int
 
+
+var preview = Label.new()
+
+
 @onready var not_done_task_container: VBoxContainer = $VBoxContainer/NotDoneTasksContainer
 @onready var done_task_container: VBoxContainer = $VBoxContainer/DoneTasksContainer
 
 
+func _on_can_drop_data_emited() -> void:
+	_hide_info_from_all_not_done_tasks()
+
+
 func set_container() -> void:
+	preview.text = "Aquí va la task"
 	var table = Database.database.select_rows(Constants.TABLE_NAME, "", ["*"])
 	task_widget_counter = 0
 	
@@ -20,11 +29,13 @@ func set_container() -> void:
 		task.name = "TaskWidget" + str(task_widget_counter)
 		task.new_tag_created.connect(_update_tasks_select_tag_button)
 		task.tag_done_status_changed.connect(_update_containers_by_done_status)
+		task.can_drop_data_emited.connect(_on_can_drop_data_emited)
 		not_done_task_container.add_child(task)
 		task_widget_counter += 1
 	
 	_update_task_styleboxes()
 	_update_containers_by_done_status()
+
 
 func _update_tasks_select_tag_button() -> void:
 	for task in not_done_task_container.get_children():
@@ -66,3 +77,45 @@ func _update_containers_by_done_status() -> void:
 				continue
 			task.get_parent().remove_child(task)
 			not_done_task_container.add_child(task)
+
+
+func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
+	if not is_instance_of(data, TaskWidget):
+		return false
+	
+	if not data.get_parent() == not_done_task_container:
+		return false
+	
+	var slot = int(at_position.y / _get_task_widget_size_y())
+	
+	not_done_task_container.remove_child(preview)
+	not_done_task_container.add_child(preview)
+	not_done_task_container.move_child(preview, slot)
+	
+	print(slot)
+	
+	return true
+
+
+func _drop_data(at_position: Vector2, data: Variant) -> void:
+	not_done_task_container.remove_child(preview)
+
+
+func _hide_info_from_all_not_done_tasks() -> void:
+	var tasks = not_done_task_container.get_children()
+	for task in tasks:
+		if not is_instance_of(task, TaskWidget):
+			continue
+			
+		if not task.is_more_info_displayed:
+			continue
+		task._hide_info()
+		task.is_more_info_displayed = false
+
+
+func _get_task_widget_size_y() -> float:
+	for child in not_done_task_container.get_children():
+		if is_instance_of(child, TaskWidget):
+			return child.size.y
+	
+	return -1000
