@@ -5,7 +5,8 @@ var task_widget_counter: int
 
 
 var preview = Label.new()
-
+var current_slot = 0
+var prev_slot = 0
 
 @onready var not_done_task_container: VBoxContainer = $VBoxContainer/NotDoneTasksContainer
 @onready var done_task_container: VBoxContainer = $VBoxContainer/DoneTasksContainer
@@ -86,13 +87,15 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if not data.get_parent() == not_done_task_container:
 		return false
 	
-	var slot = int(at_position.y / _get_task_widget_size_y())
+	current_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
+	if current_slot != prev_slot:
+		print(current_slot) 
+	
+	prev_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	
 	not_done_task_container.remove_child(preview)
 	not_done_task_container.add_child(preview)
-	not_done_task_container.move_child(preview, slot)
-	
-	print(slot)
+	not_done_task_container.move_child(preview, current_slot)
 	
 	return true
 
