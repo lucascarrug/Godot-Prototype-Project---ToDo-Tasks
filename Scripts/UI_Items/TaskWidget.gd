@@ -167,4 +167,5 @@ func _set_style_task_not_done() -> void:
 
 @warning_ignore("unused_parameter")
 func _get_drag_data(at_position: Vector2) -> Variant:
+	can_drop_data_emited.emit()
 	return self

@@ -1,0 +1,52 @@
+[gd_scene load_steps=3 format=3 uid="uid://cwtmo5gpc2xwt"]
+
+[ext_resource type="StyleBox" uid="uid://dkqvjqpxv6qlh" path="res://Assets/StyleBoxFlat/TaskWidgetNotDone.tres" id="1_erbq7"]
+[ext_resource type="Texture2D" uid="uid://yy8aytqpud6c" path="res://Assets/Icons/calendar_resized.png" id="2_5ghgl"]
+
+[node name="AddTaskWidget" type="MarginContainer"]
+offset_right = 40.0
+offset_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+focus_mode = 1
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Background" type="Panel" parent="."]
+layout_mode = 2
+theme_override_styles/panel = ExtResource("1_erbq7")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+theme_override_constants/separation = 20
+alignment = 1
+
+[node name="NameEdit" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(300, 40)
+layout_mode = 2
+size_flags_horizontal = 3
+placeholder_text = "Escriba una tarea"
+context_menu_enabled = false
+clear_button_enabled = true
+flat = true
+caret_blink_interval = 3.2
+
+[node name="DateEdit" type="LineEdit" parent="HBoxContainer"]
+custom_minimum_size = Vector2(110, 0)
+layout_mode = 2
+tooltip_text = "Formato: YYYY-MM-DD"
+placeholder_text = "Fecha"
+max_length = 10
+expand_to_text_length = true
+context_menu_enabled = false
+clear_button_enabled = true
+right_icon = ExtResource("2_5ghgl")
+flat = true
+caret_blink_interval = 3.2
+
+[node name="AddButton" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+text = "Agregar"

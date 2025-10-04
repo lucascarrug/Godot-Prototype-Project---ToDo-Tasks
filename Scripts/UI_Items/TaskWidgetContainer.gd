@@ -2,7 +2,6 @@ class_name TaskWidgetContainer
 extends ScrollContainer
 
 var task_widget_counter: int
-
 var current_slot = 0
 var prev_slot = 0
 

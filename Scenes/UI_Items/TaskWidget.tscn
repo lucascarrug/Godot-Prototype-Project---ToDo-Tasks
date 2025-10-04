@@ -1,12 +1,12 @@
 [gd_scene load_steps=8 format=3 uid="uid://h3orryxwm645"]
 
 [ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI_Items/TaskWidget.gd" id="1_m6845"]
-[ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/informacion.png" id="2_48eyq"]
+[ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/Icons/informacion.png" id="2_48eyq"]
 [ext_resource type="StyleBox" uid="uid://cllj10f4yfeo1" path="res://Assets/StyleBoxFlat/DoneButtonNormal.tres" id="2_i2me2"]
 [ext_resource type="StyleBox" uid="uid://dkqvjqpxv6qlh" path="res://Assets/StyleBoxFlat/TaskWidgetNotDone.tres" id="2_o8up4"]
 [ext_resource type="StyleBox" uid="uid://mvhiinkwfsgd" path="res://Assets/StyleBoxFlat/DoneButtonHover.tres" id="3_6nofy"]
 [ext_resource type="StyleBox" uid="uid://11011eqnul4c" path="res://Assets/StyleBoxFlat/DoneButtonPressed.tres" id="3_7v3k0"]
-[ext_resource type="Texture2D" uid="uid://nlnen54j08bl" path="res://Assets/add.png" id="3_vdqdf"]
+[ext_resource type="Texture2D" uid="uid://nlnen54j08bl" path="res://Assets/Icons/add.png" id="3_vdqdf"]
 
 [node name="TaskWidget" type="MarginContainer"]
 offset_right = 610.0

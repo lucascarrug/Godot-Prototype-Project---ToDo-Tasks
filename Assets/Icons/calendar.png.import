@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://lmowhbqjqcfj"
-path="res://.godot/imported/arrow-down-sign-to-navigate.png-bf29eac9d0c16d8c9db44efbe38419b8.ctex"
+uid="uid://cx1qt5etqi303"
+path="res://.godot/imported/calendar.png-1c3fe7774229ec959fce2fb1087c4264.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/arrow-down-sign-to-navigate.png"
-dest_files=["res://.godot/imported/arrow-down-sign-to-navigate.png-bf29eac9d0c16d8c9db44efbe38419b8.ctex"]
+source_file="res://Assets/Icons/calendar.png"
+dest_files=["res://.godot/imported/calendar.png-1c3fe7774229ec959fce2fb1087c4264.ctex"]
 
 [params]
 

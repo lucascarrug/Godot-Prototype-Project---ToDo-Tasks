@@ -11,3 +11,6 @@ arrow_down:
 
 info:
 <a href="https://www.flaticon.es/iconos-gratis/informacion" title="información iconos">Información iconos creados por Freepik - Flaticon</a>
+
+calendar:
+<a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Freepik - Flaticon</a>

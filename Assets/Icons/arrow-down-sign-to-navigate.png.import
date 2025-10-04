@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://jwqcfsjh6ht0"
-path="res://.godot/imported/AddIcon.png-916a14851b801f02a6b16e1477f7eb57.ctex"
+uid="uid://lmowhbqjqcfj"
+path="res://.godot/imported/arrow-down-sign-to-navigate.png-310ee4ce4d404eb6aea9efc5c90d8859.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Assets/AddIcon.png"
-dest_files=["res://.godot/imported/AddIcon.png-916a14851b801f02a6b16e1477f7eb57.ctex"]
+source_file="res://Assets/Icons/arrow-down-sign-to-navigate.png"
+dest_files=["res://.godot/imported/arrow-down-sign-to-navigate.png-310ee4ce4d404eb6aea9efc5c90d8859.ctex"]
 
 [params]
 
