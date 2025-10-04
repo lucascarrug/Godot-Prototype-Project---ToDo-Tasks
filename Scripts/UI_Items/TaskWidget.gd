@@ -165,13 +165,6 @@ func _set_style_task_not_done() -> void:
 	background.add_theme_stylebox_override("panel", Constants.TASK_WIDGET_NOT_DONE_STYLEBOX)
 
 
+@warning_ignore("unused_parameter")
 func _get_drag_data(at_position: Vector2) -> Variant:
-	var task = self
-	var preview = Label.new()
-	preview.text = task.data[Constants.NAME]
-	preview.modulate = Color(1,1,1,0.5)
-	set_drag_preview(preview)
-	
-	can_drop_data_emited.emit()
-	
-	return task
+	return self

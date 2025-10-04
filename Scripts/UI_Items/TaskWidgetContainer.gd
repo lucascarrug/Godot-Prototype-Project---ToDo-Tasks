@@ -3,8 +3,6 @@ extends ScrollContainer
 
 var task_widget_counter: int
 
-
-var preview = Label.new()
 var current_slot = 0
 var prev_slot = 0
 
@@ -17,7 +15,6 @@ func _on_can_drop_data_emited() -> void:
 
 
 func set_container() -> void:
-	preview.text = "Aquí va la task"
 	var table = Database.database.select_rows(Constants.TABLE_NAME, "", ["*"])
 	task_widget_counter = 0
 	
@@ -89,19 +86,16 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	
 	current_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	if current_slot != prev_slot:
-		print(current_slot) 
+		print(current_slot)
+		not_done_task_container.move_child(data, current_slot)
 	
 	prev_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	
-	not_done_task_container.remove_child(preview)
-	not_done_task_container.add_child(preview)
-	not_done_task_container.move_child(preview, current_slot)
-	
 	return true
 
-
+@warning_ignore("unused_parameter")
 func _drop_data(at_position: Vector2, data: Variant) -> void:
-	not_done_task_container.remove_child(preview)
+	pass
 
 
 func _hide_info_from_all_not_done_tasks() -> void:
