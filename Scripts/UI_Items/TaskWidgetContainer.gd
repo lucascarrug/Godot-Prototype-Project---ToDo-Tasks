@@ -23,9 +23,6 @@ func set_container() -> void:
 	
 	var table = Database.database.select_rows(Constants.TABLE_NAME, "", ["*"])
 	task_widget_counter = 0
-	
-	for child in not_done_task_container.get_children():
-		not_done_task_container.remove_child(child)
 
 	for row in table:
 		var task: TaskWidget = Constants.TASK_WIDGET_SCENE.instantiate()
@@ -90,6 +87,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	if not data.get_parent() == not_done_task_container:
 		return false
 	
+	## TODO: Solve drop zone, the problem is AddTaskWidget is not taken into account.
 	current_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	if current_slot != prev_slot:
 		print(current_slot)
@@ -98,6 +96,7 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 	prev_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	
 	return true
+
 
 @warning_ignore("unused_parameter")
 func _drop_data(at_position: Vector2, data: Variant) -> void:
@@ -122,10 +121,37 @@ func _get_task_widget_size_y() -> float:
 			return child.size.y
 	
 	return -1000
-	
+
+
 func _remove_all_tasks_from_containers() -> void:
 	for task in not_done_task_container.get_children():
 		not_done_task_container.remove_child(task)
 	
 	for task in done_task_container.get_children():
 		done_task_container.remove_child(task)
+
+
+func sort_tasks(id: int) -> void:
+	var not_done_tasks: Array = not_done_task_container.get_children()
+	var done_tasks: Array = done_task_container.get_children()
+	
+	var comparation_method
+	
+	if id == Constants.SORT_BY_ALPHABET:
+		comparation_method = func(a, b):
+			return a.name_l.text < b.name_l.text
+	
+	elif id == Constants.SORT_BY_STARTDATE:
+		comparation_method = func(a, b):
+			return a.start_date_l.text < b.start_date_l.text
+		
+	not_done_tasks.sort_custom(comparation_method)
+	done_tasks.sort_custom(comparation_method)
+	
+	_remove_all_tasks_from_containers()
+	
+	for task in not_done_tasks:
+		not_done_task_container.add_child(task)
+	
+	for task in done_tasks:
+		done_task_container.add_child(task)

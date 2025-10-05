@@ -12,8 +12,20 @@ arrow_down:
 info:
 <a href="https://www.flaticon.es/iconos-gratis/informacion" title="información iconos">Información iconos creados por Freepik - Flaticon</a>
 
-calendar:
+calendar normal:
 <a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Freepik - Flaticon</a>
+
+calendar end_date:
+<a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Fihdxicon - Flaticon</a>
+
+calendar start_date:
+<a href="https://www.flaticon.com/free-icons/calendar" title="calendar icons">Calendar icons created by Ilham Fitrotul Hayat - Flaticon</a>
 
 filter:
 <a href="https://www.flaticon.com/free-icons/filter" title="filter icons">Filter icons created by joalfa - Flaticon</a>
+
+sort:
+<a href="https://www.flaticon.com/free-icons/reorder" title="reorder icons">Reorder icons created by Dengane - Flaticon</a>
+
+abc:
+<a href="https://www.flaticon.com/free-icons/abc" title="abc icons">Abc icons created by Voysla - Flaticon</a>

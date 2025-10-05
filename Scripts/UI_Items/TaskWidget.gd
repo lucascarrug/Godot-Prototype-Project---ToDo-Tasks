@@ -30,10 +30,10 @@ func _ready() -> void:
 	
 	name_l.text = data[Constants.NAME]
 	if data[Constants.DESCRIPTION]: description_l.text = data[Constants.DESCRIPTION]
-	start_date_l.text = "[i][color=#111111]desde [/color][/i] " + data[Constants.START_DATE]
+	start_date_l.text = data[Constants.START_DATE]
 	
 	if data[Constants.END_DATE] != null:
-		end_date_l.text = "[i][color=#111111]hasta [/color][/i] " + data[Constants.END_DATE]
+		end_date_l.text = data[Constants.END_DATE]
 
 	_load_tags_from_db()
 	_populate_select_tag_button()
