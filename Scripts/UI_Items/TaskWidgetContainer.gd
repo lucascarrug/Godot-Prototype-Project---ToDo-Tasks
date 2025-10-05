@@ -140,7 +140,7 @@ func sort_tasks(id: int) -> void:
 	if id == Constants.SORT_BY_ALPHABET:
 		comparation_method = func(a, b):
 			return a.name_l.text < b.name_l.text
-	
+			
 	elif id == Constants.SORT_BY_STARTDATE:
 		comparation_method = func(a, b):
 			return a.start_date_l.text < b.start_date_l.text
@@ -157,4 +157,28 @@ func sort_tasks(id: int) -> void:
 		not_done_task_container.add_child(task)
 	
 	for task in done_tasks:
+		done_task_container.add_child(task)
+
+
+func filter_by_tag(tag_name: String) -> void:
+	if tag_name == "":
+		set_container()
+		return
+	
+	var filtered_not_done_tasks: Array = []
+	for task in not_done_task_container.get_children():
+		if task._tag_exists(tag_name):
+			filtered_not_done_tasks.append(task)
+	
+	var filtered_done_tasks: Array = []
+	for task in done_task_container.get_children():
+		if task._tag_exists(tag_name):
+			filtered_done_tasks.append(task)
+	
+	_remove_all_tasks_from_containers()
+	
+	for task in filtered_not_done_tasks:
+		not_done_task_container.add_child(task)
+
+	for task in filtered_done_tasks:
 		done_task_container.add_child(task)

@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://dp6nn2e18xg2k" path="res://Scenes/UI_Items/TaskWidgetContainer.tscn" id="1_b3vg7"]
 [ext_resource type="Script" uid="uid://5m7uf30sntnt" path="res://Scripts/UI/Dashboard.gd" id="1_hfwhy"]
-[ext_resource type="Texture2D" uid="uid://o7jb6qebunum" path="res://Assets/Icons/filter.png" id="2_n8pl3"]
 [ext_resource type="Texture2D" uid="uid://b36525gnpdu5d" path="res://Assets/Icons/sort.png" id="2_rxei5"]
 [ext_resource type="Texture2D" uid="uid://d3g1n1my5e3mc" path="res://Assets/Icons/abc_resized.png" id="3_jn6xl"]
 [ext_resource type="Texture2D" uid="uid://c2ot2iyej1fdr" path="res://Assets/Icons/calendar_end_date_resized.png" id="4_v85ql"]
 [ext_resource type="Texture2D" uid="uid://dbmrpsvn8gquy" path="res://Assets/Icons/calendar_start_date_resized.png" id="5_v85ql"]
+[ext_resource type="Texture2D" uid="uid://cnwc7p5fjsbdx" path="res://Assets/Icons/filter_resized.png" id="6_v85ql"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1w88"]
 bg_color = Color(0.129412, 0.141176, 0.14902, 1)
@@ -107,11 +107,20 @@ theme_override_colors/font_color = Color(1, 1, 1, 1)
 theme_override_font_sizes/font_size = 50
 text = "Mis tareas"
 
-[node name="SortButton" type="MenuButton" parent="Menu/VBoxContainer/HBoxContainer"]
+[node name="FilterButton" type="OptionButton" parent="Menu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 10
-size_flags_stretch_ratio = 2.5
+size_flags_stretch_ratio = 0.2
+focus_mode = 0
+theme_override_icons/arrow = ExtResource("6_v85ql")
+flat = true
+fit_to_longest_item = false
+
+[node name="SortButton" type="MenuButton" parent="Menu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 70)
+layout_mode = 2
+size_flags_horizontal = 8
 icon = ExtResource("2_rxei5")
 icon_alignment = 2
 expand_icon = true
@@ -126,16 +135,8 @@ popup/item_2/text = " Fecha de entrega"
 popup/item_2/icon = ExtResource("4_v85ql")
 popup/item_2/id = 2
 
-[node name="FilterButton" type="Button" parent="Menu/VBoxContainer/HBoxContainer"]
-custom_minimum_size = Vector2(70, 70)
-layout_mode = 2
-size_flags_horizontal = 10
-size_flags_stretch_ratio = 0.2
-focus_mode = 0
-icon = ExtResource("2_n8pl3")
-icon_alignment = 1
-expand_icon = true
-
 [node name="TaskWidgetContainer" parent="Menu/VBoxContainer" instance=ExtResource("1_b3vg7")]
 custom_minimum_size = Vector2(100, 850)
 layout_mode = 2
+
+[connection signal="item_selected" from="Menu/VBoxContainer/HBoxContainer/FilterButton" to="." method="_on_filter_button_item_selected"]
