@@ -161,8 +161,9 @@ func sort_tasks(id: int) -> void:
 
 
 func filter_by_tag(tag_name: String) -> void:
+	set_container()
+	
 	if tag_name == "":
-		set_container()
 		return
 	
 	var filtered_not_done_tasks: Array = []
