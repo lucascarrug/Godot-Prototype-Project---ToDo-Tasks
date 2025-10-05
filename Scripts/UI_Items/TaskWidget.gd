@@ -5,6 +5,8 @@ signal new_tag_created
 signal tag_done_status_changed
 signal can_drop_data_emited
 
+const DELETE_TASK = 0
+
 var is_more_info_displayed: bool
 var is_popup_displayed: bool
 var data: Dictionary
@@ -103,6 +105,7 @@ func safe_button_pressed(button_pressed: bool) -> void:
 
 func _add_tag_in_tag_container(task_widget_to_add: TaskWidget, tag_name: String, tag_color: Color) -> void:
 	var new_tag: Tag = Constants.TAG_SCENE.instantiate()
+	new_tag.get_popup().id_pressed.connect(_delete_tag.bind(new_tag))
 	task_widget_to_add.tag_container.add_child(new_tag)
 	new_tag.set_tag(tag_name, tag_color)
 	
@@ -169,3 +172,8 @@ func _set_style_task_not_done() -> void:
 func _get_drag_data(at_position: Vector2) -> Variant:
 	can_drop_data_emited.emit()
 	return self
+
+
+func _delete_tag(id_pressed: int, sender: Tag) -> void:
+	if id_pressed == DELETE_TASK:
+		print("Signal emitted by ", sender.text, " in task ", name_l.text)
