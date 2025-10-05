@@ -105,7 +105,7 @@ func safe_button_pressed(button_pressed: bool) -> void:
 
 func _add_tag_in_tag_container(task_widget_to_add: TaskWidget, tag_name: String, tag_color: Color) -> void:
 	var new_tag: Tag = Constants.TAG_SCENE.instantiate()
-	new_tag.get_popup().id_pressed.connect(_delete_tag.bind(new_tag))
+	new_tag.get_popup().id_pressed.connect(_delete_tag_from_task.bind(new_tag))
 	task_widget_to_add.tag_container.add_child(new_tag)
 	new_tag.set_tag(tag_name, tag_color)
 	
@@ -174,6 +174,12 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 	return self
 
 
-func _delete_tag(id_pressed: int, sender: Tag) -> void:
-	if id_pressed == DELETE_TASK:
-		print("Signal emitted by ", sender.text, " in task ", name_l.text)
+func _delete_tag_from_task(id_pressed: int, sender: Tag) -> void:
+	if id_pressed != DELETE_TASK:
+		return
+	
+	var task_id = data[Constants.ID]
+	var tag_id = Database.get_tag_id_by_name(sender.text)
+	Database.delete_task_tag(task_id, tag_id)
+	
+	tag_container.remove_child(sender)

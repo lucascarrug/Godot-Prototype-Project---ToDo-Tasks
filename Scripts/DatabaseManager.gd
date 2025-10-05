@@ -121,3 +121,10 @@ func insert_task(task_name: String, task_description: String = "", task_end_date
 	# Insert in table.
 	Database.database.insert_row(Constants.TABLE_NAME, table)
 	print("Task ", task_name, " inserted.")
+
+
+## DELETE FUNCTIONS
+
+func delete_task_tag(task_id: int, tag_id: int) -> void:
+	var query = 'DELETE FROM Tasks_Tags WHERE task_id = ? AND tag_id = ?'
+	database.query_with_bindings(query, [task_id, tag_id])
