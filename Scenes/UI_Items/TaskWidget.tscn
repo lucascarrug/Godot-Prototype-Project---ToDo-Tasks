@@ -47,10 +47,6 @@ theme_override_styles/normal = ExtResource("2_i2me2")
 toggle_mode = true
 text = "✓"
 
-[node name="VSeparator" type="VSeparator" parent="TaskContainer/HBoxContainer"]
-visible = false
-layout_mode = 2
-
 [node name="TaskNameLabel" type="Label" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
 text = "Sin nombre"

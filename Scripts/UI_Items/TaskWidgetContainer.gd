@@ -144,7 +144,10 @@ func sort_tasks(id: int) -> void:
 	elif id == Constants.SORT_BY_STARTDATE:
 		comparation_method = func(a, b):
 			return a.start_date_l.text < b.start_date_l.text
-		
+	
+	else:
+		return
+	
 	not_done_tasks.sort_custom(comparation_method)
 	done_tasks.sort_custom(comparation_method)
 	
