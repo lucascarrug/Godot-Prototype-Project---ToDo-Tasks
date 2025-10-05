@@ -7,6 +7,11 @@ var prev_slot = 0
 
 @onready var not_done_task_container: VBoxContainer = $VBoxContainer/NotDoneTasksContainer
 @onready var done_task_container: VBoxContainer = $VBoxContainer/DoneTasksContainer
+@onready var add_task_widget: MarginContainer = $VBoxContainer/AddTaskWidget
+
+
+func _ready() -> void:
+	add_task_widget.new_task_added.connect(set_container)
 
 
 func _on_can_drop_data_emited() -> void:
@@ -14,6 +19,8 @@ func _on_can_drop_data_emited() -> void:
 
 
 func set_container() -> void:
+	_remove_all_tasks_from_containers()
+	
 	var table = Database.database.select_rows(Constants.TABLE_NAME, "", ["*"])
 	task_widget_counter = 0
 	
@@ -115,3 +122,10 @@ func _get_task_widget_size_y() -> float:
 			return child.size.y
 	
 	return -1000
+	
+func _remove_all_tasks_from_containers() -> void:
+	for task in not_done_task_container.get_children():
+		not_done_task_container.remove_child(task)
+	
+	for task in done_task_container.get_children():
+		done_task_container.remove_child(task)

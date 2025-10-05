@@ -14,9 +14,9 @@ offset_bottom = 124.0
 size_flags_horizontal = 3
 focus_mode = 1
 theme_override_constants/margin_left = 20
-theme_override_constants/margin_top = 20
+theme_override_constants/margin_top = 22
 theme_override_constants/margin_right = 20
-theme_override_constants/margin_bottom = 20
+theme_override_constants/margin_bottom = 22
 script = ExtResource("1_m6845")
 
 [node name="Background" type="Panel" parent="."]
@@ -30,10 +30,12 @@ theme_override_constants/separation = 10
 
 [node name="HBoxContainer" type="HBoxContainer" parent="TaskContainer"]
 layout_mode = 2
+theme_override_constants/separation = 15
 
 [node name="DoneButton" type="Button" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
+size_flags_horizontal = 0
 size_flags_vertical = 4
 focus_mode = 0
 theme_override_colors/font_hover_color = Color(1, 1, 1, 1)
@@ -46,20 +48,17 @@ toggle_mode = true
 text = "✓"
 
 [node name="VSeparator" type="VSeparator" parent="TaskContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
+visible = false
 layout_mode = 2
 
 [node name="TaskNameLabel" type="Label" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
 text = "Sin nombre"
 
-[node name="VSeparator2" type="VSeparator" parent="TaskContainer/HBoxContainer"]
-custom_minimum_size = Vector2(20, 0)
-layout_mode = 2
-
 [node name="MoreInfoButton" type="Button" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
+size_flags_horizontal = 10
 mouse_filter = 1
 icon = ExtResource("2_48eyq")
 flat = true
@@ -68,7 +67,7 @@ expand_icon = true
 
 [node name="DateGrid" type="VBoxContainer" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 3
+size_flags_horizontal = 8
 alignment = 1
 
 [node name="StartDateLabel" type="RichTextLabel" parent="TaskContainer/HBoxContainer/DateGrid"]

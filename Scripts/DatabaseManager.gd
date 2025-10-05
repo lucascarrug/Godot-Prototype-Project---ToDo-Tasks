@@ -93,3 +93,31 @@ func set_task_done(task_id: int) -> void:
 
 func set_task_not_done(task_id: int) -> void:
 	database.query_with_bindings('UPDATE Tasks SET done = FALSE WHERE id = ?', [task_id])
+
+
+func insert_task(task_name: String, task_description: String = "", task_end_date: String = "") -> void:
+	var table = {
+		Constants.START_DATE: Utils.get_current_day(),
+		Constants.DONE: false
+	}
+	
+	# Insert name.
+	if task_name != "":
+		table[Constants.NAME] = task_name
+	else:
+		print("Empty name.")
+		return
+	
+	# Insert description.
+	if task_description != "":
+		table[Constants.DESCRIPTION] = task_description
+	else:
+		print("Empty description.")
+	
+	# Insert end date.
+	if Utils.is_valid_date_format(task_end_date):
+		table[Constants.END_DATE] = task_end_date
+	
+	# Insert in table.
+	Database.database.insert_row(Constants.TABLE_NAME, table)
+	print("Task ", task_name, " inserted.")
