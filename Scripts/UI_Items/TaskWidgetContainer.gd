@@ -88,12 +88,12 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		return false
 	
 	## TODO: Solve drop zone, the problem is AddTaskWidget is not taken into account.
-	current_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
+	current_slot = clamp(int((at_position.y - _get_add_task_widget_size_y())/ _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	if current_slot != prev_slot:
 		print(current_slot)
 		not_done_task_container.move_child(data, current_slot)
 	
-	prev_slot = clamp(int(at_position.y / _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
+	prev_slot = clamp(int((at_position.y - _get_add_task_widget_size_y())/ _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	
 	return true
 
@@ -113,6 +113,10 @@ func _hide_info_from_all_not_done_tasks() -> void:
 			continue
 		task._hide_info()
 		task.is_more_info_displayed = false
+
+
+func _get_add_task_widget_size_y() -> float:
+	return add_task_widget.size.y
 
 
 func _get_task_widget_size_y() -> float:
@@ -161,6 +165,8 @@ func sort_tasks(id: int) -> void:
 
 
 func filter_by_tag(tag_name: String) -> void:
+	# NOTE: If you want to make a more specific search by adding more filters,
+	# you can put set_container in the next condition.
 	set_container()
 	
 	if tag_name == "":
