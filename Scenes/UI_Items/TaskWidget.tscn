@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://h3orryxwm645"]
+[gd_scene load_steps=11 format=3 uid="uid://h3orryxwm645"]
 
 [ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI_Items/TaskWidget.gd" id="1_m6845"]
 [ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/Icons/informacion.png" id="2_48eyq"]
@@ -9,10 +9,11 @@
 [ext_resource type="StyleBox" uid="uid://11011eqnul4c" path="res://Assets/StyleBoxFlat/DoneButtonPressed.tres" id="3_7v3k0"]
 [ext_resource type="Texture2D" uid="uid://nlnen54j08bl" path="res://Assets/Icons/add.png" id="3_vdqdf"]
 [ext_resource type="Texture2D" uid="uid://cj26ylxikxtlh" path="res://Assets/Icons/trash.png" id="6_al1g1"]
+[ext_resource type="Texture2D" uid="uid://u37m8n31y17r" path="res://Assets/Icons/edit.png" id="8_k5jy0"]
 
 [node name="TaskWidget" type="MarginContainer"]
-offset_right = 610.0
-offset_bottom = 124.0
+offset_right = 815.0
+offset_bottom = 167.0
 size_flags_horizontal = 3
 focus_mode = 1
 theme_override_constants/margin_left = 20
@@ -53,6 +54,7 @@ text = "✓"
 
 [node name="TaskNameLabel" type="Label" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
+size_flags_horizontal = 2
 text = "Sin nombre"
 
 [node name="DeleteButton" type="Button" parent="TaskContainer/HBoxContainer"]
@@ -66,10 +68,21 @@ flat = true
 icon_alignment = 1
 expand_icon = true
 
+[node name="EditButton" type="Button" parent="TaskContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_stretch_ratio = 20.0
+mouse_filter = 1
+icon = ExtResource("8_k5jy0")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="MoreInfoButton" type="Button" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
-size_flags_horizontal = 10
+size_flags_horizontal = 8
 mouse_filter = 1
 icon = ExtResource("2_48eyq")
 flat = true

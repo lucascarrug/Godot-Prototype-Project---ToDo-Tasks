@@ -42,7 +42,7 @@ func _ready() -> void:
 
 	_load_tags_from_db()
 	_populate_select_tag_button()
-
+	
 ##### SIGNALS
 
 func _on_add_tag_button_pressed() -> void:
