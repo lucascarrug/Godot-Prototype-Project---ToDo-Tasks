@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://h3orryxwm645"]
+[gd_scene load_steps=9 format=3 uid="uid://h3orryxwm645"]
 
 [ext_resource type="Script" uid="uid://b0764gkki3gqg" path="res://Scripts/UI_Items/TaskWidget.gd" id="1_m6845"]
 [ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/Icons/informacion.png" id="2_48eyq"]
@@ -7,6 +7,7 @@
 [ext_resource type="StyleBox" uid="uid://mvhiinkwfsgd" path="res://Assets/StyleBoxFlat/DoneButtonHover.tres" id="3_6nofy"]
 [ext_resource type="StyleBox" uid="uid://11011eqnul4c" path="res://Assets/StyleBoxFlat/DoneButtonPressed.tres" id="3_7v3k0"]
 [ext_resource type="Texture2D" uid="uid://nlnen54j08bl" path="res://Assets/Icons/add.png" id="3_vdqdf"]
+[ext_resource type="Texture2D" uid="uid://cj26ylxikxtlh" path="res://Assets/Icons/trash.png" id="6_al1g1"]
 
 [node name="TaskWidget" type="MarginContainer"]
 offset_right = 610.0
@@ -51,6 +52,17 @@ text = "✓"
 layout_mode = 2
 text = "Sin nombre"
 
+[node name="DeleteButton" type="Button" parent="TaskContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 20.0
+mouse_filter = 1
+icon = ExtResource("6_al1g1")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="MoreInfoButton" type="Button" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
@@ -63,7 +75,8 @@ expand_icon = true
 
 [node name="DateGrid" type="VBoxContainer" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 8
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.0
 alignment = 1
 
 [node name="StartDateLabel" type="RichTextLabel" parent="TaskContainer/HBoxContainer/DateGrid"]
@@ -114,6 +127,7 @@ fit_to_longest_item = false
 allow_reselect = true
 
 [connection signal="toggled" from="TaskContainer/HBoxContainer/DoneButton" to="." method="_on_done_button_toggled"]
+[connection signal="pressed" from="TaskContainer/HBoxContainer/DeleteButton" to="." method="_on_delete_button_pressed"]
 [connection signal="pressed" from="TaskContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_pressed"]
 [connection signal="pressed" from="TaskContainer/TagContainer/HBoxContainer/AddTagButton" to="." method="_on_add_tag_button_pressed"]
 [connection signal="item_selected" from="TaskContainer/TagContainer/HBoxContainer/SelectTagButton" to="." method="_on_select_tag_button_item_selected"]

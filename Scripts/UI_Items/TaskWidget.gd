@@ -20,12 +20,14 @@ var data: Dictionary
 @onready var tag_container: VBoxContainer = $TaskContainer/TagContainer
 @onready var select_tag_button: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
 @onready var done_button: Button = $TaskContainer/HBoxContainer/DoneButton
+@onready var delete_button: Button = $TaskContainer/HBoxContainer/DeleteButton
 
 ##### OVERRIDE
 
 func _ready() -> void:
 	_hide_info()
 	is_popup_displayed = false
+	delete_button.visible = false
 	
 	if not data:
 		return
@@ -91,6 +93,10 @@ func _on_done_button_toggled(toggled_on: bool) -> void:
 		_set_style_task_done()
 		
 	tag_done_status_changed.emit()
+
+
+func _on_delete_button_pressed() -> void:
+	pass # Replace with function body.
 	
 ##### PUBLIC
 
@@ -162,16 +168,23 @@ func _get_task_id() -> int:
 
 func _set_style_task_done() -> void:
 	background.add_theme_stylebox_override("panel", Constants.TASK_WIDGET_DONE_STYLEBOX)
-
+	delete_button.visible = true
+	
 
 func _set_style_task_not_done() -> void:
 	background.add_theme_stylebox_override("panel", Constants.TASK_WIDGET_NOT_DONE_STYLEBOX)
+	delete_button.visible = false
 
 
 @warning_ignore("unused_parameter")
 func _get_drag_data(at_position: Vector2) -> Variant:
 	can_drop_data_emited.emit()
 	return self
+
+
+func _delete_task() -> void:
+	Database.delete_task(data[Constants.ID])
+	queue_free()
 
 
 func _delete_tag_from_task(id_pressed: int, sender: Tag) -> void:

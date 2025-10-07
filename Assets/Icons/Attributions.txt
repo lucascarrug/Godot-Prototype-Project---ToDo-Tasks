@@ -29,3 +29,6 @@ sort:
 
 abc:
 <a href="https://www.flaticon.com/free-icons/abc" title="abc icons">Abc icons created by Voysla - Flaticon</a>
+
+trash:
+<a href="https://www.flaticon.com/free-icons/delete" title="delete icons">Delete icons created by bqlqn - Flaticon</a>
