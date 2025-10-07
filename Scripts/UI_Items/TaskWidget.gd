@@ -21,6 +21,7 @@ var data: Dictionary
 @onready var select_tag_button: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
 @onready var done_button: Button = $TaskContainer/HBoxContainer/DoneButton
 @onready var delete_button: Button = $TaskContainer/HBoxContainer/DeleteButton
+@onready var delete_confirm_dialog: ConfirmationDialog = $DeleteConfirmDialog
 
 ##### OVERRIDE
 
@@ -96,8 +97,12 @@ func _on_done_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_delete_button_pressed() -> void:
-	pass # Replace with function body.
-	
+	delete_confirm_dialog.visible = true
+
+
+func _on_delete_confirm_dialog_confirmed() -> void:
+	_delete_task()
+
 ##### PUBLIC
 
 func set_data(new_data: Dictionary) -> void:

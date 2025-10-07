@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://lxc2ue7dqnkq"]
+
+[node name="DeleteConfirmDialog" type="ConfirmationDialog"]
+title = " Eliminar tarea"
+initial_position = 1
+size = Vector2i(312, 100)
+ok_button_text = "SI"
+dialog_text = "¿Seguro que quieres eliminar la tarea?"
+cancel_button_text = "NO"
