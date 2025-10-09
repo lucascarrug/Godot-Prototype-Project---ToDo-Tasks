@@ -24,3 +24,10 @@ func _populate_select_tag_button() -> void:
 func _on_filter_button_item_selected(index: int) -> void:
 	var tag_name: String = filter_button.get_item_text(index)
 	task_container.filter_by_tag(tag_name)
+
+
+func _on_more_info_button_toggled(toggled_on: bool) -> void:
+	if toggled_on:
+		task_container._show_info_from_all_not_done_tasks()
+	else:
+		task_container._hide_info_from_all_not_done_tasks()

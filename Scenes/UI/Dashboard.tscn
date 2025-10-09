@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://doj2uju87ksd0"]
+[gd_scene load_steps=11 format=3 uid="uid://doj2uju87ksd0"]
 
 [ext_resource type="PackedScene" uid="uid://dp6nn2e18xg2k" path="res://Scenes/UI_Items/TaskWidgetContainer.tscn" id="1_b3vg7"]
 [ext_resource type="Script" uid="uid://5m7uf30sntnt" path="res://Scripts/UI/Dashboard.gd" id="1_hfwhy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://c2ot2iyej1fdr" path="res://Assets/Icons/calendar_end_date_resized.png" id="4_v85ql"]
 [ext_resource type="Texture2D" uid="uid://dbmrpsvn8gquy" path="res://Assets/Icons/calendar_start_date_resized.png" id="5_v85ql"]
 [ext_resource type="Texture2D" uid="uid://cnwc7p5fjsbdx" path="res://Assets/Icons/filter_resized.png" id="6_v85ql"]
+[ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/Icons/informacion.png" id="7_7j02b"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1w88"]
 bg_color = Color(0.129412, 0.141176, 0.14902, 1)
@@ -135,8 +136,18 @@ popup/item_2/text = " Fecha de entrega"
 popup/item_2/icon = ExtResource("4_v85ql")
 popup/item_2/id = 2
 
+[node name="MoreInfoButton" type="Button" parent="Menu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
+toggle_mode = true
+icon = ExtResource("7_7j02b")
+flat = true
+icon_alignment = 1
+expand_icon = true
+
 [node name="TaskWidgetContainer" parent="Menu/VBoxContainer" instance=ExtResource("1_b3vg7")]
 custom_minimum_size = Vector2(100, 850)
 layout_mode = 2
 
 [connection signal="item_selected" from="Menu/VBoxContainer/HBoxContainer/FilterButton" to="." method="_on_filter_button_item_selected"]
+[connection signal="toggled" from="Menu/VBoxContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_toggled"]

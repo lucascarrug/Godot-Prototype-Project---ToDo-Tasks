@@ -96,7 +96,7 @@ size_flags_stretch_ratio = 0.0
 alignment = 1
 
 [node name="StartDateLabel" type="RichTextLabel" parent="TaskContainer/HBoxContainer/DateGrid"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "[i][color=#111111]no fecha [/color][/i]"
@@ -104,7 +104,7 @@ fit_content = true
 horizontal_alignment = 2
 
 [node name="EndDateLabel" type="RichTextLabel" parent="TaskContainer/HBoxContainer/DateGrid"]
-custom_minimum_size = Vector2(200, 0)
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 bbcode_enabled = true
 text = "[i][color=#111111]no fecha [/color][/i]"
