@@ -26,5 +26,5 @@ func set_tag(tag_name: String, tag_color: Color) -> void:
 	else:
 		add_theme_color_override("font_color", Color.WHITE)
 	
-	text = tag_name
-	name = tag_name
+	text = tag_name.to_upper()
+	name = tag_name.to_upper()
