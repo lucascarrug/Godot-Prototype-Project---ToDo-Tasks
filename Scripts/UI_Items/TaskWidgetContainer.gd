@@ -104,7 +104,6 @@ func _drop_data(at_position: Vector2, data: Variant) -> void:
 
 
 func _hide_info_from_all_not_done_tasks() -> void:
-	print("_show_info_from_all_not_done_tasks")
 	var tasks = not_done_task_container.get_children()
 	for task in tasks:
 		if not is_instance_of(task, TaskWidget):
@@ -114,7 +113,6 @@ func _hide_info_from_all_not_done_tasks() -> void:
 
 
 func _show_info_from_all_not_done_tasks() -> void:
-	print("_show_info_from_all_not_done_tasks")
 	var tasks = not_done_task_container.get_children()
 	for task in tasks:
 		if not is_instance_of(task, TaskWidget):
