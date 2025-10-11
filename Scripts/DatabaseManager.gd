@@ -42,8 +42,18 @@ func _create_tables() -> void:
 
 ##### SELECT FUNCTIONS
 
+func get_task_name_by_id(task_id: int) -> String:
+	database.query_with_bindings('SELECT name FROM Tasks WHERE id = ?', [task_id])
+	return database.query_result.front()["name"]
+
+
+func get_task_data_by_id(task_id: int) -> Dictionary:
+	database.select_rows(Constants.TABLE_NAME, "id = %d" % task_id, ["*"])
+	return database.query_result.front()
+
+
 func get_tag_id_by_name(tag_name: String) -> int:
-	database.query_with_bindings('SELECT id FROM Tags WHERE name = ?',[tag_name.to_upper()])
+	database.query_with_bindings('SELECT id FROM Tags WHERE name = ?', [tag_name.to_upper()])
 	return database.query_result.front()["id"]
 
 	
@@ -87,14 +97,6 @@ func insert_task_tag(task_id: int, tag_id: int) -> void:
 	database.query_with_bindings('INSERT OR IGNORE INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?);', [task_id, tag_id])
 
 
-func set_task_done(task_id: int) -> void:
-	database.query_with_bindings('UPDATE Tasks SET done = TRUE WHERE id = ?', [task_id])
-
-
-func set_task_not_done(task_id: int) -> void:
-	database.query_with_bindings('UPDATE Tasks SET done = FALSE WHERE id = ?', [task_id])
-
-
 func insert_task(task_name: String, task_description: String = "", task_end_date: String = "") -> void:
 	var table = {
 		Constants.START_DATE: Utils.get_current_day(),
@@ -136,3 +138,31 @@ func delete_task(task_id: int) -> void:
 	
 	query = 'DELETE FROM Tasks_Tags WHERE task_id = ?'
 	database.query_with_bindings(query, [task_id])
+
+
+## UPDATE FUNCTIONS
+
+func set_task_done(task_id: int) -> void:
+	database.query_with_bindings('UPDATE Tasks SET done = TRUE WHERE id = ?', [task_id])
+
+
+func set_task_not_done(task_id: int) -> void:
+	database.query_with_bindings('UPDATE Tasks SET done = FALSE WHERE id = ?', [task_id])
+	
+	
+func update_task(task_id: int, task_name: String, task_description: String, task_end_date: String) -> void:
+	var data_update = {}
+	
+	if task_name != "":
+		data_update[Constants.NAME] = task_name
+		
+	if task_description != "":
+		data_update[Constants.DESCRIPTION] = task_description
+		
+	if Utils.is_valid_date_format(task_end_date):
+		data_update[Constants.END_DATE] = task_end_date
+	
+	if data_update.is_empty():
+		return
+	
+	database.update_rows(Constants.TABLE_NAME, "id = %d" % task_id, data_update)

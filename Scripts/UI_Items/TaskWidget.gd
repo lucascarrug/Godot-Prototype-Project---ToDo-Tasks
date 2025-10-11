@@ -22,6 +22,7 @@ var data: Dictionary
 @onready var done_button: Button = $TaskContainer/HBoxContainer/DoneButton
 @onready var delete_button: Button = $TaskContainer/HBoxContainer/DeleteButton
 @onready var delete_confirm_dialog: ConfirmationDialog = $DeleteConfirmDialog
+@onready var edit_task_popup: EditTaskPopup = $EditTaskPopup
 
 ##### OVERRIDE
 
@@ -42,6 +43,8 @@ func _ready() -> void:
 
 	_load_tags_from_db()
 	_populate_select_tag_button()
+	edit_task_popup.set_edit_popup(data[Constants.ID])
+	edit_task_popup.data_updated.connect(_on_data_updated)
 	
 ##### SIGNALS
 
@@ -102,6 +105,21 @@ func _on_delete_button_pressed() -> void:
 
 func _on_delete_confirm_dialog_confirmed() -> void:
 	_delete_task()
+
+
+func _on_edit_button_pressed() -> void:
+	edit_task_popup.visible = true
+	
+
+func _on_data_updated() -> void:
+	data = Database.get_task_data_by_id(data[Constants.ID])
+	
+	name_l.text = data[Constants.NAME]
+	if data[Constants.DESCRIPTION]: description_l.text = data[Constants.DESCRIPTION]
+	start_date_l.text = data[Constants.START_DATE]
+	
+	if data[Constants.END_DATE] != null:
+		end_date_l.text = data[Constants.END_DATE]
 
 ##### PUBLIC
 

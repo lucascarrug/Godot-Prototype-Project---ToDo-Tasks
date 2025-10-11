@@ -1,12 +1,14 @@
-[gd_scene load_steps=2 format=3 uid="uid://cepo4n3ehc4mn"]
+[gd_scene load_steps=3 format=3 uid="uid://cepo4n3ehc4mn"]
 
 [ext_resource type="StyleBox" uid="uid://b16u2t4vugn5c" path="res://Assets/StyleBoxFlat/EditTaskPopup.tres" id="1_7a3yj"]
+[ext_resource type="Script" uid="uid://cfqiq08jdioy4" path="res://Scripts/UI_Items/EditTaskPopup.gd" id="2_ykp1b"]
 
 [node name="EditTaskPopup" type="PopupPanel"]
 initial_position = 1
 size = Vector2i(363, 326)
 visible = true
 theme_override_styles/panel = ExtResource("1_7a3yj")
+script = ExtResource("2_ykp1b")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="."]
 offset_left = 10.0
@@ -15,7 +17,7 @@ offset_right = 353.0
 offset_bottom = 316.0
 theme_override_constants/separation = 10
 
-[node name="Label" type="Label" parent="VBoxContainer"]
+[node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Modificando Tarea de ejemplo"
 
@@ -27,7 +29,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 text = "Nombre"
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
+[node name="NameLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -40,7 +42,7 @@ theme_override_constants/separation = 10
 layout_mode = 2
 text = "Fecha de entrega"
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
+[node name="EndDateLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer2"]
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -54,11 +56,13 @@ layout_mode = 2
 size_flags_vertical = 0
 text = "Descripcion"
 
-[node name="LineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
+[node name="DescriptionLineEdit" type="LineEdit" parent="VBoxContainer/HBoxContainer3"]
 custom_minimum_size = Vector2(200, 150)
 layout_mode = 2
 size_flags_horizontal = 10
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="ModifyButton" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 text = "Modificar"
+
+[connection signal="pressed" from="VBoxContainer/ModifyButton" to="." method="_on_modify_button_pressed"]
