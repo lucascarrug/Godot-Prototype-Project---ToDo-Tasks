@@ -43,8 +43,9 @@ func _create_tables() -> void:
 ##### SELECT FUNCTIONS
 
 func get_task_name_by_id(task_id: int) -> String:
-	database.query_with_bindings('SELECT name FROM Tasks WHERE id = ?', [task_id])
-	return database.query_result.front()["name"]
+	var query: String = 'SELECT %s FROM %s WHERE id = ?' % [Constants.TASK_NAME, Constants.TASK_TABLE]
+	database.query_with_bindings(query, [task_id])
+	return database.query_result.front()[Constants.TASK_NAME]
 
 
 func get_task_data_by_id(task_id: int) -> Dictionary:
@@ -53,8 +54,9 @@ func get_task_data_by_id(task_id: int) -> Dictionary:
 
 
 func get_tag_id_by_name(tag_name: String) -> int:
-	database.query_with_bindings('SELECT id FROM Tags WHERE name = ?', [tag_name.to_upper()])
-	return database.query_result.front()["id"]
+	var query: String = 'SELECT %s FROM %s WHERE name = ?' % [Constants.TAG_ID, Constants.TAG_TABLE]
+	database.query_with_bindings(query, [tag_name.to_upper()])
+	return database.query_result.front()[Constants.TAG_ID]
 
 	
 func get_tag_color_by_name(tag_name: String) -> Color:
