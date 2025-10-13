@@ -1,8 +1,14 @@
 class_name Constants 
 extends Resource
 
-## Database name
-const TABLE_NAME: String = "Tasks"
+## Database
+const DATABASE_NAME: String = "Tasks"
+const DATABASE_PATH: String = "res://Data/Tasks.db"
+
+## Table names.
+const TASK_TABLE: String = "Tasks"
+const TAG_TABLE: String = "Tags"
+const TASKTAG_TABLE: String = "Tasks_Tags"
 
 ## Tasks cols.
 const TASK_ID: String = "id"
@@ -24,10 +30,6 @@ const TASKTAG_TAG_ID: String = "tag_id"
 
 ## IDK.
 const TAGPOPUP_NAME: String = "TagPopup"
-
-## Extras.
-const DEFAULT_DIR: String = "Default"
-const DATABASE_PATH: String = "res://Data/Tasks.db"
 
 ## Preload scenes.
 const TAG_SCENE: PackedScene = preload("res://Scenes/UI_Items/Tag.tscn")

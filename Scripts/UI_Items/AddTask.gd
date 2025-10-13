@@ -26,7 +26,7 @@ func _insert_task():
 		table[Constants.TASK_END_DATE] = $EndDateText.text
 	
 	# Insert in table.
-	Database.database.insert_row(Constants.TABLE_NAME, table)
+	Database.database.insert_row(Constants.TASK_TABLE, table)
 	print("Task ", $NameText.text, " inserted.")
 	
 
@@ -39,7 +39,7 @@ func _on_update_widget_button_pressed() -> void:
 	
 
 func _on_mostrar_data_button_pressed() -> void:
-	var table: Array = Database.database.select_rows(Constants.TABLE_NAME, "", ["*"])
+	var table: Array = Database.database.select_rows(Constants.TASK_TABLE, "", ["*"])
 	
 	if table.size() == 0:
 		print("No tasks added.")

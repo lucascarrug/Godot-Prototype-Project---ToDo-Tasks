@@ -21,7 +21,7 @@ func _on_can_drop_data_emited() -> void:
 func set_container() -> void:
 	_remove_all_tasks_from_containers()
 	
-	var table = Database.database.select_rows(Constants.TABLE_NAME, "", ["*"])
+	var table = Database.database.select_rows(Constants.TASK_TABLE, "", ["*"])
 	task_widget_counter = 0
 
 	for row in table:

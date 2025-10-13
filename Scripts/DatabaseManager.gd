@@ -48,7 +48,7 @@ func get_task_name_by_id(task_id: int) -> String:
 
 
 func get_task_data_by_id(task_id: int) -> Dictionary:
-	database.select_rows(Constants.TABLE_NAME, "id = %d" % task_id, ["*"])
+	database.select_rows(Constants.TASK_TABLE, "id = %d" % task_id, ["*"])
 	return database.query_result.front()
 
 
@@ -121,7 +121,7 @@ func insert_task(task_name: String, task_description: String = "", task_end_date
 		table[Constants.TASK_END_DATE] = task_end_date
 	
 	# Insert in table.
-	Database.database.insert_row(Constants.TABLE_NAME, table)
+	Database.database.insert_row(Constants.TASK_TABLE, table)
 	print("Task ", task_name, " inserted.")
 
 
@@ -163,4 +163,4 @@ func update_task(task_id: int, task_name: String, task_description: String, task
 	elif Utils.is_valid_date_format(task_end_date):
 		data_update[Constants.TASK_END_DATE] = task_end_date
 	
-	database.update_rows(Constants.TABLE_NAME, "id = %d" % task_id, data_update)
+	database.update_rows(Constants.TASK_TABLE, "id = %d" % task_id, data_update)
