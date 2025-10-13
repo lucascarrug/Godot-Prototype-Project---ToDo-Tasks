@@ -97,15 +97,17 @@ func is_task_done(task_id: int) -> bool:
 ##### INSERT FUNCTIONS
 
 func insert_tag(tag_name: String, tag_color: Color) -> void:
-	var query = 'INSERT OR IGNORE INTO Tags (name, color) VALUES (?, ?)'
+	var query: String = 'INSERT OR IGNORE INTO %s (%s, %s) VALUES (?, ?)' % [Constants.TAG_TABLE, Constants.TAG_NAME, Constants.TAG_COLOR]
 	database.query_with_bindings(query, [tag_name.to_upper(), tag_color.to_html(false)])
 
 
 func insert_task_tag(task_id: int, tag_id: int) -> void:
-	database.query_with_bindings('INSERT OR IGNORE INTO Tasks_Tags (task_id, tag_id) VALUES (?, ?);', [task_id, tag_id])
+	var query: String = 'INSERT OR IGNORE INTO %s (%s, %s) VALUES (?, ?)' % [Constants.TASKTAG_TABLE, Constants.TASKTAG_TASK_ID, Constants.TASKTAG_TAG_ID]
+	database.query_with_bindings(query, [task_id, tag_id])
 
 
 func insert_task(task_name: String, task_description: String = "", task_end_date: String = "") -> void:
+	# Default settings.
 	var table = {
 		Constants.TASK_START_DATE: Utils.get_current_day(),
 		Constants.TASK_DONE: false
