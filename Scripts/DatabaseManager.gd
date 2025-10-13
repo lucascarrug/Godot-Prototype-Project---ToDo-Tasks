@@ -138,15 +138,15 @@ func insert_task(task_name: String, task_description: String = "", task_end_date
 ## DELETE FUNCTIONS
 
 func delete_task_tag(task_id: int, tag_id: int) -> void:
-	var query = 'DELETE FROM Tasks_Tags WHERE task_id = ? AND tag_id = ?'
+	var query = 'DELETE FROM %s WHERE %s = ? AND %s = ?' % [Constants.TASKTAG_TABLE, Constants.TASKTAG_TASK_ID, Constants.TASKTAG_TAG_ID]
 	database.query_with_bindings(query, [task_id, tag_id])
 
 
 func delete_task(task_id: int) -> void:
-	var query = 'DELETE FROM Tasks WHERE id = ?'
+	var query = 'DELETE FROM %s WHERE %s = ?' % [Constants.TASK_TABLE, Constants.TASK_ID]
 	database.query_with_bindings(query, [task_id])
 	
-	query = 'DELETE FROM Tasks_Tags WHERE task_id = ?'
+	query = 'DELETE FROM %s WHERE %s = ?' % [Constants.TASKTAG_TABLE, Constants.TASKTAG_TASK_ID]
 	database.query_with_bindings(query, [task_id])
 
 
