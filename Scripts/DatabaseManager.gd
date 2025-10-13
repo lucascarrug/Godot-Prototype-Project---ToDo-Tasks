@@ -49,7 +49,7 @@ func get_task_name_by_id(task_id: int) -> String:
 
 
 func get_task_data_by_id(task_id: int) -> Dictionary:
-	database.select_rows(Constants.TASK_TABLE, "id = %d" % task_id, ["*"])
+	database.select_rows(Constants.TASK_TABLE, "%s = %d" % [Constants.TASK_ID, task_id], ["*"])
 	return database.query_result.front()
 
 
@@ -108,7 +108,7 @@ func insert_task_tag(task_id: int, tag_id: int) -> void:
 
 func insert_task(task_name: String, task_description: String = "", task_end_date: String = "") -> void:
 	# Default settings.
-	var table = {
+	var table: Dictionary = {
 		Constants.TASK_START_DATE: Utils.get_current_day(),
 		Constants.TASK_DONE: false
 	}
@@ -138,12 +138,12 @@ func insert_task(task_name: String, task_description: String = "", task_end_date
 ## DELETE FUNCTIONS
 
 func delete_task_tag(task_id: int, tag_id: int) -> void:
-	var query = 'DELETE FROM %s WHERE %s = ? AND %s = ?' % [Constants.TASKTAG_TABLE, Constants.TASKTAG_TASK_ID, Constants.TASKTAG_TAG_ID]
+	var query: String = 'DELETE FROM %s WHERE %s = ? AND %s = ?' % [Constants.TASKTAG_TABLE, Constants.TASKTAG_TASK_ID, Constants.TASKTAG_TAG_ID]
 	database.query_with_bindings(query, [task_id, tag_id])
 
 
 func delete_task(task_id: int) -> void:
-	var query = 'DELETE FROM %s WHERE %s = ?' % [Constants.TASK_TABLE, Constants.TASK_ID]
+	var query: String = 'DELETE FROM %s WHERE %s = ?' % [Constants.TASK_TABLE, Constants.TASK_ID]
 	database.query_with_bindings(query, [task_id])
 	
 	query = 'DELETE FROM %s WHERE %s = ?' % [Constants.TASKTAG_TABLE, Constants.TASKTAG_TASK_ID]
@@ -153,15 +153,17 @@ func delete_task(task_id: int) -> void:
 ## UPDATE FUNCTIONS
 
 func set_task_done(task_id: int) -> void:
-	database.query_with_bindings('UPDATE Tasks SET done = TRUE WHERE id = ?', [task_id])
+	var query: String = 'UPDATE %s SET %s = TRUE WHERE %s = ?' % [Constants.TASK_TABLE, Constants.TASK_DONE, Constants.TASK_ID]
+	database.query_with_bindings(query, [task_id])
 
 
 func set_task_not_done(task_id: int) -> void:
-	database.query_with_bindings('UPDATE Tasks SET done = FALSE WHERE id = ?', [task_id])
+	var query: String = 'UPDATE %s SET %s = FALSE WHERE %s = ?' % [Constants.TASK_TABLE, Constants.TASK_DONE, Constants.TASK_ID]
+	database.query_with_bindings(query, [task_id])
 	
 	
 func update_task(task_id: int, task_name: String, task_description: String, task_end_date: String) -> void:
-	var data_update = {}
+	var data_update: Dictionary = {}
 	
 	if task_name != "":
 		data_update[Constants.TASK_NAME] = task_name
@@ -173,4 +175,4 @@ func update_task(task_id: int, task_name: String, task_description: String, task
 	elif Utils.is_valid_date_format(task_end_date):
 		data_update[Constants.TASK_END_DATE] = task_end_date
 	
-	database.update_rows(Constants.TASK_TABLE, "id = %d" % task_id, data_update)
+	database.update_rows(Constants.TASK_TABLE, "%s = %d" % [Constants.TASK_ID, task_id], data_update)
