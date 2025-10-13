@@ -147,7 +147,7 @@ func _load_tags_from_db() -> void:
 	var tag_ids = Database.get_tags_by_task(_get_task_id())
 	
 	for tag in tag_ids:
-		var tag_id = tag["tag_id"]
+		var tag_id: int = tag["tag_id"]
 		var tag_name: String = Database.get_tag_name_by_id(tag_id)
 		var tag_color: Color = Database.get_tag_color_by_id(tag_id)
 		_add_tag_in_tag_container(self, tag_name, tag_color)

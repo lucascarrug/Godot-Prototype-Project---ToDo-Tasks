@@ -43,7 +43,7 @@ func _create_tables() -> void:
 ##### SELECT FUNCTIONS
 
 func get_task_name_by_id(task_id: int) -> String:
-	var query: String = 'SELECT %s FROM %s WHERE id = ?' % [Constants.TASK_NAME, Constants.TASK_TABLE]
+	var query: String = 'SELECT %s FROM %s WHERE %s = ?' % [Constants.TASK_NAME, Constants.TASK_TABLE, Constants.TASK_ID]
 	database.query_with_bindings(query, [task_id])
 	return database.query_result.front()[Constants.TASK_NAME]
 
@@ -54,39 +54,45 @@ func get_task_data_by_id(task_id: int) -> Dictionary:
 
 
 func get_tag_id_by_name(tag_name: String) -> int:
-	var query: String = 'SELECT %s FROM %s WHERE name = ?' % [Constants.TAG_ID, Constants.TAG_TABLE]
+	var query: String = 'SELECT %s FROM %s WHERE %s = ?' % [Constants.TAG_ID, Constants.TAG_TABLE, Constants.TAG_NAME]
 	database.query_with_bindings(query, [tag_name.to_upper()])
 	return database.query_result.front()[Constants.TAG_ID]
 
 	
 func get_tag_color_by_name(tag_name: String) -> Color:
-	database.query_with_bindings('SELECT color FROM Tags WHERE name = ?', [tag_name])
-	return database.query_result.front()["color"]
+	var query: String = 'SELECT %s FROM %s WHERE %s = ?' % [Constants.TAG_COLOR, Constants.TAG_TABLE, Constants.TAG_NAME]
+	database.query_with_bindings(query, [tag_name])
+	return database.query_result.front()[Constants.TAG_COLOR]
 
 
 func get_tags_by_task(task_id: int) -> Array:
-	database.query_with_bindings('SELECT tag_id FROM Tasks_Tags WHERE task_id = ?', [task_id])
+	var query: String = 'SELECT %s FROM %s WHERE %s = ?' % [Constants.TASKTAG_TAG_ID, Constants.TASKTAG_TABLE, Constants.TASKTAG_TASK_ID]
+	database.query_with_bindings(query, [task_id])
 	return database.query_result
 
 
 func get_tag_name_by_id(tag_id: int) -> String:
-	database.query_with_bindings('SELECT name FROM Tags WHERE id = ?', [tag_id])
-	return database.query_result.front()["name"]
+	var query: String = 'SELECT %s FROM %s WHERE %s = ?' % [Constants.TAG_NAME, Constants.TAG_TABLE, Constants.TAG_ID]
+	database.query_with_bindings(query, [tag_id])
+	return database.query_result.front()[Constants.TAG_NAME]
 
 
 func get_tag_color_by_id(tag_id: int) -> Color:
-	database.query_with_bindings('SELECT color FROM Tags WHERE id = ?', [tag_id])
-	return database.query_result.front()["color"]
+	var query: String = 'SELECT %s FROM %s WHERE %s = ?' % [Constants.TAG_COLOR, Constants.TAG_TABLE, Constants.TAG_ID]
+	database.query_with_bindings(query, [tag_id])
+	return database.query_result.front()[Constants.TAG_COLOR]
 
 
 func get_all_tags() -> Array:
-	database.query('SELECT name FROM Tags')
+	var query: String = 'SELECT %s FROM %s' % [Constants.TAG_NAME, Constants.TAG_TABLE]
+	database.query(query)
 	return database.query_result
 
 
 func is_task_done(task_id: int) -> bool:
-	database.query_with_bindings('SELECT done FROM Tasks WHERE id = ?', [task_id])
-	return database.query_result.front()["done"]
+	var query: String = 'SELECT %s FROM %s WHERE %s = ?' % [Constants.TASK_DONE, Constants.TASK_TABLE, Constants.TASK_ID]
+	database.query_with_bindings(query, [task_id])
+	return database.query_result.front()[Constants.TASK_DONE]
 
 ##### INSERT FUNCTIONS
 
