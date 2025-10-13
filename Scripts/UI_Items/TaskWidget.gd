@@ -34,16 +34,16 @@ func _ready() -> void:
 	if not data:
 		return
 	
-	name_l.text = data[Constants.NAME]
-	if data[Constants.DESCRIPTION]: description_l.text = data[Constants.DESCRIPTION]
-	start_date_l.text = data[Constants.START_DATE]
+	name_l.text = data[Constants.TASK_NAME]
+	if data[Constants.TASK_DESCRIPTION]: description_l.text = data[Constants.TASK_DESCRIPTION]
+	start_date_l.text = data[Constants.TASK_START_DATE]
 	
-	if data[Constants.END_DATE] != null:
-		end_date_l.text = data[Constants.END_DATE]
+	if data[Constants.TASK_END_DATE] != null:
+		end_date_l.text = data[Constants.TASK_END_DATE]
 
 	_load_tags_from_db()
 	_populate_select_tag_button()
-	edit_task_popup.set_edit_popup(data[Constants.ID])
+	edit_task_popup.set_edit_popup(data[Constants.TASK_ID])
 	edit_task_popup.data_updated.connect(_on_data_updated)
 	
 ##### SIGNALS
@@ -112,14 +112,14 @@ func _on_edit_button_pressed() -> void:
 	
 
 func _on_data_updated() -> void:
-	data = Database.get_task_data_by_id(data[Constants.ID])
+	data = Database.get_task_data_by_id(data[Constants.TASK_ID])
 	
-	name_l.text = data[Constants.NAME]
-	if data[Constants.DESCRIPTION]: description_l.text = data[Constants.DESCRIPTION]
-	start_date_l.text = data[Constants.START_DATE]
+	name_l.text = data[Constants.TASK_NAME]
+	if data[Constants.TASK_DESCRIPTION]: description_l.text = data[Constants.TASK_DESCRIPTION]
+	start_date_l.text = data[Constants.TASK_START_DATE]
 	
-	if data[Constants.END_DATE] != null:
-		end_date_l.text = data[Constants.END_DATE]
+	if data[Constants.TASK_END_DATE] != null:
+		end_date_l.text = data[Constants.TASK_END_DATE]
 
 ##### PUBLIC
 
@@ -186,7 +186,7 @@ func _hide_info() -> void:
  
 
 func _get_task_id() -> int:
-	return data[Constants.ID]
+	return data[Constants.TASK_ID]
 	
 
 func _set_style_task_done() -> void:
@@ -206,7 +206,7 @@ func _get_drag_data(at_position: Vector2) -> Variant:
 
 
 func _delete_task() -> void:
-	Database.delete_task(data[Constants.ID])
+	Database.delete_task(data[Constants.TASK_ID])
 	queue_free()
 
 
@@ -214,7 +214,7 @@ func _delete_tag_from_task(id_pressed: int, sender: Tag) -> void:
 	if id_pressed != DELETE_TASK:
 		return
 	
-	var task_id = data[Constants.ID]
+	var task_id = data[Constants.TASK_ID]
 	var tag_id = Database.get_tag_id_by_name(sender.text)
 	Database.delete_task_tag(task_id, tag_id)
 	

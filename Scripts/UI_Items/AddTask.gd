@@ -4,26 +4,26 @@ extends Control
 
 func _insert_task():
 	var table = {
-		Constants.START_DATE: Utils.get_current_day(),
-		Constants.DONE: false
+		Constants.TASK_START_DATE: Utils.get_current_day(),
+		Constants.TASK_DONE: false
 	}
 	
 	# Insert name.
 	if $NameText.text != "":
-		table[Constants.NAME] = $NameText.text
+		table[Constants.TASK_NAME] = $NameText.text
 	else:
 		print("Empty name.")
 		return
 	
 	# Insert description.
 	if $DescriptionText.text != "":
-		table[Constants.DESCRIPTION] = $DescriptionText.text
+		table[Constants.TASK_DESCRIPTION] = $DescriptionText.text
 	else:
 		print("Empty description.")
 	
 	# Insert end date.
 	if Utils.is_valid_date_format($EndDateText.text):
-		table[Constants.END_DATE] = $EndDateText.text
+		table[Constants.TASK_END_DATE] = $EndDateText.text
 	
 	# Insert in table.
 	Database.database.insert_row(Constants.TABLE_NAME, table)
@@ -46,7 +46,7 @@ func _on_mostrar_data_button_pressed() -> void:
 		return
 		
 	for row in table:
-		print("task: ", row[Constants.NAME], " -> ", row[Constants.DESCRIPTION], " :: ", row[Constants.END_DATE], " :: done ", row[Constants.DONE]) 
+		print("task: ", row[Constants.TASK_NAME], " -> ", row[Constants.TASK_DESCRIPTION], " :: ", row[Constants.TASK_END_DATE], " :: done ", row[Constants.TASK_DONE]) 
 
 
 func _on_next_task_button_pressed() -> void:

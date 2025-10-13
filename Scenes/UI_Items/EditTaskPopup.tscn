@@ -20,6 +20,7 @@ theme_override_constants/separation = 10
 [node name="TitleLabel" type="Label" parent="VBoxContainer"]
 layout_mode = 2
 text = "Modificando Tarea de ejemplo"
+text_overrun_behavior = 4
 
 [node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2
@@ -46,6 +47,7 @@ text = "Fecha de entrega"
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 size_flags_horizontal = 10
+placeholder_text = "YYYY-MM-DD"
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="VBoxContainer"]
 layout_mode = 2

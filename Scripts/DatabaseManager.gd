@@ -99,26 +99,26 @@ func insert_task_tag(task_id: int, tag_id: int) -> void:
 
 func insert_task(task_name: String, task_description: String = "", task_end_date: String = "") -> void:
 	var table = {
-		Constants.START_DATE: Utils.get_current_day(),
-		Constants.DONE: false
+		Constants.TASK_START_DATE: Utils.get_current_day(),
+		Constants.TASK_DONE: false
 	}
 	
 	# Insert name.
 	if task_name != "":
-		table[Constants.NAME] = task_name
+		table[Constants.TASK_NAME] = task_name
 	else:
 		print("Empty name.")
 		return
 	
 	# Insert description.
 	if task_description != "":
-		table[Constants.DESCRIPTION] = task_description
+		table[Constants.TASK_DESCRIPTION] = task_description
 	else:
 		print("Empty description.")
 	
 	# Insert end date.
 	if Utils.is_valid_date_format(task_end_date):
-		table[Constants.END_DATE] = task_end_date
+		table[Constants.TASK_END_DATE] = task_end_date
 	
 	# Insert in table.
 	Database.database.insert_row(Constants.TABLE_NAME, table)
@@ -154,15 +154,13 @@ func update_task(task_id: int, task_name: String, task_description: String, task
 	var data_update = {}
 	
 	if task_name != "":
-		data_update[Constants.NAME] = task_name
+		data_update[Constants.TASK_NAME] = task_name
 		
-	if task_description != "":
-		data_update[Constants.DESCRIPTION] = task_description
-		
-	if Utils.is_valid_date_format(task_end_date):
-		data_update[Constants.END_DATE] = task_end_date
+	data_update[Constants.TASK_DESCRIPTION] = task_description
 	
-	if data_update.is_empty():
-		return
+	if task_end_date == "":
+		data_update[Constants.TASK_END_DATE] = ""
+	elif Utils.is_valid_date_format(task_end_date):
+		data_update[Constants.TASK_END_DATE] = task_end_date
 	
 	database.update_rows(Constants.TABLE_NAME, "id = %d" % task_id, data_update)

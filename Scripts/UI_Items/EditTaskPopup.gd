@@ -12,6 +12,12 @@ var task_id: int
 
 
 func _ready() -> void:
+	'''
+	var data: Dictionary = Database.get_task_data_by_id(task_id)
+	name_edit.text = data[Constants.TASK_NAME]
+	end_date_edit.text = data[Constants.TASK_END_DATE]
+	description_edit.text = data[Constants.TASK_DESCRIPTION]
+	'''
 	pass
 
 
@@ -23,6 +29,9 @@ func _on_modify_button_pressed() -> void:
 	Database.update_task(task_id, new_name, new_description, new_end_date)
 	update_title()
 	visible = false
+	name_edit.text = ""
+	end_date_edit.text = ""
+	description_edit.text = ""
 	data_updated.emit()
 
 

@@ -40,14 +40,14 @@ layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="ToggleVisibilityButton" type="Button" parent="Sidebar/VBoxContainer"]
+[node name="ToggleVisibilityButton" type="Label" parent="Sidebar/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
-focus_mode = 0
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 50
-text = "///"
-flat = true
+text = "ToDo"
+horizontal_alignment = 1
+vertical_alignment = 1
 
 [node name="MyTasksButton" type="Button" parent="Sidebar/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -69,14 +69,14 @@ theme_override_font_sizes/font_size = 30
 text = "Para hoy"
 flat = true
 
-[node name="DoneTasksButton" type="Button" parent="Sidebar/VBoxContainer"]
+[node name="OptionButton" type="Button" parent="Sidebar/VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 focus_mode = 0
 theme_override_colors/font_hover_color = Color(0.329158, 0.329158, 0.329158, 1)
 theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
 theme_override_font_sizes/font_size = 30
-text = "Hechas"
+text = "Opciones"
 flat = true
 
 [node name="Menu" type="Panel" parent="."]

@@ -58,8 +58,10 @@ text = "✓"
 
 [node name="TaskNameLabel" type="Label" parent="TaskContainer/HBoxContainer"]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
+size_flags_stretch_ratio = 20.0
 text = "Sin nombre"
+clip_text = true
 
 [node name="DeleteButton" type="Button" parent="TaskContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)

@@ -4,16 +4,23 @@ extends Resource
 ## Database name
 const TABLE_NAME: String = "Tasks"
 
+## Tasks cols.
+const TASK_ID: String = "id"
+const TASK_NAME: String = "name"
+const TASK_DESCRIPTION: String = "description"
+const TASK_START_DATE: String = "start_date"
+const TASK_END_DATE: String = "end_date"
+const TASK_TAGS: String = "tags"
+const TASK_DONE: String = "done"
 
-## Database col names.
-const ID: String = "id"
-const NAME: String = "name"
-const DESCRIPTION: String = "description"
-const START_DATE: String = "start_date"
-const END_DATE: String = "end_date"
-const TAGS: String = "tags"
-const DONE: String = "done"
+## Tags cols.
+const TAG_ID: String = "id"
+const TAG_NAME: String = "name"
+const TAG_COLOR: String = "color"
 
+## Tasks_Tags cols.
+const TASKTAG_TASK_ID: String = "task_id"
+const TASKTAG_TAG_ID: String = "tag_id"
 
 ## IDK.
 const TAGPOPUP_NAME: String = "TagPopup"
@@ -34,4 +41,4 @@ const TASK_WIDGET_DONE_STYLEBOX: StyleBoxFlat = preload("res://Assets/StyleBoxFl
 ## Sort methods.
 const SORT_BY_ALPHABET = 0
 const SORT_BY_STARTDATE = 1
-const SORT_BY_ENDDATE = 1
+const SORT_BY_ENDDATE = 2
