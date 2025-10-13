@@ -1,8 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://doj2uju87ksd0"]
+[gd_scene load_steps=12 format=3 uid="uid://doj2uju87ksd0"]
 
 [ext_resource type="PackedScene" uid="uid://dp6nn2e18xg2k" path="res://Scenes/UI_Items/TaskWidgetContainer.tscn" id="1_b3vg7"]
 [ext_resource type="Script" uid="uid://5m7uf30sntnt" path="res://Scripts/UI/Dashboard.gd" id="1_hfwhy"]
+[ext_resource type="StyleBox" uid="uid://bgoxviris0j4s" path="res://Assets/StyleBoxFlat/DashboardBackground.tres" id="2_7yo7j"]
 [ext_resource type="Texture2D" uid="uid://b36525gnpdu5d" path="res://Assets/Icons/sort.png" id="2_rxei5"]
+[ext_resource type="LabelSettings" uid="uid://cr2vf6ybeb562" path="res://Assets/StyleBoxFlat/DashboardLabel.tres" id="3_gbnjp"]
 [ext_resource type="Texture2D" uid="uid://d3g1n1my5e3mc" path="res://Assets/Icons/abc_resized.png" id="3_jn6xl"]
 [ext_resource type="Texture2D" uid="uid://c2ot2iyej1fdr" path="res://Assets/Icons/calendar_end_date_resized.png" id="4_v85ql"]
 [ext_resource type="Texture2D" uid="uid://dbmrpsvn8gquy" path="res://Assets/Icons/calendar_start_date_resized.png" id="5_v85ql"]
@@ -12,9 +14,6 @@
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1w88"]
 bg_color = Color(0.129412, 0.141176, 0.14902, 1)
 border_color = Color(0, 0, 0, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hfwhy"]
-bg_color = Color(0.223529, 0.239216, 0.25098, 1)
 
 [node name="Dashboard" type="Control"]
 layout_mode = 3
@@ -89,7 +88,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_hfwhy")
+theme_override_styles/panel = ExtResource("2_7yo7j")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu"]
 layout_mode = 0
@@ -104,9 +103,10 @@ layout_mode = 2
 
 [node name="MyTasksLabel" type="Label" parent="Menu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
-theme_override_colors/font_color = Color(1, 1, 1, 1)
+theme_override_colors/font_color = Color(0.270588, 0.482353, 0.615686, 1)
 theme_override_font_sizes/font_size = 50
 text = "Mis tareas"
+label_settings = ExtResource("3_gbnjp")
 
 [node name="FilterButton" type="OptionButton" parent="Menu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(70, 70)

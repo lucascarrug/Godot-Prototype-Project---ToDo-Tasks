@@ -2,7 +2,7 @@
 
 [resource]
 resource_name = "TaskWidgetDone"
-bg_color = Color(0.1305, 0.1422, 0.15, 0.392157)
+bg_color = Color(0.34, 0.2618, 0.2618, 0.196078)
 corner_radius_top_left = 10
 corner_radius_top_right = 10
 corner_radius_bottom_right = 10
