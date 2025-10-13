@@ -147,7 +147,7 @@ func _load_tags_from_db() -> void:
 	var tag_ids = Database.get_tags_by_task(_get_task_id())
 	
 	for tag in tag_ids:
-		var tag_id: int = tag["tag_id"]
+		var tag_id: int = tag[Constants.TASKTAG_TAG_ID]
 		var tag_name: String = Database.get_tag_name_by_id(tag_id)
 		var tag_color: Color = Database.get_tag_color_by_id(tag_id)
 		_add_tag_in_tag_container(self, tag_name, tag_color)
@@ -156,7 +156,7 @@ func _load_tags_from_db() -> void:
 func _populate_select_tag_button() -> void:
 	select_tag_button.clear()
 	for tag in Database.get_all_tags():
-		select_tag_button.add_item(tag["name"])
+		select_tag_button.add_item(tag[Constants.TAG_NAME])
 
 
 func _tag_exists(new_tag_name: String) -> bool:

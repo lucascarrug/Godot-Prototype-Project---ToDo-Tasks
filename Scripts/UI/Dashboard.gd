@@ -18,7 +18,7 @@ func _populate_select_tag_button() -> void:
 	filter_button.clear()
 	filter_button.add_item("")
 	for tag in Database.get_all_tags():
-		filter_button.add_item(tag["name"])
+		filter_button.add_item(tag[Constants.TAG_NAME])
 
 
 func _on_filter_button_item_selected(index: int) -> void:

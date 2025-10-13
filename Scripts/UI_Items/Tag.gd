@@ -21,7 +21,7 @@ func set_tag(tag_name: String, tag_color: Color) -> void:
 	add_theme_stylebox_override("hover", hover_style)
 	add_theme_stylebox_override("focus", focus_style)
 	
-	if tag_color.get_luminance() > 0.8:
+	if tag_color.get_luminance() > 0.6:
 		add_theme_color_override("font_color", Color.BLACK)
 	else:
 		add_theme_color_override("font_color", Color.WHITE)
