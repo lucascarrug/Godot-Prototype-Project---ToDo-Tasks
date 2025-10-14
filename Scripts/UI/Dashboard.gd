@@ -1,8 +1,8 @@
 extends Control
 
-@onready var task_container: TaskWidgetContainer = $Menu/VBoxContainer/TaskWidgetContainer
-@onready var sort_button: MenuButton = $Menu/VBoxContainer/HBoxContainer/SortButton
-@onready var filter_button: OptionButton = $Menu/VBoxContainer/HBoxContainer/FilterButton
+@onready var task_container: TaskWidgetContainer = $HBoxContainer/MyTasksMenu/VBoxContainer/TaskWidgetContainer
+@onready var sort_button: MenuButton = $HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer/SortButton
+@onready var filter_button: OptionButton = $HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer/FilterButton
 
 func _ready() -> void:
 	task_container.set_container()
