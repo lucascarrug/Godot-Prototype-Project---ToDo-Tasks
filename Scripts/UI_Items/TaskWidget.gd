@@ -34,13 +34,7 @@ func _ready() -> void:
 	if not data:
 		return
 	
-	name_l.text = data[Constants.TASK_NAME]
-	if data[Constants.TASK_DESCRIPTION]: description_l.text = data[Constants.TASK_DESCRIPTION]
-	start_date_l.text = data[Constants.TASK_START_DATE]
-	
-	if data[Constants.TASK_END_DATE] != null:
-		end_date_l.text = data[Constants.TASK_END_DATE]
-
+	_update_data()
 	_load_tags_from_db()
 	_populate_select_tag_button()
 	edit_task_popup.set_edit_popup(data[Constants.TASK_ID])
@@ -112,14 +106,7 @@ func _on_edit_button_pressed() -> void:
 	
 
 func _on_data_updated() -> void:
-	data = Database.get_task_data_by_id(data[Constants.TASK_ID])
-	
-	name_l.text = data[Constants.TASK_NAME]
-	if data[Constants.TASK_DESCRIPTION]: description_l.text = data[Constants.TASK_DESCRIPTION]
-	start_date_l.text = data[Constants.TASK_START_DATE]
-	
-	if data[Constants.TASK_END_DATE] != null:
-		end_date_l.text = data[Constants.TASK_END_DATE]
+	_update_data()
 
 ##### PUBLIC
 
@@ -219,3 +206,21 @@ func _delete_tag_from_task(id_pressed: int, sender: Tag) -> void:
 	Database.delete_task_tag(task_id, tag_id)
 	
 	tag_container.remove_child(sender)
+	
+	
+func _update_data() -> void:
+	data = Database.get_task_data_by_id(data[Constants.TASK_ID])
+	
+	name_l.text = data[Constants.TASK_NAME]
+	
+	if data[Constants.TASK_DESCRIPTION] != null:
+		description_l.text = data[Constants.TASK_DESCRIPTION]
+	else:
+		description_l.text = "Sin descripción"
+	
+	start_date_l.text = data[Constants.TASK_START_DATE]
+	
+	if data[Constants.TASK_END_DATE] != null:
+		end_date_l.text = data[Constants.TASK_END_DATE]
+	else:
+		end_date_l.text = "no fecha"

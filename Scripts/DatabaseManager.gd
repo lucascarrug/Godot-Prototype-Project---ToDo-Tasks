@@ -109,7 +109,10 @@ func insert_task_tag(task_id: int, tag_id: int) -> void:
 func insert_task(task_name: String, task_description: String = "", task_end_date: String = "") -> void:
 	# Default settings.
 	var table: Dictionary = {
+		Constants.TASK_NAME: null,
+		Constants.TASK_DESCRIPTION: null,
 		Constants.TASK_START_DATE: Utils.get_current_day(),
+		Constants.TASK_END_DATE: null,
 		Constants.TASK_DONE: false
 	}
 	
@@ -163,16 +166,20 @@ func set_task_not_done(task_id: int) -> void:
 	
 	
 func update_task(task_id: int, task_name: String, task_description: String, task_end_date: String) -> void:
-	var data_update: Dictionary = {}
+	# Default col update if entry is empty.
+	var table_update: Dictionary = {
+		Constants.TASK_NAME: "Tarea " + str(task_id),
+		Constants.TASK_DESCRIPTION: null,
+		Constants.TASK_END_DATE: null
+	}
 	
 	if task_name != "":
-		data_update[Constants.TASK_NAME] = task_name
-		
-	data_update[Constants.TASK_DESCRIPTION] = task_description
+		table_update[Constants.TASK_NAME] = task_name
 	
-	if task_end_date == "":
-		data_update[Constants.TASK_END_DATE] = ""
-	elif Utils.is_valid_date_format(task_end_date):
-		data_update[Constants.TASK_END_DATE] = task_end_date
+	if task_description != "":
+		table_update[Constants.TASK_DESCRIPTION] = task_description
 	
-	database.update_rows(Constants.TASK_TABLE, "%s = %d" % [Constants.TASK_ID, task_id], data_update)
+	if Utils.is_valid_date_format(task_end_date):
+		table_update[Constants.TASK_END_DATE] = task_end_date
+	
+	database.update_rows(Constants.TASK_TABLE, "%s = %d" % [Constants.TASK_ID, task_id], table_update)

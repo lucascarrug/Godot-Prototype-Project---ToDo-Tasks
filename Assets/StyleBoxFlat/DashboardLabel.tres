@@ -2,3 +2,4 @@
 
 [resource]
 font_size = 48
+font_color = Color(0.941176, 0.941176, 0.941176, 1)

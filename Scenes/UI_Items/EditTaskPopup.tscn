@@ -67,4 +67,5 @@ size_flags_horizontal = 10
 layout_mode = 2
 text = "Modificar"
 
+[connection signal="visibility_changed" from="." to="." method="_on_visibility_changed"]
 [connection signal="pressed" from="VBoxContainer/ModifyButton" to="." method="_on_modify_button_pressed"]
