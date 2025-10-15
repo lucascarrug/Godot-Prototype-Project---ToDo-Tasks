@@ -88,12 +88,13 @@ func _can_drop_data(at_position: Vector2, data: Variant) -> bool:
 		return false
 	
 	## TODO: Solve drop zone, the problem is AddTaskWidget is not taken into account.
-	current_slot = clamp(int((at_position.y - _get_add_task_widget_size_y())/ _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
+	current_slot = clamp(int((at_position.y - _get_add_task_widget_size_y() + scroll_vertical)/_get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
+	print(current_slot)
 	if current_slot != prev_slot:
 		print(current_slot)
 		not_done_task_container.move_child(data, current_slot)
 	
-	prev_slot = clamp(int((at_position.y - _get_add_task_widget_size_y())/ _get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
+	prev_slot = clamp(int((at_position.y - _get_add_task_widget_size_y() + scroll_vertical)/_get_task_widget_size_y()), 0, not_done_task_container.get_children().size())
 	
 	return true
 

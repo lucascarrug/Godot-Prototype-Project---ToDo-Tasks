@@ -10,8 +10,10 @@ var task_id: int
 @onready var end_date_edit: LineEdit = $VBoxContainer/HBoxContainer2/EndDateLineEdit
 @onready var description_edit: LineEdit = $VBoxContainer/HBoxContainer3/DescriptionLineEdit
 
+
 func _ready() -> void:
 	print("EditTaskPopup._ready")
+
 
 func _on_modify_button_pressed() -> void:
 	var new_name = name_edit.text

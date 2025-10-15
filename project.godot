@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Database="*res://Scripts/DatabaseManager.gd"
+SignalBus="*res://Scripts/SignalBus.gd"
 
 [display]
 

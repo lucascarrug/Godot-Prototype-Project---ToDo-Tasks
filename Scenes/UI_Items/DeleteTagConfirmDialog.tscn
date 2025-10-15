@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://bfg3utfhjm7np"]
+
+[node name="DeleteTaskConfirmDialog" type="ConfirmationDialog"]
+title = "Confirmar acción"
+initial_position = 1
+size = Vector2i(353, 106)
+visible = true
+ok_button_text = "SI"
+dialog_text = "¿Seguro que quieres la eliminar la etiqueta?
+Se borrarán de todas las etiquetas."
+cancel_button_text = "NO"

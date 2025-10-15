@@ -1,11 +1,19 @@
 class_name Tag
 extends MenuButton
 
-@export var color: Color
-@export var tag: String
+const DELETE_TAG = 1
+
+var tag_name: String
+
+@onready var delete_task_dialog: ConfirmationDialog = $DeleteTaskConfirmDialog
 
 
-func set_tag(tag_name: String, tag_color: Color) -> void:
+func _ready() -> void:
+	self.get_popup().id_pressed.connect(_delete_tag)
+	delete_task_dialog.visible = false
+
+
+func set_tag(new_tag_name: String, tag_color: Color) -> void:
 	var normal_style: StyleBox = get_theme_stylebox("normal").duplicate()
 	var pressed_style: StyleBox = get_theme_stylebox("pressed").duplicate()
 	var hover_style: StyleBox = get_theme_stylebox("hover").duplicate()
@@ -26,5 +34,17 @@ func set_tag(tag_name: String, tag_color: Color) -> void:
 	else:
 		add_theme_color_override("font_color", Color.WHITE)
 	
-	text = tag_name.to_upper()
-	name = tag_name.to_upper()
+	tag_name = new_tag_name
+	text = new_tag_name.to_upper()
+	name = new_tag_name.to_upper()
+
+
+func _delete_tag(id_pressed: int) -> void:
+	if id_pressed != DELETE_TAG:
+		return
+
+	delete_task_dialog.visible = true
+
+func _on_delete_task_confirm_dialog_confirmed() -> void:
+	Database.delete_tag_by_name(tag_name)
+	SignalBus.tag_deleted.emit()

@@ -5,16 +5,19 @@ extends Control
 @onready var filter_button: OptionButton = $HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer/FilterButton
 
 func _ready() -> void:
+	SignalBus.tag_deleted.connect(_populate_filter_tag_button)
+	
 	task_container.set_container()
 	sort_button.get_popup().id_pressed.connect(_on_sort_button_item_selected)
-	_populate_select_tag_button()
+	_populate_filter_tag_button()
+	
 
 
 func _on_sort_button_item_selected(id) -> void:
 	task_container.sort_tasks(id)
 
 
-func _populate_select_tag_button() -> void:
+func _populate_filter_tag_button() -> void:
 	filter_button.clear()
 	filter_button.add_item("")
 	for tag in Database.get_all_tags():

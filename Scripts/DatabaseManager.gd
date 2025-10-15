@@ -153,6 +153,15 @@ func delete_task(task_id: int) -> void:
 	database.query_with_bindings(query, [task_id])
 
 
+func delete_tag_by_name(tag_name: String) -> void:
+	var tag_id = get_tag_id_by_name(tag_name)
+	
+	var query: String = 'DELETE FROM %s WHERE %s = ?' % [Constants.TAG_TABLE, Constants.TAG_ID]
+	database.query_with_bindings(query, [tag_id])
+	
+	query = 'DELETE FROM %s WHERE %s = ?' % [Constants.TASKTAG_TABLE, Constants.TASKTAG_TAG_ID]
+	database.query_with_bindings(query, [tag_id])
+
 ## UPDATE FUNCTIONS
 
 func set_task_done(task_id: int) -> void:
@@ -170,7 +179,6 @@ func update_task(task_id: int, task_name: String, task_description: String, task
 	var table_update: Dictionary = {
 		Constants.TASK_NAME: "Tarea " + str(task_id),
 		Constants.TASK_DESCRIPTION: null,
-		Constants.TASK_END_DATE: null
 	}
 	
 	if task_name != "":
@@ -181,5 +189,8 @@ func update_task(task_id: int, task_name: String, task_description: String, task
 	
 	if Utils.is_valid_date_format(task_end_date):
 		table_update[Constants.TASK_END_DATE] = task_end_date
+	elif task_end_date == "":
+		table_update[Constants.TASK_END_DATE] = null
+	
 	
 	database.update_rows(Constants.TASK_TABLE, "%s = %d" % [Constants.TASK_ID, task_id], table_update)

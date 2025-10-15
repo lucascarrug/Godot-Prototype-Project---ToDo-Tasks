@@ -5,10 +5,10 @@ signal new_tag_created
 signal tag_done_status_changed
 signal can_drop_data_emited
 
-const DELETE_TASK = 0
+const DELETE_TASK_TAG = 0
 
 var is_more_info_displayed: bool
-var is_popup_displayed: bool
+var is_tag_color_popup_displayed: bool
 var data: Dictionary
 
 @onready var background: Panel = $Background
@@ -21,14 +21,14 @@ var data: Dictionary
 @onready var select_tag_button: OptionButton = $TaskContainer/TagContainer/HBoxContainer/SelectTagButton
 @onready var done_button: Button = $TaskContainer/HBoxContainer/DoneButton
 @onready var delete_button: Button = $TaskContainer/HBoxContainer/DeleteButton
-@onready var delete_confirm_dialog: ConfirmationDialog = $DeleteConfirmDialog
+@onready var delete_task_confirm_dialog: ConfirmationDialog = $DeleteTaskConfirmDialog
 @onready var edit_task_popup: EditTaskPopup = $EditTaskPopup
 
 ##### OVERRIDE
 
 func _ready() -> void:
 	_hide_info()
-	is_popup_displayed = false
+	is_tag_color_popup_displayed = false
 	delete_button.visible = false
 	
 	if not data:
@@ -39,6 +39,7 @@ func _ready() -> void:
 	_populate_select_tag_button()
 	edit_task_popup.set_edit_popup(data[Constants.TASK_ID])
 	edit_task_popup.data_updated.connect(_on_data_updated)
+	SignalBus.tag_deleted.connect(_on_tag_deleted)
 	
 ##### SIGNALS
 
@@ -94,7 +95,7 @@ func _on_done_button_toggled(toggled_on: bool) -> void:
 
 
 func _on_delete_button_pressed() -> void:
-	delete_confirm_dialog.visible = true
+	delete_task_confirm_dialog.visible = true
 
 
 func _on_delete_confirm_dialog_confirmed() -> void:
@@ -107,6 +108,16 @@ func _on_edit_button_pressed() -> void:
 
 func _on_data_updated() -> void:
 	_update_data()
+
+
+func _on_tag_deleted() -> void:
+	for tag in tag_container.get_children():
+		if not is_instance_of(tag, Tag):
+			continue
+		tag_container.remove_child(tag)
+	
+	_load_tags_from_db()
+	_populate_select_tag_button()
 
 ##### PUBLIC
 
@@ -198,7 +209,7 @@ func _delete_task() -> void:
 
 
 func _delete_tag_from_task(id_pressed: int, sender: Tag) -> void:
-	if id_pressed != DELETE_TASK:
+	if id_pressed != DELETE_TASK_TAG:
 		return
 	
 	var task_id = data[Constants.TASK_ID]
