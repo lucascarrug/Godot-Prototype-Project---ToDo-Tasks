@@ -3,7 +3,8 @@ extends Resource
 
 ## Database
 const DATABASE_NAME: String = "Tasks"
-const DATABASE_PATH: String = "res://Data/Tasks.db"
+const DATABASE_RES_PATH: String = "res://Data/Tasks.db"
+const DATABASE_USER_PATH: String = "user://Tasks.db"
 
 ## Table names.
 const TASK_TABLE: String = "Tasks"

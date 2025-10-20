@@ -6,7 +6,7 @@ var database: SQLite
 
 func _ready():
 	database = SQLite.new()
-	database.path = Constants.DATABASE_PATH
+	database.path = Constants.DATABASE_USER_PATH
 	database.open_db()
 	_create_tables()
 
