@@ -1,8 +1,8 @@
 extends Control
 
-@onready var task_container: TaskWidgetContainer = $HBoxContainer/MyTasksMenu/VBoxContainer/TaskWidgetContainer
-@onready var sort_button: MenuButton = $HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer/SortButton
-@onready var filter_button: OptionButton = $HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer/FilterButton
+@onready var task_container: TaskWidgetContainer = $MyTasksMenu/VBoxContainer/TaskWidgetContainer
+@onready var sort_button: MenuButton = $MyTasksMenu/VBoxContainer/HBoxContainer/SortButton
+@onready var filter_button: OptionButton = $MyTasksMenu/VBoxContainer/HBoxContainer/FilterButton
 
 func _ready() -> void:
 	SignalBus.tag_deleted.connect(_populate_filter_tag_button)

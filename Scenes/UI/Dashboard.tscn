@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://doj2uju87ksd0"]
+[gd_scene load_steps=11 format=3 uid="uid://doj2uju87ksd0"]
 
 [ext_resource type="PackedScene" uid="uid://dp6nn2e18xg2k" path="res://Scenes/UI_Items/TaskWidgetContainer.tscn" id="1_b3vg7"]
 [ext_resource type="Script" uid="uid://5m7uf30sntnt" path="res://Scripts/UI/Dashboard.gd" id="1_hfwhy"]
@@ -11,10 +11,6 @@
 [ext_resource type="Texture2D" uid="uid://cnwc7p5fjsbdx" path="res://Assets/Icons/filter_resized.png" id="6_v85ql"]
 [ext_resource type="Texture2D" uid="uid://o1t1ddaimnat" path="res://Assets/Icons/informacion.png" id="7_7j02b"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c1w88"]
-bg_color = Color(0.168627, 0.168627, 0.168627, 1)
-border_color = Color(0, 0, 0, 1)
-
 [node name="Dashboard" type="Control"]
 layout_mode = 3
 anchors_preset = 15
@@ -24,88 +20,34 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_hfwhy")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-theme_override_constants/separation = 0
-
-[node name="Sidebar" type="Panel" parent="HBoxContainer"]
-z_index = -5
-custom_minimum_size = Vector2(480, 1080)
-layout_mode = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_c1w88")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/Sidebar"]
-custom_minimum_size = Vector2(480, 540)
-layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-
-[node name="TitleLabel" type="Label" parent="HBoxContainer/Sidebar/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_font_sizes/font_size = 50
-text = "ToDo"
-horizontal_alignment = 1
-vertical_alignment = 1
-
-[node name="MyTasksButton" type="Button" parent="HBoxContainer/Sidebar/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.329158, 0.329158, 0.329158, 1)
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_font_sizes/font_size = 30
-text = "Mis tareas"
-flat = true
-
-[node name="TodayTasksButton" type="Button" parent="HBoxContainer/Sidebar/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.329158, 0.329158, 0.329158, 1)
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_font_sizes/font_size = 30
-text = "Para hoy"
-flat = true
-
-[node name="OptionButton" type="Button" parent="HBoxContainer/Sidebar/VBoxContainer"]
-custom_minimum_size = Vector2(0, 100)
-layout_mode = 2
-focus_mode = 0
-theme_override_colors/font_hover_color = Color(0.329158, 0.329158, 0.329158, 1)
-theme_override_colors/font_color = Color(0.8, 0.8, 0.8, 1)
-theme_override_font_sizes/font_size = 30
-text = "Opciones"
-flat = true
-
-[node name="MyTasksMenu" type="Panel" parent="HBoxContainer"]
+[node name="MyTasksMenu" type="Panel" parent="."]
 z_index = -10
-custom_minimum_size = Vector2(1440, 1080)
+custom_minimum_size = Vector2(1920, 1080)
 layout_mode = 2
+offset_right = 1920.0
+offset_bottom = 1080.0
+size_flags_horizontal = 3
 theme_override_styles/panel = ExtResource("2_7yo7j")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/MyTasksMenu"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MyTasksMenu"]
 layout_mode = 0
 offset_left = 100.0
 offset_top = 100.0
-offset_right = 1340.0
-offset_bottom = 980.0
+offset_right = 1820.0
+offset_bottom = 1030.0
 theme_override_constants/separation = 10
 
-[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/MyTasksMenu/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="MyTasksMenu/VBoxContainer"]
 layout_mode = 2
 
-[node name="MyTasksLabel" type="Label" parent="HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer"]
+[node name="MyTasksLabel" type="Label" parent="MyTasksMenu/VBoxContainer/HBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.270588, 0.482353, 0.615686, 1)
 theme_override_font_sizes/font_size = 50
 text = "Mis tareas"
 label_settings = ExtResource("3_gbnjp")
 
-[node name="FilterButton" type="OptionButton" parent="HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer"]
+[node name="FilterButton" type="OptionButton" parent="MyTasksMenu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 size_flags_horizontal = 10
@@ -114,7 +56,7 @@ focus_mode = 0
 theme_override_icons/arrow = ExtResource("6_v85ql")
 fit_to_longest_item = false
 
-[node name="SortButton" type="MenuButton" parent="HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer"]
+[node name="SortButton" type="MenuButton" parent="MyTasksMenu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 70)
 layout_mode = 2
 size_flags_horizontal = 8
@@ -133,7 +75,7 @@ popup/item_2/text = " Fecha de entrega"
 popup/item_2/icon = ExtResource("4_v85ql")
 popup/item_2/id = 2
 
-[node name="MoreInfoButton" type="Button" parent="HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer"]
+[node name="MoreInfoButton" type="Button" parent="MyTasksMenu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(50, 50)
 layout_mode = 2
 toggle_mode = true
@@ -141,37 +83,9 @@ icon = ExtResource("7_7j02b")
 icon_alignment = 1
 expand_icon = true
 
-[node name="TaskWidgetContainer" parent="HBoxContainer/MyTasksMenu/VBoxContainer" instance=ExtResource("1_b3vg7")]
+[node name="TaskWidgetContainer" parent="MyTasksMenu/VBoxContainer" instance=ExtResource("1_b3vg7")]
 custom_minimum_size = Vector2(100, 850)
 layout_mode = 2
 
-[node name="OptionsMenu" type="Panel" parent="HBoxContainer"]
-visible = false
-custom_minimum_size = Vector2(1440, 1080)
-layout_mode = 2
-size_flags_horizontal = 3
-theme_override_styles/panel = ExtResource("2_7yo7j")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer/OptionsMenu"]
-custom_minimum_size = Vector2(400, 400)
-layout_mode = 0
-offset_left = 514.0
-offset_top = 335.0
-offset_right = 914.0
-offset_bottom = 735.0
-alignment = 1
-
-[node name="DeleteTagsButton" type="Button" parent="HBoxContainer/OptionsMenu/VBoxContainer"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Borrar Etiquetas"
-
-[node name="ResetDatabaseButton" type="Button" parent="HBoxContainer/OptionsMenu/VBoxContainer"]
-custom_minimum_size = Vector2(200, 100)
-layout_mode = 2
-theme_override_font_sizes/font_size = 30
-text = "Borrar BBDD"
-
-[connection signal="item_selected" from="HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer/FilterButton" to="." method="_on_filter_button_item_selected"]
-[connection signal="toggled" from="HBoxContainer/MyTasksMenu/VBoxContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_toggled"]
+[connection signal="item_selected" from="MyTasksMenu/VBoxContainer/HBoxContainer/FilterButton" to="." method="_on_filter_button_item_selected"]
+[connection signal="toggled" from="MyTasksMenu/VBoxContainer/HBoxContainer/MoreInfoButton" to="." method="_on_more_info_button_toggled"]
